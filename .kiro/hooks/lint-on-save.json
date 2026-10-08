@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Lint y accesibilidad al guardar código",
+      "trigger": "PostFileSave",
+      "description": "Al guardar un archivo .ts/.tsx, ejecuta ESLint (incluye reglas de accesibilidad jsx-a11y) para mantener la calidad y la accesibilidad del código.",
+      "matcher": "\\.(ts|tsx)$",
+      "action": {
+        "type": "command",
+        "command": "npm run lint",
+        "timeout": 120
+      }
+    }
+  ]
+}

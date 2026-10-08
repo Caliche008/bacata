@@ -1,0 +1,248 @@
+{
+  "id": "curso-cs-6",
+  "grado": 6,
+  "area": "ciencias_sociales",
+  "titulo": "Ciencias Sociales 6°",
+  "descripcion": "Historia y ciencias sociales para grado sexto, con la Cátedra de la Paz como eje transversal.",
+  "version": "0.1.0",
+  "unidades": [
+    {
+      "id": "u6-convivencia",
+      "titulo": "Convivencia y resolución de conflictos",
+      "descripcion": "Aprendemos a convivir y a resolver desacuerdos de forma pacífica y respetuosa.",
+      "orden": 1,
+      "ejePaz": true,
+      "objetivos": [
+        "Reconocer qué es un conflicto y que no todo conflicto es negativo.",
+        "Identificar formas pacíficas de resolver desacuerdos.",
+        "Valorar el diálogo y la empatía en la convivencia."
+      ],
+      "catedraPaz": {
+        "tematicas": [
+          "Cultura de la paz y resolución pacífica de conflictos",
+          "Convivencia y proyecto de vida"
+        ],
+        "como": "La unidad trabaja la resolución pacífica de conflictos como competencia ciudadana central, con casos del entorno escolar y comunitario."
+      },
+      "lecciones": [
+        {
+          "id": "l6-conv-1",
+          "titulo": "¿Qué es un conflicto?",
+          "objetivoAprendizaje": "Comprender que el conflicto es parte natural de la convivencia y puede resolverse de forma pacífica.",
+          "competencia": "Competencias ciudadanas - convivencia y paz",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e6-conv-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Cuál de estas situaciones es un ejemplo de conflicto bien manejado?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "Dos compañeros dialogan y acuerdan turnarse la cancha.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! El diálogo y el acuerdo son formas pacíficas de resolver un conflicto."
+                },
+                {
+                  "id": "b",
+                  "texto": "Un grupo deja de hablarle a otro para castigarlo.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Excluir a alguien no resuelve el conflicto; lo profundiza."
+                },
+                {
+                  "id": "c",
+                  "texto": "Se grita más fuerte para imponer la opinión.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Imponerse por la fuerza no es resolver, es ganar a costa del otro."
+                }
+              ],
+              "retroalimentacion": "Un conflicto bien manejado busca que ambas partes sean escuchadas.",
+              "meta": {
+                "tema": "Resolución de conflictos",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-conv-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "Todos los conflictos son malos y hay que evitarlos siempre.",
+              "respuestaCorrecta": false,
+              "justificacion": "El conflicto es natural; lo importante es cómo lo resolvemos. Bien manejado, puede ayudarnos a crecer y a entendernos.",
+              "retroalimentacion": "No todo conflicto es negativo: depende de cómo lo manejemos.",
+              "meta": {
+                "tema": "Naturaleza del conflicto",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-conv-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada actitud con lo que produce en la convivencia.",
+              "pares": [
+                { "izquierda": "Escuchar al otro", "derecha": "Entendimiento" },
+                { "izquierda": "Insultar", "derecha": "Más conflicto" },
+                { "izquierda": "Buscar un acuerdo", "derecha": "Solución pacífica" }
+              ],
+              "retroalimentacion": "Las actitudes de respeto construyen convivencia; las agresivas la rompen.",
+              "meta": {
+                "tema": "Actitudes y convivencia",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-conv-1-4",
+              "tipo": "ordenar",
+              "enunciado": "Ordena los pasos para resolver un conflicto de forma pacífica.",
+              "elementos": [
+                { "id": "p1", "texto": "Calmarse y escuchar a la otra persona", "orden": 1 },
+                { "id": "p2", "texto": "Expresar cómo me siento sin agredir", "orden": 2 },
+                { "id": "p3", "texto": "Buscar juntos una solución", "orden": 3 },
+                { "id": "p4", "texto": "Acordar y cumplir lo acordado", "orden": 4 }
+              ],
+              "retroalimentacion": "Primero escuchar, luego expresar, después acordar y cumplir.",
+              "meta": {
+                "tema": "Pasos de resolución pacífica",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-conv-1-5",
+              "tipo": "completar",
+              "enunciado": "Completa la frase sobre la convivencia.",
+              "texto": "Cuando tengo un desacuerdo, lo mejor es ___ a la otra persona y buscar un ___ .",
+              "huecos": [
+                { "id": "h1", "opciones": ["escuchar", "ignorar", "gritar"], "correcta": "escuchar" },
+                { "id": "h2", "opciones": ["acuerdo", "castigo", "silencio"], "correcta": "acuerdo" }
+              ],
+              "retroalimentacion": "Escuchar y buscar acuerdos es la base de la convivencia pacífica.",
+              "meta": {
+                "tema": "Convivencia pacífica",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-conv-1-6",
+              "tipo": "dilema",
+              "enunciado": "Piensa qué harías en esta situación.",
+              "escenario": "Un compañero te empujó sin querer y se le cayeron tus cuadernos. Se ríe nervioso. ¿Qué haces?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Le empujo de vuelta para que sepa lo que se siente.",
+                  "reflexion": "Responder con la misma agresión suele aumentar el conflicto. ¿Cómo crees que terminaría esa situación?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Le digo con calma que me molestó y le pido ayuda a recoger.",
+                  "reflexion": "Expresar lo que sientes sin agredir abre la puerta al entendimiento y a la disculpa."
+                },
+                {
+                  "id": "o3",
+                  "texto": "No digo nada pero quedo molesto todo el día.",
+                  "reflexion": "Guardar la molestia sin expresarla puede afectarte a ti. ¿Qué pasaría si lo hablaras con respeto?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo importante es reflexionar sobre las consecuencias de cada reacción. ¿Quién sale ganando con cada opción?",
+              "meta": {
+                "tema": "Toma de postura ante un conflicto",
+                "etiquetas": ["paz", "convivencia", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-conv-1-7",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee el siguiente testimonio y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "\"En nuestro salón teníamos muchas peleas por el turno del computador. Decidimos reunirnos y crear entre todos un acuerdo con reglas claras. Desde entonces, casi no discutimos.\" — Testimonio de una estudiante de un colegio en Boyacá."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "¿Qué hicieron los estudiantes para resolver el problema?",
+                  "opciones": [
+                    { "id": "a", "texto": "Crearon juntos un acuerdo con reglas claras.", "esCorrecta": true, "retro": "¡Así es! Construir acuerdos en común es una forma pacífica y participativa de resolver conflictos." },
+                    { "id": "b", "texto": "Prohibieron usar el computador.", "esCorrecta": false, "retro": "Casi. El testimonio no habla de prohibir, sino de ponerse de acuerdo." },
+                    { "id": "c", "texto": "Dejaron que el más fuerte decidiera.", "esCorrecta": false, "retro": "Casi. Imponer por la fuerza no fue lo que hicieron." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Quién cuenta esta historia?",
+                  "opciones": [
+                    { "id": "a", "texto": "Una estudiante que vivió la situación.", "esCorrecta": true, "retro": "Correcto. Reconocer quién narra una fuente nos ayuda a entender su punto de vista." },
+                    { "id": "b", "texto": "El rector del colegio.", "esCorrecta": false, "retro": "Casi. Fíjate en quién firma el testimonio." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Analizar fuentes nos ayuda a entender qué pasó y desde qué punto de vista se cuenta.",
+              "meta": {
+                "tema": "Análisis de fuente sobre resolución de conflictos",
+                "etiquetas": ["paz", "convivencia", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Testimonio estudiantil (ejemplo pedagógico)",
+                  "autor": "Material propio Bacatá"
+                },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6-derechos",
+      "titulo": "Derechos humanos y deberes ciudadanos",
+      "descripcion": "Conocemos nuestros derechos y deberes como integrantes de una comunidad.",
+      "orden": 2,
+      "ejePaz": true,
+      "objetivos": [
+        "Identificar derechos fundamentales y deberes ciudadanos.",
+        "Relacionar derechos con responsabilidades en la vida diaria."
+      ],
+      "catedraPaz": {
+        "tematicas": ["Derechos humanos", "Participación política y democracia"],
+        "como": "Introduce los derechos humanos como base de la dignidad y la convivencia democrática."
+      },
+      "lecciones": []
+    },
+    {
+      "id": "u6-diversidad",
+      "titulo": "Diversidad cultural y territorio colombiano",
+      "descripcion": "Reconocemos la riqueza de las regiones y los pueblos de Colombia.",
+      "orden": 3,
+      "ejePaz": true,
+      "objetivos": [
+        "Reconocer la diversidad cultural y regional de Colombia.",
+        "Valorar la diferencia como riqueza y no como amenaza."
+      ],
+      "catedraPaz": {
+        "tematicas": ["Diversidad y pluralidad"],
+        "como": "Trabaja el respeto por la diversidad étnica, cultural y regional como pilar de la paz."
+      },
+      "lecciones": []
+    },
+    {
+      "id": "u6-memoria",
+      "titulo": "Memoria histórica y construcción de paz",
+      "descripcion": "Entendemos por qué recordar nuestra historia ayuda a construir un futuro en paz.",
+      "orden": 4,
+      "ejePaz": true,
+      "objetivos": [
+        "Comprender qué es la memoria histórica y por qué importa.",
+        "Relacionar el recuerdo del pasado con la no repetición."
+      ],
+      "catedraPaz": {
+        "tematicas": ["Memoria histórica", "Justicia y reconciliación"],
+        "como": "Aborda la memoria histórica con enfoque de dignidad y no repetición, apropiado para la edad."
+      },
+      "lecciones": []
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Recordatorio de privacidad y accesibilidad",
+      "trigger": "PreToolUse",
+      "description": "Antes de operaciones de escritura, recuerda al agente los requisitos de privacidad (Ley 1581), accesibilidad y la Cátedra de la Paz como eje transversal.",
+      "matcher": "fs_write|str_replace|fs_append",
+      "action": {
+        "type": "agent",
+        "prompt": "Antes de escribir o modificar código/contenido, verifica que respete los requisitos de origen del proyecto: (1) Privacidad (Ley 1581): no introducir recolección de datos personales del estudiante más allá de apodo e id interno; sin trackers ni publicidad; sin registrar secretos. (2) Accesibilidad: elementos interactivos con roles/etiquetas ARIA, no transmitir información solo por color, objetivos táctiles >= 44px, respetar prefers-reduced-motion. (3) Cátedra de la Paz como eje transversal del contenido. Si el cambio viola alguno, corrígelo antes de continuar."
+      }
+    }
+  ]
+}

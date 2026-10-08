@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Validar contenido pedagógico al guardar",
+      "trigger": "PostFileSave",
+      "description": "Cuando se guarda un archivo JSON de contenido en /content, valida todo el contenido contra el esquema para que una lección malformada no llegue al estudiante.",
+      "matcher": "content[\\\\/].*\\.json$",
+      "action": {
+        "type": "command",
+        "command": "npm run validate:content",
+        "timeout": 120
+      }
+    }
+  ]
+}
