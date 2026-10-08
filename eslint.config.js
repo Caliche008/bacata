@@ -29,5 +29,13 @@ export default tseslint.config(
       ],
     },
   },
+  {
+    // Scripts de Node (validación de contenido) y pruebas que leen del sistema
+    // de archivos: usan globals de Node, no de navegador.
+    files: ['scripts/**/*.ts', 'src/**/*.test.ts'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
   prettier,
 );
