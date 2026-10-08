@@ -1,0 +1,256 @@
+{
+  "id": "curso-cs-7",
+  "grado": 7,
+  "area": "ciencias_sociales",
+  "titulo": "Ciencias Sociales 7°",
+  "descripcion": "Historia y ciencias sociales para grado séptimo, que profundiza en la convivencia, los derechos, la diversidad y la memoria, con la Cátedra de la Paz como eje transversal.",
+  "version": "0.1.0",
+  "unidades": [
+    {
+      "id": "u7-convivencia",
+      "titulo": "Convivencia y resolución de conflictos",
+      "descripcion": "Profundizamos en las causas de los conflictos y en estrategias como la mediación y la negociación para transformarlos sin violencia.",
+      "orden": 1,
+      "ejePaz": true,
+      "objetivos": [
+        "Distinguir entre el conflicto, sus causas y sus distintas formas de manejo.",
+        "Comprender la mediación y la negociación como mecanismos de transformación pacífica.",
+        "Analizar casos y asumir una postura argumentada frente a situaciones de convivencia."
+      ],
+      "catedraPaz": {
+        "tematicas": [
+          "Cultura de la paz y resolución pacífica de conflictos",
+          "Participación política y democracia"
+        ],
+        "como": "La unidad trabaja la transformación pacífica de conflictos y la mediación como competencias ciudadanas, analizando causas y perspectivas en casos del entorno escolar y comunitario."
+      },
+      "lecciones": [
+        {
+          "id": "l7-conv-1",
+          "titulo": "Del conflicto a la mediación",
+          "objetivoAprendizaje": "Comprender que los conflictos tienen causas e intereses, y que la mediación ayuda a transformarlos en acuerdos sin imponer a nadie.",
+          "competencia": "Competencias ciudadanas - convivencia y paz",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e7-conv-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "En un conflicto, ¿qué papel cumple una persona mediadora?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "Ayuda a las partes a dialogar y a buscar un acuerdo, sin decidir por ellas.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. La mediación facilita el diálogo, pero la solución la construyen las partes."
+                },
+                {
+                  "id": "b",
+                  "texto": "Decide quién tiene la razón e impone un castigo.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Esa función se parece más a la de un juez; la persona mediadora no decide por las partes."
+                },
+                {
+                  "id": "c",
+                  "texto": "Defiende a una de las partes para que gane el conflicto.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Un mediador es imparcial: no toma partido por nadie."
+                }
+              ],
+              "retroalimentacion": "La mediación es imparcial: acompaña el diálogo para que las partes construyan su propio acuerdo.",
+              "meta": {
+                "tema": "Mediación de conflictos",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-conv-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "La raíz de muchos conflictos está en intereses y necesidades distintas, no solo en que alguien sea 'malo'.",
+              "respuestaCorrecta": true,
+              "justificacion": "Comprender las causas e intereses detrás de un conflicto permite buscar soluciones que atiendan las necesidades de ambas partes, en lugar de culpar a una persona.",
+              "retroalimentacion": "Mirar las causas e intereses, y no solo buscar culpables, abre caminos de solución.",
+              "meta": {
+                "tema": "Causas del conflicto",
+                "etiquetas": ["paz", "convivencia", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-conv-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada mecanismo de manejo de conflictos con su descripción.",
+              "pares": [
+                { "izquierda": "Negociación", "derecha": "Las partes dialogan directamente para llegar a un acuerdo." },
+                { "izquierda": "Mediación", "derecha": "Una tercera persona imparcial facilita el diálogo." },
+                { "izquierda": "Imposición", "derecha": "Una parte obliga a la otra a aceptar su decisión." }
+              ],
+              "retroalimentacion": "Negociar y mediar buscan acuerdos compartidos; imponer deja a una parte insatisfecha.",
+              "meta": {
+                "tema": "Mecanismos de resolución",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-conv-1-4",
+              "tipo": "ordenar",
+              "enunciado": "Ordena las etapas de una mediación escolar.",
+              "elementos": [
+                { "id": "p1", "texto": "Acordar reglas: respetar turnos y no agredir", "orden": 1 },
+                { "id": "p2", "texto": "Cada parte expone cómo vivió la situación", "orden": 2 },
+                { "id": "p3", "texto": "Identificar juntos los intereses y necesidades", "orden": 3 },
+                { "id": "p4", "texto": "Proponer y evaluar posibles soluciones", "orden": 4 },
+                { "id": "p5", "texto": "Acordar la solución y verificar su cumplimiento", "orden": 5 }
+              ],
+              "retroalimentacion": "La mediación avanza del respeto inicial a entender intereses, generar opciones y acordar.",
+              "meta": {
+                "tema": "Etapas de la mediación",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-conv-1-5",
+              "tipo": "completar",
+              "enunciado": "Completa la frase sobre la transformación de conflictos.",
+              "texto": "En una negociación, las partes buscan un acuerdo donde ambas ___ algo; a esto se le llama una solución ___ .",
+              "huecos": [
+                { "id": "h1", "opciones": ["ganen", "pierdan", "callen"], "correcta": "ganen" },
+                { "id": "h2", "opciones": ["gana-gana", "a la fuerza", "temporal"], "correcta": "gana-gana" }
+              ],
+              "retroalimentacion": "Una solución 'gana-gana' atiende los intereses de ambas partes y es más duradera.",
+              "meta": {
+                "tema": "Negociación colaborativa",
+                "etiquetas": ["paz", "convivencia"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-conv-1-6",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y piensa qué harías.",
+              "escenario": "Eres parte del comité de convivencia. Dos compañeras discuten porque una siente que la otra la excluye de un trabajo en grupo. Las dos te piden que les des la razón. ¿Qué haces?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Le doy la razón a la que me parece más amiga.",
+                  "reflexion": "Tomar partido por afinidad rompe la imparcialidad. ¿Confiarían las dos partes en una mediación así?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Las invito a dialogar por turnos y les ayudo a entender qué necesita cada una.",
+                  "reflexion": "Facilitar el diálogo sin decidir por ellas es el papel de la mediación. ¿Qué acuerdos podrían surgir?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "Les digo que resuelvan solas y me alejo.",
+                  "reflexion": "A veces las partes necesitan apoyo para dialogar. ¿Qué se pierde si nadie facilita el encuentro?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo clave es mantener la imparcialidad y ayudar a que las partes se escuchen. ¿Quién gana cuando la mediación es justa?",
+              "meta": {
+                "tema": "Toma de postura en mediación",
+                "etiquetas": ["paz", "convivencia", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-conv-1-7",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este fragmento sobre un mecanismo real de convivencia escolar y responde.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "La Ley 1620 de 2013 creó en Colombia el Sistema Nacional de Convivencia Escolar. Entre otras cosas, impulsó los comités de convivencia en los colegios, para prevenir el acoso escolar y promover el diálogo y la resolución pacífica de los conflictos entre estudiantes."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el fragmento, ¿para qué sirven los comités de convivencia escolar?",
+                  "opciones": [
+                    { "id": "a", "texto": "Para prevenir el acoso y promover el diálogo y la resolución pacífica de conflictos.", "esCorrecta": true, "retro": "¡Así es! Su propósito es cuidar la convivencia, no castigar." },
+                    { "id": "b", "texto": "Para expulsar a los estudiantes que discuten.", "esCorrecta": false, "retro": "Casi. El texto habla de prevenir y dialogar, no de expulsar." },
+                    { "id": "c", "texto": "Para calificar el comportamiento con notas.", "esCorrecta": false, "retro": "Casi. El fragmento no menciona calificaciones." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Quién respalda esta forma de resolver conflictos en los colegios?",
+                  "opciones": [
+                    { "id": "a", "texto": "Una ley nacional (la Ley 1620 de 2013).", "esCorrecta": true, "retro": "Correcto. Identificar la fuente de una norma ayuda a saber qué la respalda." },
+                    { "id": "b", "texto": "Una costumbre de un solo colegio.", "esCorrecta": false, "retro": "Casi. El fragmento menciona una ley de alcance nacional." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Contrastar fuentes y leer con atención ayuda a entender qué dice realmente un documento y quién lo respalda.",
+              "meta": {
+                "tema": "Análisis de fuente sobre convivencia escolar",
+                "etiquetas": ["paz", "convivencia", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Ley 1620 de 2013 - Sistema Nacional de Convivencia Escolar",
+                  "autor": "Congreso de la República de Colombia",
+                  "anio": 2013
+                },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7-derechos",
+      "titulo": "Derechos humanos y deberes ciudadanos",
+      "descripcion": "Estudiamos los derechos humanos y los mecanismos para protegerlos, como la tutela, junto con los deberes que sostienen la vida en común.",
+      "orden": 2,
+      "ejePaz": true,
+      "objetivos": [
+        "Diferenciar tipos de derechos y relacionarlos con la dignidad humana.",
+        "Reconocer mecanismos de protección de derechos en Colombia.",
+        "Relacionar derechos y deberes en la vida democrática."
+      ],
+      "catedraPaz": {
+        "tematicas": [
+          "Derechos humanos y derecho internacional humanitario",
+          "Participación política y democracia"
+        ],
+        "como": "Profundiza en los derechos humanos y sus mecanismos de protección como fundamento de la dignidad y de una convivencia democrática."
+      },
+      "lecciones": []
+    },
+    {
+      "id": "u7-diversidad",
+      "titulo": "Diversidad cultural y territorio colombiano",
+      "descripcion": "Exploramos la diversidad étnica y regional de Colombia y cómo el territorio y la interculturalidad construyen identidad.",
+      "orden": 3,
+      "ejePaz": true,
+      "objetivos": [
+        "Caracterizar la diversidad étnica y regional de Colombia.",
+        "Comprender la interculturalidad como diálogo entre culturas.",
+        "Valorar la diferencia como riqueza para la convivencia."
+      ],
+      "catedraPaz": {
+        "tematicas": ["Diversidad y pluralidad", "Memoria histórica"],
+        "como": "Trabaja el respeto por la diversidad étnica, cultural y regional y la interculturalidad como pilares de la paz."
+      },
+      "lecciones": []
+    },
+    {
+      "id": "u7-memoria",
+      "titulo": "Memoria histórica y construcción de paz",
+      "descripcion": "Comprendemos la memoria histórica, el valor de las víctimas y los procesos de reconciliación para construir una paz duradera.",
+      "orden": 4,
+      "ejePaz": true,
+      "objetivos": [
+        "Comprender la memoria histórica como derecho y herramienta de no repetición.",
+        "Reconocer la dignidad de las víctimas y el sentido de la reconciliación.",
+        "Relacionar verdad, justicia y reparación con la construcción de paz."
+      ],
+      "catedraPaz": {
+        "tematicas": ["Memoria histórica", "Justicia y reconciliación"],
+        "como": "Aborda la memoria histórica con enfoque de dignidad, verdad y no repetición, apropiado para la edad y sin imágenes gráficas."
+      },
+      "lecciones": []
+    }
+  ]
+}
