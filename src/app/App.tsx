@@ -1,12 +1,36 @@
-import { Showcase } from './Showcase';
+import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth';
+import { Bienvenida } from './Bienvenida';
 
 /**
- * Punto de entrada visual del MVP. Por ahora muestra el showcase de la base de
- * UI (tarea 6). Las features reales (ruta, lecciones, panel docente) llegan en
- * tareas 7+ con enrutamiento.
+ * Gate de sesión del MVP (tarea 7).
+ *
+ * - Sin sesión → pantalla de acceso del estudiante (`AccesoEstudiante`).
+ * - Con sesión → placeholder mínimo de bienvenida (`Bienvenida`).
+ *
+ * La ruta de aprendizaje real (unidades, lecciones) llega en tareas 8+ con
+ * enrutamiento; aquí el gate es un condicional simple (sin React Router aún).
  */
+function Gate() {
+  const { perfil, cargando } = useSession();
+
+  if (cargando) {
+    // Estado breve mientras se recupera la sesión desde almacenamiento.
+    return (
+      <main className="bc-cargando" aria-busy="true">
+        <p>Cargando…</p>
+      </main>
+    );
+  }
+
+  return perfil ? <Bienvenida /> : <AccesoEstudiante />;
+}
+
 function App() {
-  return <Showcase />;
+  return (
+    <SessionProvider>
+      <Gate />
+    </SessionProvider>
+  );
 }
 
 export default App;
