@@ -1,18 +1,27 @@
-import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react';
+import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from '../../components';
 import { getLeccion, getUnidad, type Leccion } from '../../content';
+import { getClassByCode, getProgressByStudent } from '../../lib/storage';
 import { useSession } from '../auth';
+import {
+  CabeceraGamificacion,
+  PanelProgreso,
+  LOGROS,
+  PREFIJO_UNIDAD_COMPLETADA,
+  useGamificacion,
+} from '../progress';
+import type { ResumenLeccion } from './answers';
 import { CelebracionUnidad } from './CelebracionUnidad';
 import { UnidadCard } from './UnidadCard';
 import { useRuta } from './useRuta';
-import type { UnidadVista } from './path';
+import { construirRuta, type UnidadVista } from './path';
 import './lessons.css';
 
 /**
  * Contenedor de la ruta de aprendizaje (tarea 8). Reemplaza el placeholder de
  * bienvenida: muestra las unidades del grado del estudiante en orden, con su
- * progreso y el estado de cada lección. Tocar una lección DISPONIBLE abre un
- * placeholder de lección (tarea 9 implementará los ejercicios).
+ * progreso y el estado de cada lección. Tocar una lección DISPONIBLE abre el
+ * flujo de lección (tarea 9).
  *
  * Navegación: en vez de añadir React Router (no instalado) solo para abrir un
  * detalle, se usa un estado de vista simple (`'ruta' | { leccionId }`). La vista
@@ -21,21 +30,61 @@ import './lessons.css';
  * Celebración (R2.7/R15.1): se expone el enganche conceptual "unidad completada"
  * comparando el conjunto de unidades completadas entre renders; cuando una
  * unidad pasa a completada, se dispara la celebración con la mascota.
+ *
+ * Gamificación (tarea 10.3): monta la cabecera de XP/racha, engancha
+ * `onLeccionCompletada` en `LeccionDetalle` para registrar la gamificación al
+ * completar una lección (vía `useGamificacion`), y ofrece un acceso a
+ * "Mi progreso". La celebración se refuerza con la XP/racha/logros recién
+ * obtenidos. No cambia la firma de `LeccionDetalle` ni la lógica del evaluador.
  */
 
 const LeccionDetalle = lazy(() => import('./LeccionDetalle'));
 
 type Vista = { tipo: 'ruta' } | { tipo: 'leccion'; leccionId: string };
 
+interface CelebracionData {
+  tituloUnidad: string;
+  xpGanada?: number;
+  rachaActual?: number;
+  logrosNuevos?: string[];
+}
+
 function idsUnidadesCompletadas(unidades: UnidadVista[]): Set<string> {
   return new Set(unidades.filter((unidad) => unidad.completada).map((unidad) => unidad.id));
+}
+
+/**
+ * Resuelve el título de un logro para la celebración. Un logro fijo (p. ej. la
+ * racha de 7 días) sale del catálogo `LOGROS`; un logro de unidad usa el título
+ * de la unidad ya disponible en la ruta.
+ */
+function tituloLogro(id: string, titulosUnidad: Map<string, string>): string {
+  const fijo = LOGROS.find((logro) => logro.id === id);
+  if (fijo) {
+    return fijo.titulo;
+  }
+  if (id.startsWith(PREFIJO_UNIDAD_COMPLETADA)) {
+    const unidadId = id.slice(PREFIJO_UNIDAD_COMPLETADA.length);
+    const titulo = titulosUnidad.get(unidadId);
+    if (titulo) {
+      return `¡Completaste "${titulo}"!`;
+    }
+  }
+  return 'Nuevo logro';
 }
 
 export function RutaAprendizaje() {
   const { perfil, cerrarSesion } = useSession();
   const { cargando, error, curso, ruta, recargar } = useRuta();
   const [vista, setVista] = useState<Vista>({ tipo: 'ruta' });
-  const [celebracion, setCelebracion] = useState<string | null>(null);
+  const [celebracion, setCelebracion] = useState<CelebracionData | null>(null);
+  const [panelAbierto, setPanelAbierto] = useState(false);
+
+  const gamificacion = useGamificacion(perfil?.id, curso);
+
+  // Datos de la última gamificación registrada, para enriquecer la celebración
+  // cuando la unidad recién completada coincida con la lección registrada.
+  const ultimaGamificacion = useRef<{ xpGanada: number; rachaActual: number } | null>(null);
 
   // Enganche de celebración: detecta unidades recién completadas comparando el
   // estado previo con el nuevo tras cada cambio de progreso/ruta.
@@ -51,13 +100,25 @@ export function RutaAprendizaje() {
         (unidad) => unidad.completada && !previas.has(unidad.id),
       );
       if (nueva) {
-        setCelebracion(nueva.titulo);
+        const titulosUnidad = new Map(ruta.unidades.map((u) => [u.id, u.titulo]));
+        const logroUnidadId = `${PREFIJO_UNIDAD_COMPLETADA}${nueva.id}`;
+        const logrosNuevos = gamificacion.logrosNuevos.map((id) =>
+          tituloLogro(id, titulosUnidad),
+        );
+        const incluyeUnidad = gamificacion.logrosNuevos.includes(logroUnidadId);
+        const extra = ultimaGamificacion.current;
+        setCelebracion({
+          tituloUnidad: nueva.titulo,
+          xpGanada: extra?.xpGanada,
+          rachaActual: extra?.rachaActual,
+          logrosNuevos: incluyeUnidad ? logrosNuevos : undefined,
+        });
       }
     }
     completadasPrevias.current = completadasAhora;
-  }, [ruta]);
+  }, [ruta, gamificacion.logrosNuevos]);
 
-  // Busca la lección seleccionada en el curso para el placeholder de detalle.
+  // Busca la lección seleccionada en el curso para abrir su detalle.
   const leccionSeleccionada = useMemo<Leccion | null>(() => {
     if (vista.tipo !== 'leccion' || !curso) {
       return null;
@@ -71,6 +132,44 @@ export function RutaAprendizaje() {
     }
     return null;
   }, [vista, curso]);
+
+  // Enganche de gamificación: tras completar una lección, re-deriva el progreso
+  // real desde el store, calcula las unidades 100 % completadas (vía `path.ts`)
+  // y registra la gamificación. Se ejecuta una sola vez por lección completada.
+  const alCompletarLeccion = useCallback(
+    async (resumen: ResumenLeccion) => {
+      if (!perfil || !curso) {
+        return;
+      }
+      try {
+        const [progreso, clase] = await Promise.all([
+          getProgressByStudent(perfil.id),
+          getClassByCode(perfil.codigoClase),
+        ]);
+        const activas =
+          clase && clase.unidadesActivas.length > 0 ? clase.unidadesActivas : null;
+        const rutaActual = construirRuta(curso, activas, progreso);
+        const unidadesCompletadas = rutaActual.unidades
+          .filter((unidad) => unidad.completada)
+          .map((unidad) => unidad.id);
+        await gamificacion.registrar(resumen, unidadesCompletadas);
+      } catch {
+        // La gamificación es un refuerzo: si falla, no bloquea el flujo de la
+        // lección (el progreso ya quedó persistido por `LeccionDetalle`).
+      }
+    },
+    [perfil, curso, gamificacion],
+  );
+
+  // Guarda la XP/racha recién ganadas para enriquecer la celebración de unidad.
+  useEffect(() => {
+    if (gamificacion.xpUltimaLeccion > 0) {
+      ultimaGamificacion.current = {
+        xpGanada: gamificacion.xpUltimaLeccion,
+        rachaActual: gamificacion.rachaActual,
+      };
+    }
+  }, [gamificacion.xpUltimaLeccion, gamificacion.rachaActual]);
 
   if (!perfil) {
     return null;
@@ -90,6 +189,7 @@ export function RutaAprendizaje() {
           estudianteId={perfil.id}
           onVolver={() => setVista({ tipo: 'ruta' })}
           onCompletada={recargar}
+          onLeccionCompletada={alCompletarLeccion}
         />
       </Suspense>
     );
@@ -106,6 +206,20 @@ export function RutaAprendizaje() {
           Cambiar de perfil
         </Button>
       </header>
+
+      <CabeceraGamificacion
+        xp={gamificacion.xp}
+        rachaActual={gamificacion.rachaActual}
+        reinicioReciente={gamificacion.reinicioReciente}
+      />
+
+      {curso ? (
+        <div className="bc-ruta__acciones">
+          <Button variant="secondary" onClick={() => setPanelAbierto(true)}>
+            Mi progreso
+          </Button>
+        </div>
+      ) : null}
 
       {cargando ? (
         <p className="bc-ruta__cargando" aria-busy="true">
@@ -133,7 +247,22 @@ export function RutaAprendizaje() {
       ) : null}
 
       {celebracion ? (
-        <CelebracionUnidad tituloUnidad={celebracion} onCerrar={() => setCelebracion(null)} />
+        <CelebracionUnidad
+          tituloUnidad={celebracion.tituloUnidad}
+          xpGanada={celebracion.xpGanada}
+          rachaActual={celebracion.rachaActual}
+          logrosNuevos={celebracion.logrosNuevos}
+          onCerrar={() => setCelebracion(null)}
+        />
+      ) : null}
+
+      {panelAbierto && curso ? (
+        <PanelProgreso
+          logros={gamificacion.logros}
+          avanceEjePaz={gamificacion.avanceEjePaz}
+          curso={curso}
+          onCerrar={() => setPanelAbierto(false)}
+        />
       ) : null}
     </main>
   );

@@ -40,3 +40,13 @@ export type {
   RegistrarLeccionEntrada,
   RegistrarLeccionResultado,
 } from './gamificacion-store';
+
+// Hook de datos de la gamificación (UI) y componentes accesibles.
+export { useGamificacion } from './useGamificacion';
+export type { EstadoGamificacion, UseGamificacionResult } from './useGamificacion';
+
+export { CabeceraGamificacion } from './CabeceraGamificacion';
+export type { CabeceraGamificacionProps } from './CabeceraGamificacion';
+
+export { PanelProgreso } from './PanelProgreso';
+export type { PanelProgresoProps } from './PanelProgreso';
