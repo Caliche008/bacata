@@ -1,10 +1,71 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-size: 16px;
+/*
+ * Hoja de estilos base de Bacatá.
+ *
+ * Importa los tokens de marca y la escala de texto, y define el reset ligero,
+ * la base tipográfica accesible, el foco visible global y el respeto a
+ * `prefers-reduced-motion`. Los componentes usan los tokens; aquí no hay estilos
+ * específicos de feature.
+ */
+
+@import './tokens.css';
+@import './text-size.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* El tamaño raíz lo fija text-size.css (calc con --font-scale). */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base); /* 1rem = base escalada, nunca < 16px */
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+/* Foco visible global y consistente para navegación por teclado. */
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* No depender solo del color: los enlaces mantienen subrayado. */
+a {
+  color: var(--color-primary-strong);
+}
+
+/*
+ * Movimiento reducido: anula transiciones y animaciones para quienes lo
+ * solicitan a nivel de sistema (WCAG 2.3.3 / brand.md). Los componentes y la
+ * mascota solo animan dentro de `(prefers-reduced-motion: no-preference)`.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

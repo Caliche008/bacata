@@ -1,0 +1,128 @@
+/*
+ * Tokens de marca Bacatá como CSS custom properties.
+ *
+ * Nombres de token en inglés; textos de UI en español. Los valores base vienen
+ * de brand.md. La ACCESIBILIDAD MANDA SOBRE LA ESTÉTICA: cada par texto/fondo
+ * realmente usado cumple WCAG 2.1 AA (texto normal >= 4.5:1, texto grande
+ * >= 3:1, no-texto >= 3:1). Los colores de marca que NO cumplen como texto
+ * pequeño sobre fondo claro (dorado, verde-claro, coral, terracota) se usan
+ * SOLO como fondo/decorativos, o mediante sus variantes *-text oscuras.
+ *
+ * Pares medidos (fórmula de contraste WCAG 2.1):
+ *   carbón #2B2B2B / crema #FBF6EC .......... 13.14  OK normal
+ *   carbón #2B2B2B / blanco #FFFFFF .......... 14.16  OK normal
+ *   blanco #FFFFFF / esmeralda #1F7A5A ....... 5.26   OK normal (texto botón)
+ *   crema #FBF6EC / esmeralda-oscuro #17604A . 6.94   OK normal (hover/foco)
+ *   crema #FBF6EC / verde-noche #0F2F26 ...... 13.40  OK normal
+ *   verde-noche #0F2F26 / dorado #E2A72E ..... 6.74   OK normal (chip/badge)
+ *   dorado #E2A72E / crema (como texto) ...... 1.99   FALLA -> prohibido como texto
+ *   dorado-oscuro #8A5A00 / crema ............ 5.50   OK normal (--color-secondary-text)
+ *   verde-oscuro #2E7D52 / crema ............. 4.67   OK normal (--color-success-text)
+ *   verde-claro #4CAF7A / blanco (texto) ..... 2.72   FALLA -> solo fondo
+ *   verde-noche #0F2F26 / verde-claro #4CAF7A  5.31   OK normal (texto sobre fondo success)
+ *   coral #E5694F / crema (como texto) ....... 3.02   FALLA -> usar coral-oscuro
+ *   coral-oscuro #C43D22 / crema ............. 4.83   OK normal (--color-error-text)
+ *   terracota #C4623A / crema (texto) ........ 3.78   FALLA normal -> usar accent-text
+ *   terracota-oscuro #A24A2A / crema ......... 5.49   OK normal (--color-accent-text)
+ *   esmeralda-oscuro #17604A / crema (foco) .. 6.94   OK (>=3 no-texto)
+ */
+
+:root,
+[data-theme='default'] {
+  /* Superficies y texto */
+  --color-bg: #fbf6ec; /* crema */
+  --color-surface: #ffffff;
+  --color-text: #2b2b2b; /* carbón */
+  --color-text-on-dark: #fbf6ec; /* texto sobre superficies oscuras */
+
+  /* Primario (esmeralda) */
+  --color-primary: #1f7a5a;
+  --color-primary-strong: #17604a; /* hover/foco y texto grande */
+  --color-on-primary: #ffffff;
+
+  /* Secundario (dorado) — SOLO fondo/decorativo o con texto oscuro encima */
+  --color-secondary: #e2a72e;
+  --color-on-secondary: #0f2f26; /* verde noche sobre dorado (6.74:1) */
+  --color-secondary-text: #8a5a00; /* dorado oscuro para texto pequeño (5.50:1) */
+
+  /* Acento (terracota) */
+  --color-accent: #c4623a;
+  --color-accent-text: #a24a2a; /* terracota oscuro para texto (5.49:1) */
+
+  /* Fondo oscuro */
+  --color-dark-bg: #0f2f26; /* verde noche */
+
+  /* Estado: acierto */
+  --color-success: #4caf7a; /* verde claro — fondo (texto oscuro encima) */
+  --color-success-text: #2e7d52; /* verde oscuro — texto sobre crema (4.67:1) */
+  --color-on-success: #0f2f26;
+
+  /* Estado: error */
+  --color-error: #e5694f; /* coral — decorativo/fondo */
+  --color-error-strong: #c43d22; /* coral oscuro — fondo con texto blanco (5.20:1) */
+  --color-error-text: #c43d22; /* coral oscuro — texto sobre crema (4.83:1) */
+  --color-on-error: #ffffff;
+
+  /* Foco y bordes */
+  --color-focus-ring: #17604a; /* anillo de foco (>=3:1 sobre crema) */
+  --color-border: #2b2b2b;
+
+  /* Tipografía:
+   * Cuerpo: stack del sistema (peso 0 KB, respeta el ajuste de fuente del
+   * sistema del usuario). Títulos: stack REDONDEADO del sistema (ui-rounded en
+   * Apple, "Segoe UI" en Windows, system-ui en el resto). Se evita descargar un
+   * WOFF2 para no inflar el presupuesto de peso de gama baja (rendimiento =
+   * accesibilidad). El arte final puede reemplazar el título por una fuente
+   * auto-hospedada en una fase posterior sin tocar componentes. */
+  --font-title: ui-rounded, 'Baloo 2', 'Segoe UI', system-ui, -apple-system,
+    sans-serif;
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+
+  /* Escala (la sobreescribe data-text-size) */
+  --font-scale: 1;
+  --font-size-base: 1rem;
+
+  /* Métricas */
+  --touch-min: 44px; /* objetivo táctil mínimo */
+  --radius: 12px;
+  --focus-width: 3px;
+}
+
+/*
+ * Tema de ALTO CONTRASTE. Fondos puros y texto máximo; foco y bordes
+ * reforzados. Pares verificados: texto #0F2F26 sobre blanco = 14.43:1;
+ * inverso = 14.43:1. Las variantes *-text se oscurecen aún más.
+ */
+[data-theme='high-contrast'] {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #0f2f26; /* 14.43:1 sobre blanco */
+  --color-text-on-dark: #ffffff; /* 14.43:1 sobre verde noche */
+
+  --color-primary: #0f2f26;
+  --color-primary-strong: #0f2f26;
+  --color-on-primary: #ffffff;
+
+  --color-secondary: #e2a72e;
+  --color-on-secondary: #0f2f26;
+  --color-secondary-text: #6b4500; /* dorado aún más oscuro para texto */
+
+  --color-accent: #c4623a;
+  --color-accent-text: #8a3a1f;
+
+  --color-dark-bg: #0f2f26;
+
+  --color-success: #2e7d52;
+  --color-success-text: #15532f;
+  --color-on-success: #ffffff;
+
+  --color-error: #c43d22;
+  --color-error-strong: #9e2e13;
+  --color-error-text: #9e2e13;
+  --color-on-error: #ffffff;
+
+  --color-focus-ring: #0f2f26;
+  --color-border: #0f2f26;
+  --focus-width: 4px;
+}

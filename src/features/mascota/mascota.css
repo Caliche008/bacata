@@ -1,0 +1,73 @@
+/* Mascota de Bacatá: protagonismo visual, animaciones solo si se permiten. */
+
+.bc-mascota {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 20rem;
+}
+
+.bc-mascota__art {
+  display: block;
+}
+
+.bc-mascota__art--sm {
+  width: 64px;
+  height: 64px;
+}
+.bc-mascota__art--md {
+  width: 112px;
+  height: 112px;
+}
+.bc-mascota__art--lg {
+  width: 168px;
+  height: 168px;
+}
+
+/* Burbuja de mensaje accesible (el texto siempre lo lee el lector de pantalla). */
+.bc-mascota__bubble {
+  position: relative;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-primary-strong);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.bc-mascota__bubble::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 8px 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--color-primary-strong);
+}
+
+/*
+ * Animación de saludo/celebración. Solo se aplica cuando el usuario NO pide
+ * movimiento reducido (WCAG 2.3.3). La media query global en index.css también
+ * anula cualquier animación residual.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .bc-mascota__art--animated {
+    animation: bc-mascota-bob 2.4s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
+}
+
+@keyframes bc-mascota-bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+}

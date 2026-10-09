@@ -1,0 +1,29 @@
+/*
+ * Escala de tamaño de texto.
+ *
+ * Un único atributo `data-text-size` en <html> define `--font-scale`, y el
+ * tamaño raíz se calcula como `calc(16px * var(--font-scale))`. Como todos los
+ * tamaños de la UI se expresan en `rem`, cambiar la escala reescala TODA la
+ * interfaz sin tocar componentes y sin romper el layout. Nunca baja de 16px
+ * (requisito de legibilidad en móvil).
+ *
+ * Se respeta además el ajuste del sistema: no fijamos `px` absolutos en el
+ * cuerpo del texto, de modo que el zoom de página y el tamaño de fuente del
+ * navegador siguen aplicando sobre esta base.
+ */
+
+[data-text-size='normal'] {
+  --font-scale: 1;
+}
+
+[data-text-size='large'] {
+  --font-scale: 1.15;
+}
+
+[data-text-size='xlarge'] {
+  --font-scale: 1.35;
+}
+
+html {
+  font-size: calc(16px * var(--font-scale)); /* mínimo 16px (escala >= 1) */
+}
