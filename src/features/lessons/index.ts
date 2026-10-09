@@ -18,3 +18,13 @@ export type {
   UnidadVista,
   RutaVista,
 } from './path';
+
+// Motor de ejercicios y flujo de lección (tarea 9). Se exponen el evaluador puro
+// y los tipos de respuesta/resumen para pruebas y para el enganche de XP (tarea 10).
+export { evaluarEjercicio, esEvaluable } from './evaluate';
+export type {
+  Respuesta,
+  ResultadoEvaluacion,
+  DetalleAnalisis,
+  ResumenLeccion,
+} from './answers';

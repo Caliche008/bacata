@@ -155,31 +155,272 @@
   color: var(--color-success-text);
 }
 
-/* ---- Detalle de lección (placeholder) ---- */
+/* ---- Flujo de lección (tarea 9) ---- */
 
-.bc-leccion-detalle {
+.bc-leccion-flujo {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.bc-leccion-flujo__cabecera {
   display: flex;
-  justify-content: center;
-  padding: 1.5rem 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-.bc-leccion-detalle__card {
+.bc-leccion-flujo__card {
   width: 100%;
-  max-width: 32rem;
 }
 
-.bc-leccion-detalle__objetivo {
-  margin: 0 0 1rem;
+.bc-leccion-flujo__cierre {
+  margin: 1rem 0;
+  color: var(--color-text);
+  text-align: center;
+}
+
+.bc-leccion-flujo__feedback {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+}
+
+.bc-leccion-flujo__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+/* ---- Ejercicio (común) ---- */
+
+.bc-ejercicio__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.bc-ejercicio__enunciado {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  font-weight: 600;
   color: var(--color-text);
 }
 
-.bc-leccion-detalle__nota {
-  margin: 0 0 1rem;
+.bc-opciones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bc-opciones--vf {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.bc-opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: var(--touch-min);
   padding: 0.625rem 0.875rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.bc-opcion--activa {
+  border-color: var(--color-primary);
+}
+
+.bc-opcion__input {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+}
+
+.bc-opcion__texto {
+  flex: 1 1 auto;
+}
+
+/* ---- Emparejar ---- */
+
+.bc-emparejar__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bc-emparejar__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bc-emparejar__izquierda {
+  flex: 1 1 10rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.bc-emparejar__select,
+.bc-completar__select {
+  min-height: var(--touch-min);
+  padding: 0.375rem 0.625rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+/* ---- Ordenar ---- */
+
+.bc-ordenar__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bc-ordenar__item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+}
+
+.bc-ordenar__posicion {
+  flex: 0 0 auto;
+  font-weight: 700;
+  color: var(--color-primary-strong);
+}
+
+.bc-ordenar__texto {
+  flex: 1 1 auto;
+  color: var(--color-text);
+}
+
+.bc-ordenar__controles {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.375rem;
+}
+
+.bc-ordenar__boton {
+  min-width: var(--touch-min);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* ---- Completar ---- */
+
+.bc-completar__texto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  line-height: 2.25;
+  color: var(--color-text);
+}
+
+/* ---- Dilema ---- */
+
+.bc-dilema__mascota {
+  margin-bottom: 0.75rem;
+}
+
+.bc-dilema__escenario {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--color-secondary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ---- Análisis de fuente ---- */
+
+.bc-fuente-ejercicio__recurso {
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.bc-fuente-ejercicio__imagen {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.bc-fuente-ejercicio__pregunta {
+  margin-top: 1rem;
+}
+
+.bc-fuente {
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+  color: var(--color-text);
+}
+
+.bc-fuente__etiqueta {
+  font-weight: 600;
+}
+
+/* ---- Aviso sensible ---- */
+
+.bc-sensible {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bc-sensible__titulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.bc-sensible__nota {
+  margin: 0;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+.bc-sensible__ayuda {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.bc-sensible__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 /* ---- Celebración ---- */

@@ -33,7 +33,7 @@ function idsUnidadesCompletadas(unidades: UnidadVista[]): Set<string> {
 
 export function RutaAprendizaje() {
   const { perfil, cerrarSesion } = useSession();
-  const { cargando, error, curso, ruta } = useRuta();
+  const { cargando, error, curso, ruta, recargar } = useRuta();
   const [vista, setVista] = useState<Vista>({ tipo: 'ruta' });
   const [celebracion, setCelebracion] = useState<string | null>(null);
 
@@ -86,9 +86,10 @@ export function RutaAprendizaje() {
         }
       >
         <LeccionDetalle
-          titulo={leccionSeleccionada.titulo}
-          objetivoAprendizaje={leccionSeleccionada.objetivoAprendizaje}
+          leccion={leccionSeleccionada}
+          estudianteId={perfil.id}
           onVolver={() => setVista({ tipo: 'ruta' })}
+          onCompletada={recargar}
         />
       </Suspense>
     );

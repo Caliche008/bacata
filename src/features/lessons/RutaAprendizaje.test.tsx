@@ -1,3 +1,4 @@
+import 'fake-indexeddb/auto';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -85,7 +86,19 @@ const cursoBase: Curso = {
           objetivoAprendizaje: 'Entender la convivencia',
           competencia: 'Competencia',
           orden: 1,
-          ejercicios: [],
+          ejercicios: [
+            {
+              id: 'l1-e1',
+              tipo: 'opcion_multiple',
+              enunciado: '¿Qué construye la convivencia?',
+              opciones: [
+                { id: 'a', texto: 'El diálogo', esCorrecta: true, retro: 'Así es.' },
+                { id: 'b', texto: 'La agresión', esCorrecta: false, retro: 'Casi.' },
+              ],
+              retroalimentacion: 'El diálogo construye convivencia.',
+              meta: { tema: 'Convivencia', etiquetas: ['paz'], estado: 'aprobado' },
+            },
+          ],
         },
       ],
     },
@@ -137,20 +150,20 @@ describe('RutaAprendizaje — presentación (g)', () => {
     expect(bloqueada).toBeDisabled();
 
     await user.click(bloqueada);
-    // Sigue en la ruta: el placeholder de lección no aparece.
-    expect(screen.queryByText('Los ejercicios llegan pronto.')).toBeNull();
+    // Sigue en la ruta: el flujo de lección no aparece.
+    expect(screen.queryByText('¿Qué construye la convivencia?')).toBeNull();
   });
 
-  it('tocar una lección disponible abre el placeholder de lección', async () => {
+  it('tocar una lección disponible abre el flujo de lección', async () => {
     const user = userEvent.setup();
     render(<RutaAprendizaje />);
 
     await user.click(screen.getByRole('button', { name: /Primera lección/ }));
 
     await waitFor(() =>
-      expect(screen.getByText('Los ejercicios llegan pronto.')).toBeInTheDocument(),
+      expect(screen.getByText('¿Qué construye la convivencia?')).toBeInTheDocument(),
     );
-    expect(screen.getByText(/Entender la convivencia/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Responder' })).toBeInTheDocument();
   });
 
   it('muestra el porcentaje por unidad con ProgressBar accesible', () => {
