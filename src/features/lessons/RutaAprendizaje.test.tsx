@@ -1,9 +1,10 @@
 import 'fake-indexeddb/auto';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { IDBFactory } from 'fake-indexeddb';
+import { afterEach, describe, expect, it, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import type { Curso } from '../../content';
-import type { PerfilEstudiante } from '../../lib/storage';
+import { closeDb, putReview, resetDb, reviewId, type PerfilEstudiante } from '../../lib/storage';
 import type { RutaVista, UnidadVista } from './path';
 import { RutaAprendizaje } from './RutaAprendizaje';
 
@@ -106,6 +107,8 @@ const cursoBase: Curso = {
 };
 
 beforeEach(() => {
+  globalThis.indexedDB = new IDBFactory();
+  resetDb();
   cerrarSesion.mockClear();
   cursoMock = cursoBase;
   rutaMock = {
@@ -210,5 +213,38 @@ describe('RutaAprendizaje — celebración con mascota (g)', () => {
       expect(container.querySelector('[data-pose="celebrando"]')).not.toBeNull();
     });
     expect(screen.getByText(/¡Completaste Unidad u1!/)).toBeInTheDocument();
+  });
+});
+
+afterEach(async () => {
+  await closeDb();
+});
+
+describe('RutaAprendizaje — entrada de repaso (R14.2)', () => {
+  it('NO muestra la entrada de repaso cuando no hay ejercicios due', async () => {
+    render(<RutaAprendizaje />);
+    // El saludo confirma que la ruta ya se montó.
+    expect(
+      await screen.findByRole('heading', { name: '¡Hola, Explorador!' }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText('Repasa lo que fallaste')).toBeNull();
+  });
+
+  it('muestra la entrada de repaso solo cuando hay ejercicios due', async () => {
+    // Siembra un fallo due para el estudiante del perfil mockeado.
+    await putReview({
+      id: reviewId(perfil.id, 'e6-conv-1-1'),
+      estudianteId: perfil.id,
+      ejercicioId: 'e6-conv-1-1',
+      fallos: 1,
+      proximaAparicion: Date.now() - 1,
+    });
+
+    render(<RutaAprendizaje />);
+
+    expect(await screen.findByText('Repasa lo que fallaste')).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /Repasar 1 ejercicio que fallaste/ }),
+    ).toBeInTheDocument();
   });
 });

@@ -34,12 +34,36 @@ export type { LogroDef, EntradaLogros } from './logros';
 export {
   obtenerGamificacion,
   registrarLeccionCompletada,
+  registrarRepasoCompletado,
   obtenerAvanceEjePaz,
 } from './gamificacion-store';
 export type {
   RegistrarLeccionEntrada,
   RegistrarLeccionResultado,
+  RegistrarRepasoEntrada,
+  RegistrarRepasoResultado,
 } from './gamificacion-store';
+
+// Lógica PURA de repetición espaciada del repaso (R14.3).
+export {
+  INTERVALO_BASE_DIAS,
+  INTERVALO_TOPE_DIAS,
+  DIA_MS,
+  estaDue,
+  seleccionarDue,
+  alFallar,
+  alAcertarEnRepaso,
+} from './repaso';
+export type { ResultadoAcierto } from './repaso';
+
+// Wrapper de persistencia del repaso (solo `src/lib/storage`).
+export {
+  registrarFallo,
+  obtenerEjerciciosDue,
+  contarDue,
+  registrarAciertoRepaso,
+  registrarFalloRepaso,
+} from './repaso-store';
 
 // Hook de datos de la gamificación (UI) y componentes accesibles.
 export { useGamificacion } from './useGamificacion';

@@ -6,6 +6,7 @@ import {
   type Gamificacion,
 } from '../../lib/storage';
 import type { ResumenLeccion } from '../lessons/answers';
+import { XP } from './constants';
 import {
   calcularAvanceEjePaz,
   calcularRacha,
@@ -116,6 +117,66 @@ export async function registrarLeccionCompletada(
     xpGanada,
     reinicioRacha: racha.reinicioRacha,
     logrosNuevos,
+  };
+}
+
+/** Entrada para registrar una lección de REPASO completada (R14.2). */
+export interface RegistrarRepasoEntrada {
+  estudianteId: string;
+  /** Fecha local `YYYY-MM-DD`; si falta, se usa el día local real. */
+  hoy?: string;
+}
+
+/** Resultado de registrar un repaso completado: estado nuevo + lo celebrable. */
+export interface RegistrarRepasoResultado {
+  gamificacion: Gamificacion;
+  xpGanada: number;
+  reinicioRacha: boolean;
+}
+
+/**
+ * Registra una lección de REPASO completada (R14.2). A diferencia de una lección
+ * normal, aplica EXACTAMENTE `XP.LECCION_REPASO` (+5, constante existente, no se
+ * redefine) y la MISMA política de racha (`calcularRacha`), pero NO evalúa
+ * logros de unidad (el repaso no completa unidades). Reutiliza las reglas puras
+ * existentes y persiste con `putGamification`.
+ *
+ * Se usa en lugar del enganche `onLeccionCompletada` de lección normal (cuya
+ * fórmula da +10): el repaso tiene su propia regla de XP fija.
+ */
+export async function registrarRepasoCompletado(
+  entrada: RegistrarRepasoEntrada,
+): Promise<RegistrarRepasoResultado> {
+  const { estudianteId } = entrada;
+  const hoy = entrada.hoy ?? fechaLocalHoy();
+
+  const previo = await obtenerGamificacion(estudianteId);
+
+  const xpGanada = XP.LECCION_REPASO;
+  const racha = calcularRacha(
+    {
+      rachaActual: previo.rachaActual,
+      mejorRacha: previo.mejorRacha,
+      ultimaFechaActiva: previo.ultimaFechaActiva,
+    },
+    hoy,
+  );
+
+  const gamificacion: Gamificacion = {
+    estudianteId,
+    xp: previo.xp + xpGanada,
+    rachaActual: racha.rachaActual,
+    mejorRacha: racha.mejorRacha,
+    ultimaFechaActiva: racha.ultimaFechaActiva,
+    logros: previo.logros,
+  };
+
+  await putGamification(gamificacion);
+
+  return {
+    gamificacion,
+    xpGanada,
+    reinicioRacha: racha.reinicioRacha,
   };
 }
 

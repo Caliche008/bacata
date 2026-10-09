@@ -48,6 +48,13 @@ export interface LeccionDetalleProps {
   onCompletada: () => void;
   /** Enganche para la tarea 10 (XP/rachas). Aquí NO se implementa lógica de XP. */
   onLeccionCompletada?: (resumen: ResumenLeccion) => void;
+  /**
+   * Enganche OPCIONAL (tarea 11, R14.1): se invoca con el id del ejercicio la
+   * primera vez que se evalúa INCORRECTO en este montaje. El dilema (sin
+   * veredicto) nunca lo dispara. Opcional para no romper a los llamadores
+   * actuales ni la firma pública.
+   */
+  onEjercicioFallado?: (ejercicioId: string) => void;
 }
 
 export default function LeccionDetalle({
@@ -56,6 +63,7 @@ export default function LeccionDetalle({
   onVolver,
   onCompletada,
   onLeccionCompletada,
+  onEjercicioFallado,
 }: LeccionDetalleProps) {
   const [estado, dispatch] = useReducer(
     (prev: EstadoFlujo, accion: AccionFlujo) => reducer(leccion, prev, accion),
@@ -77,6 +85,9 @@ export default function LeccionDetalle({
   const indiceRef = useRef(estado.indice);
   indiceRef.current = estado.indice;
   const completadaRef = useRef(false);
+  // Ids ya notificados como fallo en este montaje (R14.1): un reintento del mismo
+  // ejercicio no infla `fallos` más de una vez por aparición.
+  const falladosNotificados = useRef<Set<string>>(new Set());
 
   // Carga inicial: rehidrata el avance parcial si existe (R3.9).
   useEffect(() => {
@@ -126,8 +137,14 @@ export default function LeccionDetalle({
       return;
     }
     const resultado = evaluarEjercicio(ejercicioActual, respuesta);
+    // R14.1: registrar el fallo una sola vez por aparición. El dilema tiene
+    // `correcto === null`, así que nunca entra aquí (sin veredicto, R3.3).
+    if (resultado.correcto === false && !falladosNotificados.current.has(ejercicioActual.id)) {
+      falladosNotificados.current.add(ejercicioActual.id);
+      onEjercicioFallado?.(ejercicioActual.id);
+    }
     dispatch({ tipo: 'responder', ejercicioId: ejercicioActual.id, respuesta, resultado });
-  }, [ejercicioActual, respuesta]);
+  }, [ejercicioActual, respuesta, onEjercicioFallado]);
 
   const reintentar = useCallback(() => {
     if (!ejercicioActual) {

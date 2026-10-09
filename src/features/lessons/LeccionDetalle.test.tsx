@@ -214,6 +214,52 @@ describe('LeccionDetalle — sensible (R12.4)', () => {
   });
 });
 
+describe('LeccionDetalle — onEjercicioFallado (R14.1)', () => {
+  it('invoca onEjercicioFallado una sola vez por aparición, aunque se reintente', async () => {
+    const user = userEvent.setup();
+    const onEjercicioFallado = vi.fn<(id: string) => void>();
+    render(
+      <LeccionDetalle
+        leccion={leccionCon([opcionMultiple])}
+        estudianteId={ESTUDIANTE}
+        onVolver={vi.fn()}
+        onCompletada={vi.fn()}
+        onEjercicioFallado={onEjercicioFallado}
+      />,
+    );
+
+    // Primer intento incorrecto: se notifica el fallo.
+    await user.click(await screen.findByLabelText('La agresión'));
+    await user.click(screen.getByRole('button', { name: 'Responder' }));
+    expect(onEjercicioFallado).toHaveBeenCalledTimes(1);
+    expect(onEjercicioFallado).toHaveBeenCalledWith('e1');
+
+    // Reintento incorrecto: NO vuelve a notificar el mismo ejercicio.
+    await user.click(screen.getByRole('button', { name: 'Reintentar' }));
+    await user.click(await screen.findByLabelText('La agresión'));
+    await user.click(screen.getByRole('button', { name: 'Responder' }));
+    expect(onEjercicioFallado).toHaveBeenCalledTimes(1);
+  });
+
+  it('NO invoca onEjercicioFallado para un dilema (sin veredicto, R3.3)', async () => {
+    const user = userEvent.setup();
+    const onEjercicioFallado = vi.fn<(id: string) => void>();
+    render(
+      <LeccionDetalle
+        leccion={leccionCon([dilema])}
+        estudianteId={ESTUDIANTE}
+        onVolver={vi.fn()}
+        onCompletada={vi.fn()}
+        onEjercicioFallado={onEjercicioFallado}
+      />,
+    );
+
+    await user.click(await screen.findByLabelText('Le digo con calma'));
+    await user.click(screen.getByRole('button', { name: 'Responder' }));
+    expect(onEjercicioFallado).not.toHaveBeenCalled();
+  });
+});
+
 describe('LeccionDetalle — completar lección (R3.4)', () => {
   it('marca la lección completada en el store y celebra con la mascota', async () => {
     const user = userEvent.setup();

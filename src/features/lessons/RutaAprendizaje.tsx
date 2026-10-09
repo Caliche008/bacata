@@ -1,13 +1,16 @@
 import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Button } from '../../components';
+import { Button, Card } from '../../components';
 import { getLeccion, getUnidad, type Leccion } from '../../content';
 import { getClassByCode, getProgressByStudent } from '../../lib/storage';
 import { useSession } from '../auth';
+import { Mascota } from '../mascota';
 import {
   CabeceraGamificacion,
   PanelProgreso,
   LOGROS,
   PREFIJO_UNIDAD_COMPLETADA,
+  contarDue,
+  registrarFallo,
   useGamificacion,
 } from '../progress';
 import type { ResumenLeccion } from './answers';
@@ -39,8 +42,12 @@ import './lessons.css';
  */
 
 const LeccionDetalle = lazy(() => import('./LeccionDetalle'));
+const RepasoLeccion = lazy(() => import('./RepasoLeccion'));
 
-type Vista = { tipo: 'ruta' } | { tipo: 'leccion'; leccionId: string };
+type Vista =
+  | { tipo: 'ruta' }
+  | { tipo: 'leccion'; leccionId: string }
+  | { tipo: 'repaso' };
 
 interface CelebracionData {
   tituloUnidad: string;
@@ -79,8 +86,29 @@ export function RutaAprendizaje() {
   const [vista, setVista] = useState<Vista>({ tipo: 'ruta' });
   const [celebracion, setCelebracion] = useState<CelebracionData | null>(null);
   const [panelAbierto, setPanelAbierto] = useState(false);
+  // Repaso de errores (R14.2): nº de ejercicios "due". La entrada solo aparece
+  // cuando hay > 0.
+  const [cantidadDue, setCantidadDue] = useState(0);
 
   const gamificacion = useGamificacion(perfil?.id, curso);
+
+  // Recalcula los ejercicios "due" del repaso (R14.2). Se invoca al montar, al
+  // volver del repaso y tras completar una lección (que puede añadir fallos).
+  const refrescarDue = useCallback(async () => {
+    if (!perfil) {
+      return;
+    }
+    try {
+      setCantidadDue(await contarDue(perfil.id));
+    } catch {
+      // El repaso es un refuerzo: si no se puede leer, no se muestra la entrada.
+      setCantidadDue(0);
+    }
+  }, [perfil]);
+
+  useEffect(() => {
+    void refrescarDue();
+  }, [refrescarDue]);
 
   // Datos de la última gamificación registrada, para enriquecer la celebración
   // cuando la unidad recién completada coincida con la lección registrada.
@@ -188,8 +216,37 @@ export function RutaAprendizaje() {
           leccion={leccionSeleccionada}
           estudianteId={perfil.id}
           onVolver={() => setVista({ tipo: 'ruta' })}
-          onCompletada={recargar}
+          onCompletada={() => {
+            recargar();
+            void refrescarDue();
+          }}
           onLeccionCompletada={alCompletarLeccion}
+          onEjercicioFallado={(ejercicioId) => {
+            // R14.1: un fallo en lección normal entra al repaso de errores.
+            void registrarFallo(perfil.id, ejercicioId);
+          }}
+        />
+      </Suspense>
+    );
+  }
+
+  if (vista.tipo === 'repaso' && curso) {
+    return (
+      <Suspense
+        fallback={
+          <main className="bc-ruta__cargando" aria-busy="true">
+            <p>Cargando…</p>
+          </main>
+        }
+      >
+        <RepasoLeccion
+          estudianteId={perfil.id}
+          curso={curso}
+          onVolver={() => {
+            setVista({ tipo: 'ruta' });
+            void refrescarDue();
+          }}
+          onRepasoCompletado={refrescarDue}
         />
       </Suspense>
     );
@@ -219,6 +276,35 @@ export function RutaAprendizaje() {
             Mi progreso
           </Button>
         </div>
+      ) : null}
+
+      {curso && cantidadDue > 0 ? (
+        <Card className="bc-ruta__repaso">
+          <div className="bc-ruta__repaso-cuerpo">
+            <Mascota
+              pose="durmiendo"
+              size="sm"
+              message="Repasemos lo que se te complicó."
+            />
+            <div className="bc-ruta__repaso-texto">
+              <h2 className="bc-ruta__repaso-titulo">Repasa lo que fallaste</h2>
+              <p>
+                Tienes {cantidadDue}{' '}
+                {cantidadDue === 1 ? 'ejercicio' : 'ejercicios'} por repasar. ¡Cinco
+                minutos para afianzar lo aprendido!
+              </p>
+            </div>
+          </div>
+          <Button
+            variant="primary"
+            onClick={() => setVista({ tipo: 'repaso' })}
+            aria-label={`Repasar ${cantidadDue} ${
+              cantidadDue === 1 ? 'ejercicio' : 'ejercicios'
+            } que fallaste`}
+          >
+            Repasar ahora
+          </Button>
+        </Card>
       ) : null}
 
       {cargando ? (

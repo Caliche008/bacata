@@ -39,4 +39,5 @@ export {
   getUnidad,
   listarLecciones,
   getLeccion,
+  getEjercicioPorId,
 } from './selectors';

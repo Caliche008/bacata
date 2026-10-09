@@ -82,7 +82,7 @@ final). Marca `[x]` al completar.
   - [x] 10.4 Pruebas de XP, racha (corte de días y cambio de reloj) y logros.
   - _Requisitos: 4.1–4.7, 12.5._
 
-- [ ] 11. Repaso de errores
+- [x] 11. Repaso de errores
   - Registrar fallos en `repaso`; lección de repaso offline; espaciar aparición al acertar.
   - Pruebas de registro y espaciado.
   - _Requisitos: 14.1, 14.2, 14.3._
