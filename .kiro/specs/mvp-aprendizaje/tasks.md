@@ -73,13 +73,13 @@ final). Marca `[x]` al completar.
   - [ ] 9.5 Pruebas del evaluador y del flujo (incluye abandono/retome y omitir sensible).
   - _Requisitos: 3.1–3.9, 12.3, 12.4, 13.1._
 
-- [ ] 10. Progreso y gamificación con propósito
-  - [ ] 10.1 Fórmula de XP (constante central), racha por fecha local con tolerancia a cambio de
+- [x] 10. Progreso y gamificación con propósito
+  - [x] 10.1 Fórmula de XP (constante central), racha por fecha local con tolerancia a cambio de
         reloj, logros por hitos; avance en eje Paz.
-  - [ ] 10.2 Persistir en `gamificacion`; cálculo 100% offline; sin rankings; mensaje motivador al
+  - [x] 10.2 Persistir en `gamificacion`; cálculo 100% offline; sin rankings; mensaje motivador al
         perder racha.
-  - [ ] 10.3 UI accesible de puntos, racha, logros y eje Paz.
-  - [ ] 10.4 Pruebas de XP, racha (corte de días y cambio de reloj) y logros.
+  - [x] 10.3 UI accesible de puntos, racha, logros y eje Paz.
+  - [x] 10.4 Pruebas de XP, racha (corte de días y cambio de reloj) y logros.
   - _Requisitos: 4.1–4.7, 12.5._
 
 - [ ] 11. Repaso de errores
