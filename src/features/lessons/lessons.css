@@ -1,0 +1,220 @@
+/*
+ * Estilos de la ruta de aprendizaje (tarea 8). Solo tokens de
+ * `src/styles/tokens.css`. El estado nunca se transmite SOLO por color: cada
+ * estado lleva ícono + texto (ver LeccionItem / UnidadCard). Objetivos táctiles
+ * >= 44px vía `--touch-min`. Las animaciones residuales las anula el reset
+ * global de `prefers-reduced-motion`.
+ */
+
+.bc-ruta {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.bc-ruta__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.bc-ruta__saludo {
+  margin: 0;
+  font-family: var(--font-title);
+  color: var(--color-text);
+}
+
+.bc-ruta__meta {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.bc-ruta__cargando,
+.bc-ruta__error {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+}
+
+.bc-ruta__error {
+  border: 1px solid var(--color-error-strong);
+  color: var(--color-error-text);
+  background-color: var(--color-surface);
+}
+
+.bc-ruta__unidades {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ---- Unidad ---- */
+
+.bc-unidad__paz {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0 0 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background-color: var(--color-dark-bg);
+  color: var(--color-text-on-dark);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.bc-unidad__paz-icono {
+  font-size: 1rem;
+}
+
+.bc-unidad__desc {
+  margin: 0 0 1rem;
+  color: var(--color-text);
+}
+
+.bc-unidad__proximamente {
+  margin: 1rem 0 0;
+  padding: 0.625rem 0.875rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.bc-unidad__lecciones {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+/* ---- Lección ---- */
+
+.bc-leccion {
+  display: block;
+}
+
+.bc-leccion__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: var(--touch-min);
+  padding: 0.625rem 0.875rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.bc-leccion__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.bc-leccion__btn--disponible {
+  border-color: var(--color-primary);
+}
+
+.bc-leccion__btn--completada {
+  border-color: var(--color-success-text);
+}
+
+.bc-leccion__icono {
+  flex: 0 0 auto;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.bc-leccion__titulo {
+  flex: 1 1 auto;
+}
+
+.bc-leccion__estado {
+  flex: 0 0 auto;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.bc-leccion__btn--disponible .bc-leccion__estado {
+  color: var(--color-primary-strong);
+}
+
+.bc-leccion__btn--completada .bc-leccion__estado {
+  color: var(--color-success-text);
+}
+
+/* ---- Detalle de lección (placeholder) ---- */
+
+.bc-leccion-detalle {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+
+.bc-leccion-detalle__card {
+  width: 100%;
+  max-width: 32rem;
+}
+
+.bc-leccion-detalle__objetivo {
+  margin: 0 0 1rem;
+  color: var(--color-text);
+}
+
+.bc-leccion-detalle__nota {
+  margin: 0 0 1rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ---- Celebración ---- */
+
+.bc-celebracion__overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(15, 47, 38, 0.6);
+  z-index: 10;
+}
+
+.bc-celebracion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 24rem;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.bc-celebracion__titulo {
+  margin: 0;
+  font-family: var(--font-title);
+  color: var(--color-text);
+}
+
+.bc-celebracion__texto {
+  margin: 0;
+  color: var(--color-text);
+}

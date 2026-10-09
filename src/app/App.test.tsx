@@ -8,7 +8,7 @@ import { ThemeProvider } from './ThemeProvider';
 
 /**
  * Pruebas del gate de sesión (g del brief). Sin sesión → pantalla de acceso;
- * con sesión persistida → placeholder de bienvenida con la mascota.
+ * con sesión persistida → ruta de aprendizaje con el saludo al estudiante.
  */
 
 beforeEach(async () => {
@@ -37,7 +37,7 @@ describe('App — gate de sesión', () => {
     expect(screen.getByLabelText('Tu apodo')).toBeInTheDocument();
   });
 
-  it('con sesión muestra la bienvenida con el apodo', async () => {
+  it('con sesión muestra la ruta de aprendizaje con el apodo', async () => {
     await putProfile({
       id: 'est-1',
       apodo: 'Explorador',

@@ -1,14 +1,16 @@
 import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth';
-import { Bienvenida } from './Bienvenida';
+import { RutaAprendizaje } from '../features/lessons';
 
 /**
- * Gate de sesión del MVP (tarea 7).
+ * Gate de sesión del MVP.
  *
  * - Sin sesión → pantalla de acceso del estudiante (`AccesoEstudiante`).
- * - Con sesión → placeholder mínimo de bienvenida (`Bienvenida`).
+ * - Con sesión → ruta de aprendizaje por niveles (`RutaAprendizaje`, tarea 8),
+ *   que incluye su propia cabecera con el saludo y "Cambiar de perfil".
  *
- * La ruta de aprendizaje real (unidades, lecciones) llega en tareas 8+ con
- * enrutamiento; aquí el gate es un condicional simple (sin React Router aún).
+ * El gate es un condicional simple (sin React Router): la navegación interna de
+ * la ruta (abrir una lección) la gestiona la propia feature con un estado de
+ * vista + `React.lazy`.
  */
 function Gate() {
   const { perfil, cargando } = useSession();
@@ -22,7 +24,7 @@ function Gate() {
     );
   }
 
-  return perfil ? <Bienvenida /> : <AccesoEstudiante />;
+  return perfil ? <RutaAprendizaje /> : <AccesoEstudiante />;
 }
 
 function App() {
