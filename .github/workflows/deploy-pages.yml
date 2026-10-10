@@ -3,25 +3,27 @@ name: Desplegar a GitHub Pages
 # Publica la PWA "Bacatá" en GitHub Pages en cada push a main.
 # La app se sirve en https://<usuario>.github.io/bacata/, por eso se compila
 # con BASE_PATH=/bacata/ (ver vite.config.ts).
+#
+# Método: compila la app y publica el contenido de dist/ en la rama `gh-pages`.
+# Esto funciona con el modo "Deploy from a branch" de GitHub Pages (Settings ->
+# Pages -> Source: Deploy from a branch -> Branch: gh-pages / (root)).
 
 on:
   push:
     branches: [main]
   workflow_dispatch: {}
 
-# Permisos mínimos que GitHub Pages necesita para publicar.
+# El workflow necesita escribir en la rama gh-pages.
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 # Evita despliegues solapados; deja terminar el que esté en curso.
 concurrency:
-  group: pages
+  group: pages-deploy
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout del repositorio
@@ -44,18 +46,14 @@ jobs:
       - name: Fallback SPA para rutas profundas (404 -> index)
         run: cp dist/index.html dist/404.html
 
-      - name: Subir artefacto de Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
+      # Evita que GitHub Pages procese el sitio con Jekyll (dejaría fuera
+      # archivos/carpetas que empiezan por "_").
+      - name: Desactivar Jekyll
+        run: touch dist/.nojekyll
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Publicar en GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Publicar dist/ en la rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
