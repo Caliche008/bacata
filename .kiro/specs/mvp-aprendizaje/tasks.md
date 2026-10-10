@@ -116,7 +116,7 @@ final). Marca `[x]` al completar.
     pensamiento crítico y neutralidad; cada unidad con al menos un ejercicio de eje Paz; validar.
   - _Requisitos: 2.5, 7.*, 11.*, 12.2, 13.1–13.4._
 
-- [ ] 17. Verificación final del MVP
+- [x] 17. Verificación final del MVP
   - `lint`, `test`, `build`, `validate:content` sin errores.
   - Revisión de accesibilidad (lector de pantalla, teclado, contraste, tamaño de texto).
   - Prueba offline end-to-end en un dispositivo/emulador Android de gama baja contra el

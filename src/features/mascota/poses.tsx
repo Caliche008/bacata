@@ -6,27 +6,17 @@
  * (ver brand.md). Contornos limpios y formas redondeadas; sin símbolos
  * políticos, armas ni uniformes; nunca se burla del error.
  *
- * El mapa `poseRenderers` (pose -> componente) permite sustituir cada pose por
- * arte final sin tocar a los consumidores. Cada SVG es decorativo: el
- * componente `Mascota` decide el `aria-hidden`; el significado va siempre en el
- * mensaje de texto que lo acompaña.
+ * El mapa `poseRenderers` (pose -> componente) vive en `pose-renderers.ts` y
+ * permite sustituir cada pose por arte final sin tocar a los consumidores. Cada
+ * SVG es decorativo: el componente `Mascota` decide el `aria-hidden`; el
+ * significado va siempre en el mensaje de texto que lo acompaña.
+ *
+ * Este archivo exporta ÚNICAMENTE componentes (los tipos viven en
+ * `pose-types.ts`) para que Fast Refresh funcione sin advertencias.
  */
 
 import type { FC, ReactNode } from 'react';
-
-export type MascotaPose =
-  | 'feliz'
-  | 'pensando'
-  | 'celebrando'
-  | 'animando'
-  | 'saludando'
-  | 'durmiendo';
-
-export interface PoseProps {
-  /** Título accesible opcional (se ignora si el SVG es decorativo). */
-  title?: string;
-  className?: string;
-}
+import type { PoseProps } from './pose-types';
 
 /* Paleta local derivada de brand.md (coherente con los tokens). */
 const FUR = '#E2A72E'; // miel/dorado
@@ -87,7 +77,7 @@ const OpenEyes = (
   </g>
 );
 
-const Feliz: FC<PoseProps> = (props) => (
+export const Feliz: FC<PoseProps> = (props) => (
   <Svg {...props}>
     <Head eyes={OpenEyes} />
     {/* Boca sonriente */}
@@ -101,7 +91,7 @@ const Feliz: FC<PoseProps> = (props) => (
   </Svg>
 );
 
-const Pensando: FC<PoseProps> = (props) => (
+export const Pensando: FC<PoseProps> = (props) => (
   <Svg {...props}>
     <Head
       eyes={
@@ -122,7 +112,7 @@ const Pensando: FC<PoseProps> = (props) => (
   </Svg>
 );
 
-const Celebrando: FC<PoseProps> = (props) => (
+export const Celebrando: FC<PoseProps> = (props) => (
   <Svg {...props}>
     {/* Chispas de celebración */}
     <g stroke={COLLAR} strokeWidth="2.5" strokeLinecap="round">
@@ -144,7 +134,7 @@ const Celebrando: FC<PoseProps> = (props) => (
   </Svg>
 );
 
-const Animando: FC<PoseProps> = (props) => (
+export const Animando: FC<PoseProps> = (props) => (
   <Svg {...props}>
     <Head eyes={OpenEyes} />
     {/* Sonrisa cálida (anima, no se burla) */}
@@ -168,7 +158,7 @@ const Animando: FC<PoseProps> = (props) => (
   </Svg>
 );
 
-const Saludando: FC<PoseProps> = (props) => (
+export const Saludando: FC<PoseProps> = (props) => (
   <Svg {...props}>
     <Head eyes={OpenEyes} />
     <path
@@ -185,7 +175,7 @@ const Saludando: FC<PoseProps> = (props) => (
   </Svg>
 );
 
-const Durmiendo: FC<PoseProps> = (props) => (
+export const Durmiendo: FC<PoseProps> = (props) => (
   <Svg {...props}>
     <Head
       eyes={
@@ -215,12 +205,3 @@ const Durmiendo: FC<PoseProps> = (props) => (
     </g>
   </Svg>
 );
-
-export const poseRenderers: Record<MascotaPose, FC<PoseProps>> = {
-  feliz: Feliz,
-  pensando: Pensando,
-  celebrando: Celebrando,
-  animando: Animando,
-  saludando: Saludando,
-  durmiendo: Durmiendo,
-};

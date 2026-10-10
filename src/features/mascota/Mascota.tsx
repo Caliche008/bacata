@@ -1,4 +1,5 @@
-import { poseRenderers, type MascotaPose } from './poses';
+import { poseRenderers } from './pose-renderers';
+import type { MascotaPose } from './pose-types';
 import './mascota.css';
 
 export type MascotaSize = 'sm' | 'md' | 'lg';

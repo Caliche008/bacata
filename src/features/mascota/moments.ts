@@ -7,7 +7,7 @@
  * mediante `getMomento` sin duplicar textos. Los textos siguen brand.md.
  */
 
-import type { MascotaPose } from './poses';
+import type { MascotaPose } from './pose-types';
 
 export type MascotaMomento =
   | 'bienvenida'
