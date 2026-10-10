@@ -138,3 +138,9 @@
   margin: 1rem 0 0;
   text-align: center;
 }
+
+/* Enlace discreto a la política de privacidad (R8.4). */
+.bc-auth__privacidad {
+  margin: 0.25rem 0 0;
+  text-align: center;
+}

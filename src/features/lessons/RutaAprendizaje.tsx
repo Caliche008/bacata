@@ -82,7 +82,12 @@ function tituloLogro(id: string, titulosUnidad: Map<string, string>): string {
   return 'Nuevo logro';
 }
 
-export function RutaAprendizaje() {
+export interface RutaAprendizajeProps {
+  /** Abre la política de privacidad (R8.4). Opcional: sin ella, no se muestra. */
+  onVerPrivacidad?: () => void;
+}
+
+export function RutaAprendizaje({ onVerPrivacidad }: RutaAprendizajeProps = {}) {
   const { perfil, cerrarSesion } = useSession();
   const { cargando, error, curso, ruta, recargar } = useRuta();
   const [vista, setVista] = useState<Vista>({ tipo: 'ruta' });
@@ -280,9 +285,16 @@ export function RutaAprendizaje() {
           <h1 className="bc-ruta__saludo">¡Hola, {perfil.apodo}!</h1>
           <p className="bc-ruta__meta">Grado {perfil.grado}°</p>
         </div>
-        <Button variant="ghost" onClick={cerrarSesion}>
-          Cambiar de perfil
-        </Button>
+        <div className="bc-ruta__cabecera-acciones">
+          {onVerPrivacidad ? (
+            <Button variant="ghost" onClick={onVerPrivacidad}>
+              Privacidad
+            </Button>
+          ) : null}
+          <Button variant="ghost" onClick={cerrarSesion}>
+            Cambiar de perfil
+          </Button>
+        </div>
       </header>
 
       <CabeceraGamificacion

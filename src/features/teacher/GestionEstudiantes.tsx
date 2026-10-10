@@ -1,7 +1,6 @@
 import { useId, useState, type FormEvent } from 'react';
-import { Button, Card, Feedback } from '../../components';
+import { Button, Card, ConfirmDialog, Feedback } from '../../components';
 import type { ResumenEstudiante } from './progress-service';
-import { ConfirmDialog } from './ConfirmDialog';
 import './teacher.css';
 
 export interface GestionEstudiantesProps {

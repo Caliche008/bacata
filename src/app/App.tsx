@@ -11,6 +11,14 @@ import { StoragePersistenceNotice } from './StoragePersistenceNotice';
 const PanelDocente = lazy(() => import('../features/teacher'));
 
 /**
+ * Política de privacidad cargada de forma perezosa (R8.4): el texto legal solo
+ * se descarga cuando se abre "Privacidad", sin pesar en el arranque.
+ */
+const PoliticaPrivacidad = lazy(() =>
+  import('../features/privacy').then((m) => ({ default: m.PoliticaPrivacidad })),
+);
+
+/**
  * Gate de sesión del MVP.
  *
  * - Sin sesión → pantalla de acceso del estudiante (`AccesoEstudiante`), con un
@@ -25,6 +33,10 @@ const PanelDocente = lazy(() => import('../features/teacher'));
 function Gate() {
   const { perfil, cargando } = useSession();
   const [vista, setVista] = useState<'estudiante' | 'docente'>('estudiante');
+  // La política de privacidad es un overlay accesible desde el acceso del
+  // estudiante, la ruta de aprendizaje y el panel docente (R8.4). Se gestiona
+  // con estado (sin React Router), igual que la entrada del docente.
+  const [verPrivacidad, setVerPrivacidad] = useState(false);
 
   if (cargando) {
     // Estado breve mientras se recupera la sesión desde almacenamiento.
@@ -32,6 +44,23 @@ function Gate() {
       <main className="bc-cargando" aria-busy="true">
         <p>Cargando…</p>
       </main>
+    );
+  }
+
+  // La política se superpone a cualquier vista. Incluye el borrado de datos del
+  // propio estudiante (R8.3) cuando hay sesión activa (`BorrarMisDatos` no
+  // renderiza nada sin perfil).
+  if (verPrivacidad) {
+    return (
+      <Suspense
+        fallback={
+          <main className="bc-cargando" aria-busy="true">
+            <p>Cargando…</p>
+          </main>
+        }
+      >
+        <PoliticaPrivacidad onCerrar={() => setVerPrivacidad(false)} />
+      </Suspense>
     );
   }
 
@@ -46,15 +75,21 @@ function Gate() {
           </main>
         }
       >
-        <PanelDocente onSalir={() => setVista('estudiante')} />
+        <PanelDocente
+          onSalir={() => setVista('estudiante')}
+          onVerPrivacidad={() => setVerPrivacidad(true)}
+        />
       </Suspense>
     );
   }
 
   return perfil ? (
-    <RutaAprendizaje />
+    <RutaAprendizaje onVerPrivacidad={() => setVerPrivacidad(true)} />
   ) : (
-    <AccesoEstudiante onSoyDocente={() => setVista('docente')} />
+    <AccesoEstudiante
+      onSoyDocente={() => setVista('docente')}
+      onVerPrivacidad={() => setVerPrivacidad(true)}
+    />
   );
 }
 

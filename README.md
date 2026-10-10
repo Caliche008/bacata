@@ -107,6 +107,32 @@ de `.kiro/steering/contenido.md`. Cada unidad declara su vínculo con la Cátedr
 Son requisitos de origen, no opcionales. Ver `.kiro/steering/privacidad-accesibilidad.md`. La app
 recolecta el mínimo de datos y está diseñada para ser usable en colegios públicos.
 
+### Datos y consentimiento (MVP solo local)
+
+- El estudiante entra con un **apodo** (nombre inventado) y un **código de clase**; no se pide ni
+  se guarda nombre real, correo, teléfono, ubicación ni foto. El progreso se asocia a un id interno
+  + apodo, nunca a una identidad real.
+- Todo vive en el **dispositivo** (IndexedDB/almacenamiento local). En el MVP no hay servidor: la
+  información no se envía a terceros, no hay publicidad ni rastreadores, y no se vende ni comparte.
+- **Consentimiento del acudiente:** se gestiona **fuera de la app** (lo recoge el docente o la
+  institución). El MVP **no almacena datos de acudientes**.
+- **Borrado (derecho de supresión):** el estudiante puede borrar su perfil y progreso desde la app
+  (política de privacidad → "Borrar mis datos"); el docente puede eliminar un perfil o una clase
+  completa desde su panel. Al desinstalar la app también se eliminan los datos locales.
+- **Política de privacidad in-app:** vive como datos tipados en `src/features/privacy/privacy-policy.ts`
+  y se muestra con el componente `PoliticaPrivacidad`, accesible desde el acceso del estudiante, la
+  cabecera de la ruta de aprendizaje y el panel docente (enlace "Privacidad").
+
+> El texto legal in-app es un **borrador informativo**, no asesoría jurídica. El plazo formal de
+> conservación de datos (R8.8) queda **por definir con un asesor jurídico** antes de un despliegue
+> con estudiantes reales.
+
+### Auditoría de privacidad (R8.2, R8.6)
+
+Se verificó que no hay analytics, rastreadores ni publicidad de terceros, ni llamadas de red
+salientes a terceros, y que no se registran secretos (PIN del docente, hashes, apodos ni progreso)
+en consola/logs. El detalle está en `.agents/tasks/verify-task15.md`.
+
 ## Modelo
 
 Freemium con aspiración de financiación estatal. **Aprender siempre es gratis para el estudiante.**

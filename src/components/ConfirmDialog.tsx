@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef } from 'react';
-import './teacher.css';
+import './components.css';
 
 export interface ConfirmDialogProps {
   titulo: string;
@@ -12,9 +12,12 @@ export interface ConfirmDialogProps {
 
 /**
  * Diálogo de confirmación accesible para acciones destructivas o sensibles
- * (R6.6, R6.7). `role="dialog"` + `aria-modal`, foco inicial en "Cancelar"
- * (opción segura), cierre con Escape, y un trap de foco simple entre los dos
- * botones. El mensaje se asocia por `aria-describedby`.
+ * (R6.6, R6.7, R8.3). `role="dialog"` + `aria-modal`, foco inicial en
+ * "Cancelar" (opción segura), cierre con Escape, y un trap de foco simple entre
+ * los dos botones. El mensaje se asocia por `aria-describedby`.
+ *
+ * Componente base reutilizable: lo usan tanto el panel docente (eliminar
+ * perfil/clase) como el borrado de datos del propio estudiante (features/privacy).
  *
  * Usa <button> nativos (con las clases de `Button`) porque el diálogo necesita
  * refs para gestionar el foco y `Button` no reenvía ref.
@@ -63,20 +66,20 @@ export function ConfirmDialog({
   }, [onCancelar]);
 
   return (
-    <div className="bc-teacher__overlay">
+    <div className="bc-dialog__overlay">
       <div
         ref={dialogoRef}
-        className="bc-teacher__dialog"
+        className="bc-dialog"
         role="dialog"
         aria-modal="true"
         aria-labelledby={tituloId}
         aria-describedby={mensajeId}
       >
-        <h3 id={tituloId} className="bc-teacher__dialog-titulo">
+        <h3 id={tituloId} className="bc-dialog__titulo">
           {titulo}
         </h3>
         <p id={mensajeId}>{mensaje}</p>
-        <div className="bc-teacher__dialog-acciones">
+        <div className="bc-dialog__acciones">
           <button
             ref={cancelarRef}
             type="button"

@@ -16,3 +16,6 @@ export { Feedback } from './Feedback';
 export type { FeedbackProps, FeedbackState } from './Feedback';
 
 export { ConnectionStatus } from './ConnectionStatus';
+
+export { ConfirmDialog } from './ConfirmDialog';
+export type { ConfirmDialogProps } from './ConfirmDialog';

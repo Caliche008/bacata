@@ -15,6 +15,8 @@ import './teacher.css';
 export interface PanelDocenteProps {
   /** Vuelve al acceso del estudiante (cierra el panel). */
   onSalir: () => void;
+  /** Abre la política de privacidad (R8.4). Opcional. */
+  onVerPrivacidad?: () => void;
 }
 
 type Seccion = 'clases' | 'progreso' | 'unidades' | 'estudiantes';
@@ -32,7 +34,7 @@ const SECCIONES: { id: Seccion; etiqueta: string }[] = [
  * (Clases, Progreso, Unidades, Estudiantes) y un botón "Salir del panel" que
  * cierra la sesión docente y vuelve al acceso del estudiante.
  */
-export function PanelDocente({ onSalir }: PanelDocenteProps) {
+export function PanelDocente({ onSalir, onVerPrivacidad }: PanelDocenteProps) {
   const [autenticado, setAutenticado] = useState(() => isTeacherSessionActive());
   const [seccion, setSeccion] = useState<Seccion>('clases');
   const panel = useTeacherPanel();
@@ -79,9 +81,16 @@ export function PanelDocente({ onSalir }: PanelDocenteProps) {
     <main className="bc-teacher">
       <div className="bc-teacher__header">
         <h1 className="bc-teacher__title">Panel del docente</h1>
-        <Button variant="ghost" onClick={salir}>
-          Salir del panel
-        </Button>
+        <div className="bc-teacher__header-acciones">
+          {onVerPrivacidad ? (
+            <Button variant="ghost" onClick={onVerPrivacidad}>
+              Privacidad
+            </Button>
+          ) : null}
+          <Button variant="ghost" onClick={salir}>
+            Salir del panel
+          </Button>
+        </div>
       </div>
 
       <p className="bc-teacher__nota" role="note">

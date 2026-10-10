@@ -22,13 +22,19 @@ import './auth.css';
  *
  * `onSoyDocente` (opcional): si se pasa, muestra un enlace discreto "Soy
  * docente" para abrir el panel del docente (entrada SEPARADA del estudiante).
- * Sin la prop, la pantalla no cambia (preserva el comportamiento previo).
+ * `onVerPrivacidad` (opcional): muestra un enlace "Privacidad" para abrir la
+ * política (R8.4), sin obligar a leerla. Sin estas props, la pantalla no cambia
+ * (preserva el comportamiento previo).
  */
 export interface AccesoEstudianteProps {
   onSoyDocente?: () => void;
+  onVerPrivacidad?: () => void;
 }
 
-export function AccesoEstudiante({ onSoyDocente }: AccesoEstudianteProps = {}) {
+export function AccesoEstudiante({
+  onSoyDocente,
+  onVerPrivacidad,
+}: AccesoEstudianteProps = {}) {
   const bienvenida = getMomento('bienvenida');
   const {
     error,
@@ -217,6 +223,15 @@ export function AccesoEstudiante({ onSoyDocente }: AccesoEstudianteProps = {}) {
           <p className="bc-auth__docente">
             <Button variant="ghost" onClick={onSoyDocente}>
               Soy docente
+            </Button>
+          </p>
+        ) : null}
+
+        {/* Acceso a la política de privacidad (R8.4), sin obligar a leerla. */}
+        {onVerPrivacidad ? (
+          <p className="bc-auth__privacidad">
+            <Button variant="ghost" onClick={onVerPrivacidad}>
+              Privacidad
             </Button>
           </p>
         ) : null}

@@ -21,6 +21,12 @@
   margin-bottom: 1.5rem;
 }
 
+.bc-ruta__cabecera-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .bc-ruta__saludo {
   margin: 0;
   font-family: var(--font-title);

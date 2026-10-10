@@ -105,7 +105,7 @@ final). Marca `[x]` al completar.
   - [x] 14.5 Renombrar/eliminar perfil de estudiante.
   - _Requisitos: 6.1–6.7, 8.6._
 
-- [ ] 15. Privacidad y textos legales
+- [x] 15. Privacidad y textos legales
   - Política de privacidad en español, comprensible para un acudiente; borrado de datos de
     estudiante/clase desde la UI; documentar consentimiento del acudiente (fuera de la app);
     verificar ausencia de trackers/publicidad y que no se registran secretos.

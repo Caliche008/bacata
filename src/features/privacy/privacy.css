@@ -1,0 +1,120 @@
+/*
+ * Estilos de la vista de política de privacidad y del borrado de datos.
+ * Usan solo los tokens de `src/styles/tokens.css` (contraste AA, foco visible,
+ * objetivos táctiles vía `.bc-button`). El estado del aviso nunca se transmite
+ * solo por color: va con ícono + texto "Aviso:".
+ */
+
+.bc-privacy {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+  color: var(--color-text);
+}
+
+.bc-privacy__doc {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bc-privacy__titulo {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+/* El foco programático en el título no muestra un contorno agresivo, pero sí
+   un anillo visible si el usuario llega por teclado. */
+.bc-privacy__titulo:focus-visible {
+  outline: var(--focus-width, 3px) solid var(--color-focus-ring);
+  outline-offset: 4px;
+}
+
+.bc-privacy__actualizado {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-accent-text);
+}
+
+.bc-privacy__aviso {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.bc-privacy__aviso-etiqueta {
+  flex: 0 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: var(--color-accent-text);
+}
+
+.bc-privacy__intro {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bc-privacy__seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bc-privacy__seccion-titulo {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.bc-privacy__seccion p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bc-privacy__lista {
+  margin: 0;
+  padding-left: 1.25rem;
+  line-height: 1.5;
+}
+
+.bc-privacy__lista li {
+  margin: 0.15rem 0;
+}
+
+.bc-privacy__borrado {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--color-border);
+}
+
+.bc-privacy__acciones {
+  margin-top: 1rem;
+}
+
+/* Bloque de borrado de datos del estudiante. */
+.bc-borrar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bc-borrar__titulo {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+}
+
+.bc-borrar__texto {
+  margin: 0;
+  line-height: 1.5;
+}

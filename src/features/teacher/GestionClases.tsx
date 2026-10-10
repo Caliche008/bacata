@@ -1,8 +1,7 @@
 import { useId, useState, type FormEvent } from 'react';
-import { Button, Card, Feedback } from '../../components';
+import { Button, Card, ConfirmDialog, Feedback } from '../../components';
 import type { ClaseLocal } from '../../lib/storage';
 import type { Grado } from '../../content/types';
-import { ConfirmDialog } from './ConfirmDialog';
 import './teacher.css';
 
 export interface GestionClasesProps {
