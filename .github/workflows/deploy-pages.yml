@@ -1,0 +1,61 @@
+name: Desplegar a GitHub Pages
+
+# Publica la PWA "Bacatá" en GitHub Pages en cada push a main.
+# La app se sirve en https://<usuario>.github.io/bacata/, por eso se compila
+# con BASE_PATH=/bacata/ (ver vite.config.ts).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# Permisos mínimos que GitHub Pages necesita para publicar.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita despliegues solapados; deja terminar el que esté en curso.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar la PWA (base /bacata/)
+        env:
+          BASE_PATH: /bacata/
+        run: npm run build
+
+      - name: Fallback SPA para rutas profundas (404 -> index)
+        run: cp dist/index.html dist/404.html
+
+      - name: Subir artefacto de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

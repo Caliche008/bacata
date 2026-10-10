@@ -21,7 +21,14 @@ import { VitePWA } from 'vite-plugin-pwa';
 //   hay recursos remotos en el MVP; añadir runtime caching sería peso sin
 //   beneficio. `navigateFallback` → index.html para que cualquier ruta SPA abra
 //   offline.
+// Base pública del sitio. En GitHub Pages la app vive en un subdirectorio
+// (https://<usuario>.github.io/bacata/), así que la base debe ser '/bacata/'.
+// El workflow de despliegue define BASE_PATH='/bacata/'; en desarrollo/preview
+// local y en los tests, la base por defecto es '/'. Mantener la barra final.
+const BASE_PATH = process.env.BASE_PATH ?? '/';
+
 export default defineConfig({
+  base: BASE_PATH,
   plugins: [
     react(),
     VitePWA({
@@ -33,8 +40,8 @@ export default defineConfig({
         description: 'Conoce tu historia, construye tu país.',
         lang: 'es',
         dir: 'ltr',
-        start_url: '/',
-        scope: '/',
+        start_url: BASE_PATH,
+        scope: BASE_PATH,
         display: 'standalone',
         orientation: 'portrait',
         theme_color: '#1F7A5A', // verde esmeralda (brand.md)
@@ -64,7 +71,7 @@ export default defineConfig({
         // Precache del app shell + assets del build (incluye el contenido
         // empaquetado dentro de los chunks JS). cache-first implícito.
         globPatterns: ['**/*.{js,css,html,svg,png,ico,woff,woff2}'],
-        navigateFallback: 'index.html',
+        navigateFallback: `${BASE_PATH}index.html`,
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
