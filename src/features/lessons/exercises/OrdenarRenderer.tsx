@@ -17,7 +17,9 @@ export function OrdenarRenderer({
   deshabilitado,
 }: RendererProps<Ordenar, RespuestaOrdenar>) {
   const porId = new Map(ejercicio.elementos.map((elemento) => [elemento.id, elemento]));
-  const orden = respuesta.ordenIds;
+  // Defensa en profundidad: nunca `.map` sobre un campo potencialmente
+  // `undefined` (p. ej. una respuesta de otro tipo en un render intermedio).
+  const orden = respuesta.ordenIds ?? [];
 
   const mover = (desde: number, hacia: number) => {
     if (hacia < 0 || hacia >= orden.length) {

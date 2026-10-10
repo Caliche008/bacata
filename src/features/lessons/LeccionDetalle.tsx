@@ -79,6 +79,19 @@ export default function LeccionDetalle({
       : { tipo: 'opcion_multiple', opcionId: null },
   );
 
+  // El `useEffect` que resetea `respuesta` al cambiar de ejercicio corre DESPUÉS
+  // del commit. En el primer render tras avanzar, `respuesta` aún es del tipo del
+  // ejercicio ANTERIOR; pasársela al renderizador del nuevo tipo provoca que lea
+  // un campo inexistente (p. ej. emparejar indexando `asignaciones` undefined) y
+  // crashee en runtime (pantalla en blanco). Patrón oficial de React "ajustar
+  // estado durante el render": si la respuesta en curso no corresponde al tipo
+  // del ejercicio actual, se deriva una respuesta inicial coherente para ESTE
+  // render, sin esperar al efecto.
+  const respuestaEfectiva: Respuesta =
+    ejercicioActual && respuesta.tipo !== ejercicioActual.tipo
+      ? respuestaInicial(ejercicioActual)
+      : respuesta;
+
   // Progreso previo del store (para rehidratar y para reusar su id al guardar).
   const progresoPrevio = useRef<Progreso | undefined>(undefined);
   // Índice actual accesible desde el cleanup de desmontaje (abandono, R3.9).
@@ -136,15 +149,20 @@ export default function LeccionDetalle({
     if (!ejercicioActual) {
       return;
     }
-    const resultado = evaluarEjercicio(ejercicioActual, respuesta);
+    const resultado = evaluarEjercicio(ejercicioActual, respuestaEfectiva);
     // R14.1: registrar el fallo una sola vez por aparición. El dilema tiene
     // `correcto === null`, así que nunca entra aquí (sin veredicto, R3.3).
     if (resultado.correcto === false && !falladosNotificados.current.has(ejercicioActual.id)) {
       falladosNotificados.current.add(ejercicioActual.id);
       onEjercicioFallado?.(ejercicioActual.id);
     }
-    dispatch({ tipo: 'responder', ejercicioId: ejercicioActual.id, respuesta, resultado });
-  }, [ejercicioActual, respuesta, onEjercicioFallado]);
+    dispatch({
+      tipo: 'responder',
+      ejercicioId: ejercicioActual.id,
+      respuesta: respuestaEfectiva,
+      resultado,
+    });
+  }, [ejercicioActual, respuestaEfectiva, onEjercicioFallado]);
 
   const reintentar = useCallback(() => {
     if (!ejercicioActual) {
@@ -224,7 +242,7 @@ export default function LeccionDetalle({
           <>
             <ExerciseRenderer
               ejercicio={ejercicioActual}
-              respuesta={respuesta}
+              respuesta={respuestaEfectiva}
               onChange={setRespuesta}
               deshabilitado={enFeedback}
             />

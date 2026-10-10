@@ -28,11 +28,15 @@ export function EmparejarRenderer({
     return indices;
   }, [ejercicio.pares]);
 
+  // Defensa en profundidad: nunca indexar sobre un campo potencialmente
+  // `undefined` (p. ej. una respuesta de otro tipo en un render intermedio).
+  const asignaciones = respuesta.asignaciones ?? {};
+
   const asignar = (izquierdaIndex: number, valor: string) => {
     const derechaIndex = valor === '' ? null : Number(valor);
     onChange({
       tipo: 'emparejar',
-      asignaciones: { ...respuesta.asignaciones, [izquierdaIndex]: derechaIndex },
+      asignaciones: { ...asignaciones, [izquierdaIndex]: derechaIndex },
     });
   };
 
@@ -42,7 +46,7 @@ export function EmparejarRenderer({
       <ul className="bc-emparejar__lista">
         {ejercicio.pares.map((par, izquierdaIndex) => {
           const selectId = `${base}-izq-${izquierdaIndex}`;
-          const valorActual = respuesta.asignaciones[izquierdaIndex];
+          const valorActual = asignaciones[izquierdaIndex];
           return (
             <li key={par.izquierda} className="bc-emparejar__fila">
               <label className="bc-emparejar__izquierda" htmlFor={selectId}>

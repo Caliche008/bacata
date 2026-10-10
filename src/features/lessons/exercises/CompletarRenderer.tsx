@@ -23,11 +23,14 @@ export function CompletarRenderer({
 }: RendererProps<Completar, RespuestaCompletar>) {
   const base = useId();
   const segmentos = ejercicio.texto.split(MARCADOR);
+  // Defensa en profundidad: nunca indexar sobre un campo potencialmente
+  // `undefined` (p. ej. una respuesta de otro tipo en un render intermedio).
+  const selecciones = respuesta.selecciones ?? {};
 
   const seleccionar = (huecoId: string, valor: string) => {
     onChange({
       tipo: 'completar',
-      selecciones: { ...respuesta.selecciones, [huecoId]: valor === '' ? null : valor },
+      selecciones: { ...selecciones, [huecoId]: valor === '' ? null : valor },
     });
   };
 
@@ -37,7 +40,7 @@ export function CompletarRenderer({
       return null;
     }
     const selectId = `${base}-hueco-${hueco.id}`;
-    const valorActual = respuesta.selecciones[hueco.id];
+    const valorActual = selecciones[hueco.id];
     return (
       <select
         id={selectId}

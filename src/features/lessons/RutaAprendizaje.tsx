@@ -16,6 +16,7 @@ import {
 import type { ResumenLeccion } from './answers';
 import { CelebracionUnidad } from './CelebracionUnidad';
 import { ContenidoNoDisponible } from './ContenidoNoDisponible';
+import { LeccionErrorBoundary } from './LeccionErrorBoundary';
 import { UnidadCard } from './UnidadCard';
 import { useRuta } from './useRuta';
 import { construirRuta, type UnidadVista } from './path';
@@ -206,28 +207,32 @@ export function RutaAprendizaje() {
 
   if (vista.tipo === 'leccion' && leccionSeleccionada) {
     return (
-      <Suspense
-        fallback={
-          <main className="bc-ruta__cargando" aria-busy="true">
-            <p>Cargando…</p>
-          </main>
-        }
-      >
-        <LeccionDetalle
-          leccion={leccionSeleccionada}
-          estudianteId={perfil.id}
-          onVolver={() => setVista({ tipo: 'ruta' })}
-          onCompletada={() => {
-            recargar();
-            void refrescarDue();
-          }}
-          onLeccionCompletada={alCompletarLeccion}
-          onEjercicioFallado={(ejercicioId) => {
-            // R14.1: un fallo en lección normal entra al repaso de errores.
-            void registrarFallo(perfil.id, ejercicioId);
-          }}
-        />
-      </Suspense>
+      // El boundary se reinicia por lección (`key`): si una lección crashea,
+      // abrir otra parte desde cero en vez de arrastrar el estado de error.
+      <LeccionErrorBoundary key={vista.leccionId} onVolver={() => setVista({ tipo: 'ruta' })}>
+        <Suspense
+          fallback={
+            <main className="bc-ruta__cargando" aria-busy="true">
+              <p>Cargando…</p>
+            </main>
+          }
+        >
+          <LeccionDetalle
+            leccion={leccionSeleccionada}
+            estudianteId={perfil.id}
+            onVolver={() => setVista({ tipo: 'ruta' })}
+            onCompletada={() => {
+              recargar();
+              void refrescarDue();
+            }}
+            onLeccionCompletada={alCompletarLeccion}
+            onEjercicioFallado={(ejercicioId) => {
+              // R14.1: un fallo en lección normal entra al repaso de errores.
+              void registrarFallo(perfil.id, ejercicioId);
+            }}
+          />
+        </Suspense>
+      </LeccionErrorBoundary>
     );
   }
 
@@ -240,23 +245,31 @@ export function RutaAprendizaje() {
 
   if (vista.tipo === 'repaso' && curso) {
     return (
-      <Suspense
-        fallback={
-          <main className="bc-ruta__cargando" aria-busy="true">
-            <p>Cargando…</p>
-          </main>
-        }
+      <LeccionErrorBoundary
+        key="repaso"
+        onVolver={() => {
+          setVista({ tipo: 'ruta' });
+          void refrescarDue();
+        }}
       >
-        <RepasoLeccion
-          estudianteId={perfil.id}
-          curso={curso}
-          onVolver={() => {
-            setVista({ tipo: 'ruta' });
-            void refrescarDue();
-          }}
-          onRepasoCompletado={refrescarDue}
-        />
-      </Suspense>
+        <Suspense
+          fallback={
+            <main className="bc-ruta__cargando" aria-busy="true">
+              <p>Cargando…</p>
+            </main>
+          }
+        >
+          <RepasoLeccion
+            estudianteId={perfil.id}
+            curso={curso}
+            onVolver={() => {
+              setVista({ tipo: 'ruta' });
+              void refrescarDue();
+            }}
+            onRepasoCompletado={refrescarDue}
+          />
+        </Suspense>
+      </LeccionErrorBoundary>
     );
   }
 

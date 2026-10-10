@@ -18,11 +18,14 @@ export function AnalisisFuenteRenderer({
   deshabilitado,
 }: RendererProps<AnalisisFuente, RespuestaAnalisisFuente>) {
   const base = useId();
+  // Defensa en profundidad: nunca indexar sobre un campo potencialmente
+  // `undefined` (p. ej. una respuesta de otro tipo en un render intermedio).
+  const respuestas = respuesta.respuestas ?? {};
 
   const elegir = (preguntaId: string, opcionId: string) => {
     onChange({
       tipo: 'analisis_fuente',
-      respuestas: { ...respuesta.respuestas, [preguntaId]: opcionId },
+      respuestas: { ...respuestas, [preguntaId]: opcionId },
     });
   };
 
@@ -58,7 +61,7 @@ export function AnalisisFuenteRenderer({
             <ul className="bc-opciones">
               {pregunta.opciones.map((opcion) => {
                 const inputId = `${grupo}-${opcion.id}`;
-                const seleccionada = respuesta.respuestas[pregunta.id] === opcion.id;
+                const seleccionada = respuestas[pregunta.id] === opcion.id;
                 return (
                   <li key={opcion.id} className="bc-opciones__item">
                     <label
