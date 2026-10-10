@@ -5,6 +5,7 @@
  */
 
 export { RutaAprendizaje } from './RutaAprendizaje';
+export { ContenidoNoDisponible } from './ContenidoNoDisponible';
 
 export {
   construirRuta,

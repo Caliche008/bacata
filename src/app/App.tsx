@@ -1,5 +1,7 @@
 import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth';
 import { RutaAprendizaje } from '../features/lessons';
+import { ConnectionStatus } from '../components';
+import { StoragePersistenceNotice } from './StoragePersistenceNotice';
 
 /**
  * Gate de sesión del MVP.
@@ -30,6 +32,13 @@ function Gate() {
 function App() {
   return (
     <SessionProvider>
+      {/*
+       * Avisos de PWA (tarea 12), visibles con y sin sesión. Usan `aria-live`
+       * (no roban el foco) y solo se renderizan cuando aplican: sin conexión
+       * (R5.7) o poco espacio/persistencia denegada (R5.6).
+       */}
+      <ConnectionStatus />
+      <StoragePersistenceNotice />
       <Gate />
     </SessionProvider>
   );

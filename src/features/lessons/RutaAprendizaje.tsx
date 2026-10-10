@@ -15,6 +15,7 @@ import {
 } from '../progress';
 import type { ResumenLeccion } from './answers';
 import { CelebracionUnidad } from './CelebracionUnidad';
+import { ContenidoNoDisponible } from './ContenidoNoDisponible';
 import { UnidadCard } from './UnidadCard';
 import { useRuta } from './useRuta';
 import { construirRuta, type UnidadVista } from './path';
@@ -228,6 +229,13 @@ export function RutaAprendizaje() {
         />
       </Suspense>
     );
+  }
+
+  // R5.7: se pidió una lección que no está en el contenido empaquetado (caso
+  // límite del MVP; en Fase 2, contenido aún no descargado). Avisar de forma
+  // accesible en vez de volver en silencio a la ruta.
+  if (vista.tipo === 'leccion' && !leccionSeleccionada && !cargando) {
+    return <ContenidoNoDisponible onVolver={() => setVista({ tipo: 'ruta' })} />;
   }
 
   if (vista.tipo === 'repaso' && curso) {

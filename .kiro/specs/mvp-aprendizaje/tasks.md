@@ -87,7 +87,7 @@ final). Marca `[x]` al completar.
   - Pruebas de registro y espaciado.
   - _Requisitos: 14.1, 14.2, 14.3._
 
-- [ ] 12. PWA offline-first
+- [x] 12. PWA offline-first
   - Manifest + íconos (claro/crema/noche); Service Worker (Workbox): precache app shell; contenido
     cache-first; `storage.persist()` y avisos de cuota.
   - Verificar: completar lecciones y guardar progreso sin conexión; reabrir sin red.

@@ -14,3 +14,5 @@ export type { ProgressBarProps } from './ProgressBar';
 
 export { Feedback } from './Feedback';
 export type { FeedbackProps, FeedbackState } from './Feedback';
+
+export { ConnectionStatus } from './ConnectionStatus';

@@ -34,6 +34,51 @@ sobre crema; tono cálido, curioso y respetuoso; accesibilidad por encima de la 
 PWA con React + TypeScript (Vite), IndexedDB + Service Worker (Workbox) para offline, contenido
 pedagógico en JSON validado por esquema. Backend opcional en fase posterior.
 
+## PWA offline-first (tarea 12)
+
+La app es instalable y funciona sin conexión tras la primera carga (R5).
+
+- **Instalable (R5.1):** manifest generado por `vite-plugin-pwa` con los datos de marca (nombre
+  "Bacatá", lema, `theme_color` verde esmeralda `#1F7A5A`, `background_color` crema `#FBF6EC`,
+  `display: standalone`, orientación vertical) e íconos 192/512 + uno `maskable`.
+- **Service Worker (Workbox, R5.2/R5.5/R10.3):** se usa el modo `generateSW` (no `injectManifest`)
+  porque el contenido pedagógico ya viaja empaquetado en el bundle (`import.meta.glob` en
+  `src/content/loader.ts`) y entra automáticamente en el precache; no hay fetch de red que
+  justifique un SW a mano. El SW se registra con `registerType: 'autoUpdate'` (sin diálogo de
+  actualización, apropiado para gama baja): la versión nueva se activa de forma transparente en la
+  próxima carga, lo cual es seguro porque el progreso vive en IndexedDB.
+- **Persistencia y cuota (R5.6):** al iniciar se solicita `navigator.storage.persist()`
+  (reutilizando el helper de `src/lib/storage`); si queda poco espacio o se deniega la
+  persistencia, se muestra un aviso accesible con tono de marca (`StoragePersistenceNotice`).
+- **Aviso offline (R5.7):** `ConnectionStatus` indica de forma accesible cuando no hay conexión;
+  `ContenidoNoDisponible` cubre el caso límite de una lección ausente del paquete. En el MVP el
+  contenido viaja con la app (disponible offline); este caso cobra sentido pleno en la Fase 2 con
+  descarga/sincronización.
+
+**Íconos provisionales:** los PNG de `public/` (`pwa-192x192.png`, `pwa-512x512.png`,
+`maskable-512x512.png`, `apple-touch-icon.png`) se generan desde `public/brand-icon.svg` con
+`npx tsx scripts/generate-icons.ts` y son **provisionales** hasta tener el arte final de la
+mascota.
+
+### Probar la instalación y el modo offline
+
+El Service Worker solo se activa en un build real (no en `dev`):
+
+```powershell
+npm run build ; npm run preview
+```
+
+1. Abre la URL de `preview` en Chrome/Edge.
+2. DevTools → Application → Manifest: el manifest se detecta sin errores y la app es instalable.
+3. Instala la PWA (icono de instalación en la barra de direcciones) o pruébala en un emulador
+   Android.
+4. Activa modo avión/offline (DevTools → Network → "Offline", o Application → Service Workers →
+   "Offline").
+5. Recarga: la app abre y puedes iniciar y **completar una lección sin conexión**; el progreso se
+   guarda en IndexedDB.
+6. Cierra la pestaña y vuelve a abrirla offline: sigue funcionando (precache del app shell +
+   contenido empaquetado).
+
 ## Estructura del repositorio
 
 ```
