@@ -29,6 +29,23 @@ const BASE_PATH = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
   base: BASE_PATH,
+  build: {
+    rollupOptions: {
+      output: {
+        // Aísla React/ReactDOM en un único chunk `vendor-react`. React cambia
+        // poco entre despliegues, así que separarlo del código de la app mejora
+        // el cacheo del Service Worker entre versiones (solo cambia el chunk de
+        // app). No se fragmentan zod/idb ni las features por separado para no
+        // crear cascadas de requests en gama baja (sobre-fragmentación).
+        manualChunks(id) {
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) {
+            return 'vendor-react';
+          }
+          return undefined;
+        },
+      },
+    },
+  },
   plugins: [
     react(),
     VitePWA({

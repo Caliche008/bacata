@@ -93,7 +93,7 @@ final). Marca `[x]` al completar.
   - Verificar: completar lecciones y guardar progreso sin conexión; reabrir sin red.
   - _Requisitos: 5.1, 5.2, 5.3, 5.5, 5.6, 5.7, 10.3._
 
-- [ ] 13. Rendimiento en gama baja
+- [x] 13. Rendimiento en gama baja
   - Code-splitting por ruta; imágenes optimizadas y diferidas; medir contra el presupuesto de peso.
   - _Requisitos: 10.1, 10.2, 10.4, 10.5._
 
