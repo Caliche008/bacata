@@ -19,8 +19,16 @@ import './auth.css';
  * usar nombre real y de que el progreso se guarda solo en este dispositivo.
  *
  * Una acción principal por pantalla: el botón "Entrar".
+ *
+ * `onSoyDocente` (opcional): si se pasa, muestra un enlace discreto "Soy
+ * docente" para abrir el panel del docente (entrada SEPARADA del estudiante).
+ * Sin la prop, la pantalla no cambia (preserva el comportamiento previo).
  */
-export function AccesoEstudiante() {
+export interface AccesoEstudianteProps {
+  onSoyDocente?: () => void;
+}
+
+export function AccesoEstudiante({ onSoyDocente }: AccesoEstudianteProps = {}) {
   const bienvenida = getMomento('bienvenida');
   const {
     error,
@@ -203,6 +211,15 @@ export function AccesoEstudiante() {
                 : 'Entrar'}
           </Button>
         </form>
+
+        {/* Entrada separada del docente (R6.5). Solo si el host la provee. */}
+        {onSoyDocente ? (
+          <p className="bc-auth__docente">
+            <Button variant="ghost" onClick={onSoyDocente}>
+              Soy docente
+            </Button>
+          </p>
+        ) : null}
       </Card>
     </main>
   );

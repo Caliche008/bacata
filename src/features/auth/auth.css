@@ -132,3 +132,9 @@
   outline: var(--focus-width) solid var(--color-focus-ring);
   outline-offset: 2px;
 }
+
+/* Entrada discreta "Soy docente", separada de la acción principal. */
+.bc-auth__docente {
+  margin: 1rem 0 0;
+  text-align: center;
+}

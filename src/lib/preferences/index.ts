@@ -89,3 +89,16 @@ export function getAppearancePreferences(): AppearancePreferences {
     textSize: getTextSizePreference(),
   };
 }
+
+// Estado local del panel docente (modo por dispositivo). Ningún componente
+// accede a localStorage directamente: pasa por esta API tipada.
+export {
+  getTeacherPinHash,
+  setTeacherPinHash,
+  isTeacherSessionActive,
+  setTeacherSession,
+  clearTeacherSession,
+  getClassGrade,
+  setClassGrade,
+  clearClassGrade,
+} from './teacher';

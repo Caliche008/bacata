@@ -1,12 +1,20 @@
+import { Suspense, lazy, useState } from 'react';
 import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth';
 import { RutaAprendizaje } from '../features/lessons';
 import { ConnectionStatus } from '../components';
 import { StoragePersistenceNotice } from './StoragePersistenceNotice';
 
 /**
+ * Panel docente cargado de forma perezosa (R10.1): su chunk solo se descarga
+ * cuando un docente entra, para no penalizar el arranque del estudiante.
+ */
+const PanelDocente = lazy(() => import('../features/teacher'));
+
+/**
  * Gate de sesión del MVP.
  *
- * - Sin sesión → pantalla de acceso del estudiante (`AccesoEstudiante`).
+ * - Sin sesión → pantalla de acceso del estudiante (`AccesoEstudiante`), con un
+ *   enlace "Soy docente" que abre el panel docente (chunk lazy, separado).
  * - Con sesión → ruta de aprendizaje por niveles (`RutaAprendizaje`, tarea 8),
  *   que incluye su propia cabecera con el saludo y "Cambiar de perfil".
  *
@@ -16,6 +24,7 @@ import { StoragePersistenceNotice } from './StoragePersistenceNotice';
  */
 function Gate() {
   const { perfil, cargando } = useSession();
+  const [vista, setVista] = useState<'estudiante' | 'docente'>('estudiante');
 
   if (cargando) {
     // Estado breve mientras se recupera la sesión desde almacenamiento.
@@ -26,7 +35,27 @@ function Gate() {
     );
   }
 
-  return perfil ? <RutaAprendizaje /> : <AccesoEstudiante />;
+  // El panel docente tiene entrada SEPARADA del estudiante y solo se monta
+  // cuando el estudiante no tiene sesión y pulsa "Soy docente".
+  if (!perfil && vista === 'docente') {
+    return (
+      <Suspense
+        fallback={
+          <main className="bc-cargando" aria-busy="true">
+            <p>Cargando el panel…</p>
+          </main>
+        }
+      >
+        <PanelDocente onSalir={() => setVista('estudiante')} />
+      </Suspense>
+    );
+  }
+
+  return perfil ? (
+    <RutaAprendizaje />
+  ) : (
+    <AccesoEstudiante onSoyDocente={() => setVista('docente')} />
+  );
 }
 
 function App() {

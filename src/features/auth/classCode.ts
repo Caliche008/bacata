@@ -39,3 +39,43 @@ export function normalizeClassCode(raw: string): string {
 export function isValidClassCode(raw: string): boolean {
   return CLASS_CODE_PATTERN.test(normalizeClassCode(raw));
 }
+
+/** Longitud por defecto del código generado (dentro del rango válido). */
+export const CLASS_CODE_DEFAULT_LENGTH = 7;
+
+/**
+ * Genera un código de clase aleatorio (R6.1) con caracteres del alfabeto sin
+ * ambigüedades. Usa `crypto.getRandomValues` para una selección uniforme (con
+ * rechazo de módulo sesgado); si no hay Web Crypto, cae a `Math.random` como
+ * último recurso (mismo patrón defensivo que `ids.ts`). El resultado siempre
+ * cumple `isValidClassCode`.
+ */
+export function generateClassCode(length: number = CLASS_CODE_DEFAULT_LENGTH): string {
+  const longitud = Math.min(
+    CLASS_CODE_MAX_LENGTH,
+    Math.max(CLASS_CODE_MIN_LENGTH, Math.trunc(length)),
+  );
+  const alfabeto = CLASS_CODE_ALPHABET;
+  const n = alfabeto.length;
+  const cryptoObj = globalThis.crypto;
+
+  let resultado = '';
+  if (cryptoObj?.getRandomValues) {
+    // Rechazo de valores en la cola no divisible por `n` para evitar sesgo.
+    const limite = Math.floor(256 / n) * n;
+    const buffer = new Uint8Array(1);
+    while (resultado.length < longitud) {
+      cryptoObj.getRandomValues(buffer);
+      const valor = buffer[0];
+      if (valor < limite) {
+        resultado += alfabeto[valor % n];
+      }
+    }
+    return resultado;
+  }
+
+  for (let i = 0; i < longitud; i += 1) {
+    resultado += alfabeto[Math.floor(Math.random() * n)];
+  }
+  return resultado;
+}

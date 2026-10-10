@@ -1,6 +1,7 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { closeDb, putProfile, resetDb } from '../lib/storage';
 import App from './App';
@@ -35,6 +36,26 @@ describe('App — gate de sesión', () => {
       expect(screen.getByLabelText('Código de tu clase')).toBeInTheDocument(),
     );
     expect(screen.getByLabelText('Tu apodo')).toBeInTheDocument();
+  });
+
+  it('al pulsar "Soy docente" monta el panel docente (lazy)', async () => {
+    const user = userEvent.setup();
+    render(
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>,
+    );
+
+    await waitFor(() =>
+      expect(screen.getByLabelText('Código de tu clase')).toBeInTheDocument(),
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Soy docente' }));
+
+    // El panel es un chunk lazy: aparece el acceso docente tras cargarlo.
+    expect(
+      await screen.findByRole('heading', { name: /PIN de docente/i }),
+    ).toBeInTheDocument();
   });
 
   it('con sesión muestra la ruta de aprendizaje con el apodo', async () => {

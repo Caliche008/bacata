@@ -97,12 +97,12 @@ final). Marca `[x]` al completar.
   - Code-splitting por ruta; imágenes optimizadas y diferidas; medir contra el presupuesto de peso.
   - _Requisitos: 10.1, 10.2, 10.4, 10.5._
 
-- [ ] 14. Panel docente mínimo (modo local)
-  - [ ] 14.1 Acceso docente con PIN/clave local (hash).
-  - [ ] 14.2 Crear clase → código único; regenerar/desactivar código.
-  - [ ] 14.3 Ver progreso por estudiante (apodo), sin PII.
-  - [ ] 14.4 Activar/desactivar unidades por clase.
-  - [ ] 14.5 Renombrar/eliminar perfil de estudiante.
+- [x] 14. Panel docente mínimo (modo local)
+  - [x] 14.1 Acceso docente con PIN/clave local (hash).
+  - [x] 14.2 Crear clase → código único; regenerar/desactivar código.
+  - [x] 14.3 Ver progreso por estudiante (apodo), sin PII.
+  - [x] 14.4 Activar/desactivar unidades por clase.
+  - [x] 14.5 Renombrar/eliminar perfil de estudiante.
   - _Requisitos: 6.1–6.7, 8.6._
 
 - [ ] 15. Privacidad y textos legales
