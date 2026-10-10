@@ -111,7 +111,7 @@ final). Marca `[x]` al completar.
     verificar ausencia de trackers/publicidad y que no se registran secretos.
   - _Requisitos: 8.2, 8.3, 8.4, 8.5, 8.8 (documentar plazo cuando se defina)._
 
-- [ ] 16. Completar contenido del MVP
+- [x] 16. Completar contenido del MVP
   - Terminar las 4 unidades para 6° y 7° con lecciones y ejercicios variados, con enfoque de
     pensamiento crítico y neutralidad; cada unidad con al menos un ejercicio de eje Paz; validar.
   - _Requisitos: 2.5, 7.*, 11.*, 12.2, 13.1–13.4._

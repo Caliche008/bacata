@@ -216,7 +216,161 @@
         ],
         "como": "Profundiza en los derechos humanos y sus mecanismos de protección como fundamento de la dignidad y de una convivencia democrática."
       },
-      "lecciones": []
+      "lecciones": [
+        {
+          "id": "l7-der-1",
+          "titulo": "Derechos y cómo se protegen",
+          "objetivoAprendizaje": "Diferenciar tipos de derechos y reconocer mecanismos de protección en Colombia, como la acción de tutela.",
+          "competencia": "Competencias ciudadanas - participación y responsabilidad democrática",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e7-der-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "Los derechos suelen clasificarse en grupos. ¿Cuál de estos es un ejemplo de derecho civil y político?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "La libertad de expresar las propias opiniones.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. La libertad de expresión es un derecho civil y político."
+                },
+                {
+                  "id": "b",
+                  "texto": "El acceso a la salud y a la seguridad social.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Ese es más bien un derecho social; también es fundamental, pero de otro grupo."
+                },
+                {
+                  "id": "c",
+                  "texto": "Disfrutar de un ambiente sano.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Ese se clasifica como un derecho colectivo o ambiental, no civil y político."
+                }
+              ],
+              "retroalimentacion": "Los derechos civiles y políticos (como expresarse o votar) se distinguen de los sociales (como salud o educación), aunque todos protegen la dignidad.",
+              "meta": {
+                "tema": "Tipos de derechos",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-der-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "Todos los derechos humanos se fundamentan en la dignidad de la persona.",
+              "respuestaCorrecta": true,
+              "justificacion": "La dignidad humana es la base de los derechos: se reconocen porque toda persona tiene un valor que debe respetarse, sin importar su origen, género o condición.",
+              "retroalimentacion": "La dignidad es el fundamento común de todos los derechos; por eso se reconocen a todas las personas por igual.",
+              "meta": {
+                "tema": "Dignidad como fundamento",
+                "etiquetas": ["paz", "derechos", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-der-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada concepto con su función.",
+              "pares": [
+                { "izquierda": "Acción de tutela", "derecha": "Proteger de forma rápida un derecho fundamental vulnerado" },
+                { "izquierda": "Deber ciudadano", "derecha": "Responsabilidad que sostiene la vida en común" },
+                { "izquierda": "Dignidad humana", "derecha": "Base que fundamenta todos los derechos" }
+              ],
+              "retroalimentacion": "Conocer estos conceptos ayuda a entender cómo se protegen los derechos y qué sostiene la convivencia.",
+              "meta": {
+                "tema": "Mecanismos y conceptos de derechos",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-der-1-4",
+              "tipo": "completar",
+              "enunciado": "Completa la frase sobre la protección de derechos.",
+              "texto": "Si una persona considera que le vulneraron un derecho fundamental, puede presentar una acción de ___ , un mecanismo rápido para que un ___ ordene protegerlo.",
+              "huecos": [
+                { "id": "h1", "opciones": ["tutela", "renuncia", "demora"], "correcta": "tutela" },
+                { "id": "h2", "opciones": ["juez", "vecino", "amigo"], "correcta": "juez" }
+              ],
+              "retroalimentacion": "La acción de tutela permite acudir a un juez para proteger de forma rápida un derecho fundamental.",
+              "meta": {
+                "tema": "Acción de tutela",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-der-1-5",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y asume una postura argumentada.",
+              "escenario": "En tu barrio, un grupo quiere usar un parque todo el día para ensayar música a alto volumen. Es su forma de expresarse, pero las familias cercanas dicen que no pueden descansar ni estudiar. Ambos invocan sus derechos. ¿Qué propones?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Que la música tenga prioridad siempre, sin importar a los vecinos.",
+                  "reflexion": "La libre expresión es un derecho, pero no es absoluto cuando afecta a otros. ¿Dónde está el límite entre un derecho y otro?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Acordar horarios y un volumen razonable para que convivan ambos derechos.",
+                  "reflexion": "Buscar un acuerdo reconoce los derechos de todos. ¿Cómo se ponderan derechos cuando entran en tensión?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "Prohibir del todo la música para evitar problemas.",
+                  "reflexion": "Prohibir resuelve rápido, pero puede ignorar un derecho legítimo. ¿Hay opciones menos restrictivas?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: ejercer un derecho tiene límites cuando afecta a otros, y la convivencia exige ponderar. ¿Qué otras versiones del caso faltaría escuchar?",
+              "meta": {
+                "tema": "Límites y ponderación de derechos",
+                "etiquetas": ["paz", "derechos", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-der-1-6",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este fragmento y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "La Constitución Política de Colombia de 1991, en su artículo 86, creó la acción de tutela. Es un mecanismo mediante el cual cualquier persona puede acudir ante un juez para pedir la protección inmediata de un derecho fundamental cuando considera que fue vulnerado o amenazado."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el fragmento, ¿para qué sirve la acción de tutela?",
+                  "opciones": [
+                    { "id": "a", "texto": "Para pedir a un juez la protección inmediata de un derecho fundamental.", "esCorrecta": true, "retro": "¡Así es! La tutela es un mecanismo de protección rápida." },
+                    { "id": "b", "texto": "Para cobrar un impuesto.", "esCorrecta": false, "retro": "Casi. El texto habla de proteger derechos, no de impuestos." },
+                    { "id": "c", "texto": "Para elegir al presidente.", "esCorrecta": false, "retro": "Casi. Eso corresponde al voto, no a la tutela." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Qué norma respalda la acción de tutela?",
+                  "opciones": [
+                    { "id": "a", "texto": "La Constitución de 1991, en su artículo 86.", "esCorrecta": true, "retro": "Correcto. Identificar la fuente de un mecanismo ayuda a comprender su respaldo." },
+                    { "id": "b", "texto": "Una decisión de un solo municipio.", "esCorrecta": false, "retro": "Casi. El texto menciona la Constitución, de alcance nacional." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Contrastar qué dice una norma y qué la respalda es clave para pensar críticamente sobre nuestros derechos.",
+              "meta": {
+                "tema": "Análisis de fuente sobre la tutela",
+                "etiquetas": ["paz", "derechos", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Constitución Política de Colombia, artículo 86",
+                  "autor": "Asamblea Nacional Constituyente",
+                  "anio": 1991
+                },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "u7-diversidad",
@@ -233,7 +387,162 @@
         "tematicas": ["Diversidad y pluralidad", "Memoria histórica"],
         "como": "Trabaja el respeto por la diversidad étnica, cultural y regional y la interculturalidad como pilares de la paz."
       },
-      "lecciones": []
+      "lecciones": [
+        {
+          "id": "l7-div-1",
+          "titulo": "Interculturalidad: diálogo entre culturas",
+          "objetivoAprendizaje": "Comprender la interculturalidad como diálogo entre culturas y caracterizar la diversidad étnica y regional de Colombia.",
+          "competencia": "Competencias ciudadanas - pluralidad, identidad y valoración de las diferencias",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e7-div-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Qué significa la interculturalidad?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "El diálogo y el respeto activo entre culturas distintas, no solo que coexistan.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. La interculturalidad implica intercambio y respeto mutuo."
+                },
+                {
+                  "id": "b",
+                  "texto": "Que una cultura imponga sus costumbres a las demás.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Eso sería dominación, lo contrario del diálogo intercultural."
+                },
+                {
+                  "id": "c",
+                  "texto": "Que cada cultura viva aislada sin relacionarse.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Convivir sin dialogar es solo coexistencia; la interculturalidad va más allá."
+                }
+              ],
+              "retroalimentacion": "La interculturalidad es el diálogo respetuoso entre culturas: implica conocer, intercambiar y aprender del otro.",
+              "meta": {
+                "tema": "Concepto de interculturalidad",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-div-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "Multiculturalidad e interculturalidad significan exactamente lo mismo.",
+              "respuestaCorrecta": false,
+              "justificacion": "La multiculturalidad describe que varias culturas coexisten en un territorio; la interculturalidad va más allá: busca el diálogo y el intercambio activo entre ellas.",
+              "retroalimentacion": "Coexistir (multiculturalidad) no es igual a dialogar e intercambiar (interculturalidad).",
+              "meta": {
+                "tema": "Multiculturalidad vs interculturalidad",
+                "etiquetas": ["paz", "diversidad", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-div-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada grupo con un aporte general a la cultura del país.",
+              "pares": [
+                { "izquierda": "Pueblos indígenas", "derecha": "Lenguas propias y saberes ancestrales" },
+                { "izquierda": "Comunidades afrocolombianas", "derecha": "Músicas y tradiciones del Pacífico y el Caribe" },
+                { "izquierda": "Campesinado", "derecha": "Saberes del territorio y el trabajo de la tierra" }
+              ],
+              "retroalimentacion": "Cada grupo aporta a la identidad del país; reconocerlo sin estereotipos nos ayuda a valorarnos entre todos.",
+              "meta": {
+                "tema": "Aportes culturales en Colombia",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-div-1-4",
+              "tipo": "ordenar",
+              "enunciado": "Ordena los pasos del diálogo intercultural.",
+              "elementos": [
+                { "id": "p1", "texto": "Reconocer al otro como igual en dignidad", "orden": 1 },
+                { "id": "p2", "texto": "Escuchar sin prejuicios su forma de vida", "orden": 2 },
+                { "id": "p3", "texto": "Intercambiar saberes y aprender mutuamente", "orden": 3 },
+                { "id": "p4", "texto": "Construir acuerdos de convivencia", "orden": 4 }
+              ],
+              "retroalimentacion": "El diálogo intercultural avanza del reconocimiento al intercambio y a los acuerdos de convivencia.",
+              "meta": {
+                "tema": "Pasos del diálogo intercultural",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-div-1-5",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y asume una postura argumentada.",
+              "escenario": "En el colegio, dos grupos quieren usar el patio a la misma hora: uno para una danza tradicional de su región y otro para un torneo deportivo. Cada grupo siente que su actividad es más valiosa. Te piden mediar. ¿Cómo lo harías?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Decido que gana el grupo que me parece más importante.",
+                  "reflexion": "Jerarquizar culturas o actividades por gusto propio excluye al otro. ¿Es ese un criterio justo?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Propongo que ambos presenten su propuesta y busquen compartir el espacio por turnos.",
+                  "reflexion": "El diálogo intercultural busca acuerdos donde ambas partes se reconozcan. ¿Qué podrían aprender uno del otro?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "Suspendo las dos actividades para evitar el conflicto.",
+                  "reflexion": "Cancelar evita el roce, pero también niega a ambos. ¿Hay salidas que respeten a los dos grupos?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: mediar entre culturas exige reconocer a ambas partes como iguales en dignidad. ¿Quién decide qué cultura 'vale más' y por qué?",
+              "meta": {
+                "tema": "Mediación intercultural",
+                "etiquetas": ["paz", "diversidad", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-div-1-6",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este fragmento y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "La Constitución Política de Colombia de 1991, en su artículo 7, reconoce y protege la diversidad étnica y cultural de la nación colombiana. Este reconocimiento es la base para que distintos pueblos puedan convivir y dialogar en igualdad."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el fragmento, ¿qué reconoce el artículo 7 de la Constitución?",
+                  "opciones": [
+                    { "id": "a", "texto": "La diversidad étnica y cultural de la nación.", "esCorrecta": true, "retro": "¡Así es! Ese reconocimiento es la base de la convivencia entre pueblos." },
+                    { "id": "b", "texto": "Que exista una sola cultura oficial.", "esCorrecta": false, "retro": "Casi. El texto reconoce la variedad, no la uniformidad." },
+                    { "id": "c", "texto": "Que la diversidad no tiene valor legal.", "esCorrecta": false, "retro": "Casi. Al contrario: la norma la reconoce y protege." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Por qué el diálogo intercultural aporta a la paz?",
+                  "opciones": [
+                    { "id": "a", "texto": "Porque permite convivir en igualdad reconociendo las diferencias.", "esCorrecta": true, "retro": "Correcto. Reconocer al otro como igual previene la exclusión y el conflicto." },
+                    { "id": "b", "texto": "Porque obliga a todos a pensar igual.", "esCorrecta": false, "retro": "Casi. El diálogo no busca uniformar, sino entenderse en la diferencia." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Al leer una norma, preguntarse quién la cuenta y a quién reconoce ayuda a pensar críticamente. ¿Qué otras versiones de la historia nacional faltaría escuchar?",
+              "meta": {
+                "tema": "Análisis de fuente sobre diversidad",
+                "etiquetas": ["paz", "diversidad", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Constitución Política de Colombia, artículo 7",
+                  "autor": "Asamblea Nacional Constituyente",
+                  "anio": 1991
+                },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "u7-memoria",
@@ -250,7 +559,166 @@
         "tematicas": ["Memoria histórica", "Justicia y reconciliación"],
         "como": "Aborda la memoria histórica con enfoque de dignidad, verdad y no repetición, apropiado para la edad y sin imágenes gráficas."
       },
-      "lecciones": []
+      "lecciones": [
+        {
+          "id": "l7-mem-1",
+          "titulo": "Verdad, justicia y reconciliación",
+          "objetivoAprendizaje": "Comprender la memoria histórica como derecho y herramienta de no repetición, y relacionar verdad, justicia y reparación con la construcción de paz.",
+          "competencia": "Competencias ciudadanas - memoria, verdad y construcción de paz",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e7-mem-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Cuál afirmación sobre la memoria histórica es más completa?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "Es un derecho de las víctimas y de la sociedad a conocer la verdad de lo ocurrido.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. La memoria no es solo recuerdo: también es un derecho."
+                },
+                {
+                  "id": "b",
+                  "texto": "Es simplemente guardar fechas en un cuaderno.",
+                  "esCorrecta": false,
+                  "retro": "Casi. La memoria histórica va más allá de las fechas: busca verdad y dignidad."
+                },
+                {
+                  "id": "c",
+                  "texto": "Es olvidar lo ocurrido para evitar molestias.",
+                  "esCorrecta": false,
+                  "retro": "Casi. El olvido impuesto suele dejar sin voz a las víctimas."
+                }
+              ],
+              "retroalimentacion": "La memoria histórica es también un derecho: conocer la verdad ayuda a dignificar a las víctimas y a que lo ocurrido no se repita.",
+              "meta": {
+                "tema": "La memoria como derecho",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-mem-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "La verdad, la justicia y la reparación buscan la reconciliación y la no repetición.",
+              "respuestaCorrecta": true,
+              "justificacion": "Estos elementos se complementan: conocer la verdad, responder por los hechos y reparar a las víctimas crean condiciones para reconciliarse y evitar que la violencia vuelva.",
+              "retroalimentacion": "Verdad, justicia y reparación trabajan juntas hacia la reconciliación y la no repetición.",
+              "meta": {
+                "tema": "Tríada verdad-justicia-reparación",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-mem-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada concepto con su significado.",
+              "pares": [
+                { "izquierda": "Verdad", "derecha": "Saber qué pasó realmente" },
+                { "izquierda": "Justicia", "derecha": "Responder por los hechos cometidos" },
+                { "izquierda": "Reparación", "derecha": "Restituir y dignificar a las víctimas" },
+                { "izquierda": "No repetición", "derecha": "Tomar medidas para que no vuelva a ocurrir" }
+              ],
+              "retroalimentacion": "Estos cuatro elementos son pilares de la justicia transicional y de la construcción de paz.",
+              "meta": {
+                "tema": "Pilares de la construcción de paz",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-mem-1-4",
+              "tipo": "completar",
+              "enunciado": "Completa la frase sobre memoria y dignidad.",
+              "texto": "Recordar con ___ a las víctimas y conocer la verdad son pasos para que lo ocurrido no se vuelva a ___ .",
+              "huecos": [
+                { "id": "h1", "opciones": ["dignidad", "indiferencia", "burla"], "correcta": "dignidad" },
+                { "id": "h2", "opciones": ["repetir", "premiar", "celebrar"], "correcta": "repetir" }
+              ],
+              "retroalimentacion": "Recordar con dignidad y buscar la verdad son condiciones para la no repetición.",
+              "meta": {
+                "tema": "Memoria, dignidad y no repetición",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-mem-1-5",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y asume una postura argumentada.",
+              "escenario": "El colegio organiza un acto de memoria para reconocer a víctimas de la comunidad. Algunos compañeros quieren participar; otros creen que \"es mejor pasar la página\". A ti te piden ayudar a organizarlo. ¿Qué postura tomas?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Propongo un acto respetuoso y voluntario, que escuche a las víctimas y a quienes dudan.",
+                  "reflexion": "Reconocer a las víctimas sin imponer honra la memoria y la pluralidad. ¿Cómo cuidar la dignidad de todos?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Cancelo el acto porque genera opiniones divididas.",
+                  "reflexion": "Evitar el tema puede silenciar a las víctimas. ¿Qué se pierde cuando la sociedad decide no recordar?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "Hago el acto solo con quienes piensan como yo.",
+                  "reflexion": "Excluir a quienes dudan rompe el diálogo. ¿Cómo construir memoria incluyendo distintas voces?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: la memoria se construye con respeto, verdad y escucha de distintas voces. ¿Quién cuenta esta historia y a quién reconoce?",
+              "meta": {
+                "tema": "Participación en actos de memoria",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "sensible": true,
+                "notaContexto": "Tema sensible tratado con dignidad, sin descripciones gráficas; se centra en el respeto a las víctimas y la pluralidad de opiniones.",
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e7-mem-1-6",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este fragmento y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "En Colombia, la Ley 1448 de 2011, conocida como Ley de Víctimas, reconoció derechos a las víctimas del conflicto armado. Entre ellos están el derecho a la verdad, a la justicia, a la reparación y a las garantías de no repetición, con enfoque en su dignidad."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el fragmento, ¿qué garantiza la Ley 1448 de 2011?",
+                  "opciones": [
+                    { "id": "a", "texto": "Derechos a la verdad, la justicia, la reparación y la no repetición para las víctimas.", "esCorrecta": true, "retro": "¡Así es! La ley reconoce esos derechos con enfoque en la dignidad." },
+                    { "id": "b", "texto": "Que no exista ningún derecho para las víctimas.", "esCorrecta": false, "retro": "Casi. El texto dice justo lo contrario." },
+                    { "id": "c", "texto": "Que se olvide lo ocurrido.", "esCorrecta": false, "retro": "Casi. La ley busca verdad y memoria, no olvido." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Por qué recordar aporta a la construcción de paz?",
+                  "opciones": [
+                    { "id": "a", "texto": "Porque conocer la verdad y dignificar a las víctimas ayuda a que no se repita el daño.", "esCorrecta": true, "retro": "Correcto. La memoria con dignidad es base de la no repetición." },
+                    { "id": "b", "texto": "Porque recordar no tiene ninguna utilidad.", "esCorrecta": false, "retro": "Casi. La memoria cumple un papel clave en la reconciliación." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Leer una norma preguntándose a quién protege y por qué ayuda a pensar críticamente sobre la paz. ¿Qué otras voces habría que escuchar para completar la historia?",
+              "meta": {
+                "tema": "Análisis de fuente sobre derechos de las víctimas",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Ley 1448 de 2011 (Ley de Víctimas y Restitución de Tierras)",
+                  "autor": "Congreso de la República de Colombia",
+                  "anio": 2011
+                },
+                "sensible": true,
+                "notaContexto": "Se menciona el conflicto armado de forma general y respetuosa, sin descripciones gráficas, con enfoque en los derechos y la dignidad de las víctimas.",
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

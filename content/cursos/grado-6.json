@@ -210,7 +210,161 @@
         "tematicas": ["Derechos humanos", "Participación política y democracia"],
         "como": "Introduce los derechos humanos como base de la dignidad y la convivencia democrática."
       },
-      "lecciones": []
+      "lecciones": [
+        {
+          "id": "l6-der-1",
+          "titulo": "Mis derechos, mis deberes",
+          "objetivoAprendizaje": "Reconocer derechos fundamentales básicos y relacionarlos con deberes en la vida diaria.",
+          "competencia": "Competencias ciudadanas - participación y responsabilidad democrática",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e6-der-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Cuál de estos es un ejemplo de un derecho fundamental de los niños, niñas y adolescentes?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "El derecho a la educación: poder ir al colegio y aprender.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. La educación es un derecho fundamental que ayuda a tu desarrollo."
+                },
+                {
+                  "id": "b",
+                  "texto": "El permiso para no cumplir ninguna regla en casa.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Un derecho no es hacer lo que quieras: viene acompañado de deberes y respeto a los demás."
+                },
+                {
+                  "id": "c",
+                  "texto": "Ganar siempre en los juegos con mis amigos.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Eso es un deseo, no un derecho. Los derechos protegen necesidades básicas de todas las personas."
+                }
+              ],
+              "retroalimentacion": "Los derechos fundamentales, como la educación o la salud, protegen necesidades básicas de todas las personas.",
+              "meta": {
+                "tema": "Derechos fundamentales",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-der-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "Los derechos vienen acompañados de deberes.",
+              "respuestaCorrecta": true,
+              "justificacion": "Cada derecho tiene un deber que lo acompaña. Por ejemplo, tienes derecho a la educación y el deber de respetar a tus compañeros y a tus docentes para que todos puedan aprender.",
+              "retroalimentacion": "Derechos y deberes van de la mano: así se cuida la convivencia de todos.",
+              "meta": {
+                "tema": "Derechos y deberes",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-der-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada derecho con un ejemplo de la vida diaria.",
+              "pares": [
+                { "izquierda": "Derecho a la educación", "derecha": "Ir al colegio y aprender" },
+                { "izquierda": "Derecho a la salud", "derecha": "Recibir atención médica cuando te enfermas" },
+                { "izquierda": "Derecho a la recreación", "derecha": "Jugar y descansar" }
+              ],
+              "retroalimentacion": "Los derechos se viven en situaciones cotidianas: estudiar, cuidar tu salud o tener tiempo para jugar.",
+              "meta": {
+                "tema": "Derechos en la vida diaria",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-der-1-4",
+              "tipo": "completar",
+              "enunciado": "Completa la frase sobre derechos y deberes.",
+              "texto": "Tengo derecho a ___ en un ambiente tranquilo, y por eso también tengo el deber de ___ a mis compañeros.",
+              "huecos": [
+                { "id": "h1", "opciones": ["aprender", "molestar", "mandar"], "correcta": "aprender" },
+                { "id": "h2", "opciones": ["respetar", "ignorar", "callar"], "correcta": "respetar" }
+              ],
+              "retroalimentacion": "Para que todos disfruten sus derechos, cada quien cumple sus deberes.",
+              "meta": {
+                "tema": "Relación derecho-deber",
+                "etiquetas": ["paz", "derechos"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-der-1-5",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y piensa qué harías.",
+              "escenario": "En clase quieres contarle algo divertido a tu amigo, pero la profesora está explicando y varios compañeros necesitan silencio para entender. Tú también tienes derecho a expresarte. ¿Qué haces?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Hablo igual, porque tengo derecho a expresarme cuando quiera.",
+                  "reflexion": "Tu derecho a hablar es real, pero el de los demás a aprender también. ¿Qué pasa cuando un derecho afecta el de otros?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Espero al recreo para contarle y así todos pueden seguir la clase.",
+                  "reflexion": "Ejercer un derecho en el momento adecuado respeta el de los demás. ¿Notas cómo así conviven ambos derechos?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "Me quedo molesto y no vuelvo a participar en nada.",
+                  "reflexion": "Guardar la molestia tampoco ayuda. ¿Habrá una forma de expresarte sin afectar a los demás?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo clave es ver que tus derechos conviven con los de los demás. ¿Quién gana cuando todos se respetan?",
+              "meta": {
+                "tema": "Derechos propios y de los demás",
+                "etiquetas": ["paz", "derechos", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-der-1-6",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este fragmento y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "La Constitución Política de Colombia, aprobada en 1991, reconoce derechos fundamentales para todas las personas, como la vida, la educación y la salud. También dice que los derechos de los niños, niñas y adolescentes son prioritarios."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el fragmento, ¿qué garantiza la Constitución de 1991?",
+                  "opciones": [
+                    { "id": "a", "texto": "Derechos fundamentales para todas las personas, como la educación y la salud.", "esCorrecta": true, "retro": "¡Así es! La Constitución reconoce esos derechos para todos." },
+                    { "id": "b", "texto": "Que solo algunos tengan derechos.", "esCorrecta": false, "retro": "Casi. El texto dice que son para todas las personas." },
+                    { "id": "c", "texto": "Que los niños no tengan derechos.", "esCorrecta": false, "retro": "Casi. Al contrario: dice que sus derechos son prioritarios." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Quién respalda estos derechos en Colombia?",
+                  "opciones": [
+                    { "id": "a", "texto": "La Constitución Política, la norma más importante del país.", "esCorrecta": true, "retro": "Correcto. Saber qué norma respalda un derecho ayuda a entenderlo." },
+                    { "id": "b", "texto": "Una costumbre de un solo colegio.", "esCorrecta": false, "retro": "Casi. El texto menciona una norma nacional, no una costumbre." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Leer con atención quién respalda un derecho nos ayuda a saber de dónde viene y por qué nos protege.",
+              "meta": {
+                "tema": "Análisis de fuente sobre derechos",
+                "etiquetas": ["paz", "derechos", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Constitución Política de Colombia",
+                  "autor": "Asamblea Nacional Constituyente",
+                  "anio": 1991
+                },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "u6-diversidad",
@@ -226,7 +380,162 @@
         "tematicas": ["Diversidad y pluralidad"],
         "como": "Trabaja el respeto por la diversidad étnica, cultural y regional como pilar de la paz."
       },
-      "lecciones": []
+      "lecciones": [
+        {
+          "id": "l6-div-1",
+          "titulo": "Un país de muchas culturas",
+          "objetivoAprendizaje": "Reconocer la diversidad étnica y regional de Colombia y valorarla como riqueza.",
+          "competencia": "Competencias ciudadanas - pluralidad, identidad y valoración de las diferencias",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e6-div-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Cuál afirmación describe mejor a Colombia?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "Es un país diverso, con pueblos indígenas, afrocolombianos, raizales, rom y mestizos.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. Colombia es un país pluriétnico y multicultural."
+                },
+                {
+                  "id": "b",
+                  "texto": "Es un país donde todas las personas tienen la misma cultura.",
+                  "esCorrecta": false,
+                  "retro": "Casi. En Colombia conviven muchos pueblos y culturas distintas."
+                },
+                {
+                  "id": "c",
+                  "texto": "Es un país sin pueblos indígenas ni afrocolombianos.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Esos pueblos son parte importante de la identidad del país."
+                }
+              ],
+              "retroalimentacion": "Colombia reúne muchos pueblos y culturas; esa variedad es parte de su identidad.",
+              "meta": {
+                "tema": "Diversidad de Colombia",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-div-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "La diversidad cultural empobrece al país.",
+              "respuestaCorrecta": false,
+              "justificacion": "Al contrario: la diversidad es una riqueza. Conocer distintas lenguas, músicas, comidas y tradiciones nos ayuda a aprender unos de otros y a convivir mejor.",
+              "retroalimentacion": "La diversidad no empobrece: enriquece la vida en común.",
+              "meta": {
+                "tema": "Valor de la diversidad",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-div-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada región con un rasgo que la caracteriza.",
+              "pares": [
+                { "izquierda": "Región Pacífica", "derecha": "Fuertes tradiciones afrocolombianas" },
+                { "izquierda": "Amazonía", "derecha": "Pueblos indígenas y gran selva" },
+                { "izquierda": "Región Caribe", "derecha": "Música como la cumbia y vida junto al mar" }
+              ],
+              "retroalimentacion": "Cada región aporta rasgos propios; juntas forman la riqueza cultural del país.",
+              "meta": {
+                "tema": "Regiones y culturas",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-div-1-4",
+              "tipo": "ordenar",
+              "enunciado": "Ordena los pasos para convivir respetando la diferencia.",
+              "elementos": [
+                { "id": "p1", "texto": "Conocer a la otra persona", "orden": 1 },
+                { "id": "p2", "texto": "Escuchar sus costumbres y su historia", "orden": 2 },
+                { "id": "p3", "texto": "Valorar lo que es distinto a lo mío", "orden": 3 },
+                { "id": "p4", "texto": "Convivir con respeto", "orden": 4 }
+              ],
+              "retroalimentacion": "Primero conocer y escuchar, luego valorar y convivir: así se respeta la diferencia.",
+              "meta": {
+                "tema": "Convivencia en la diversidad",
+                "etiquetas": ["paz", "diversidad"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-div-1-5",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y piensa qué harías.",
+              "escenario": "Llega al salón un compañero nuevo de otra región, que habla distinto y trae comidas que no conocías. Algunos se burlan de su forma de hablar. ¿Qué haces?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Me río con los demás para no quedar por fuera del grupo.",
+                  "reflexion": "Burlarse por ser diferente lastima a la persona. ¿Cómo te sentirías tú en su lugar?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Me acerco, le pregunto por su región y lo invito a sentarse conmigo.",
+                  "reflexion": "La curiosidad respetuosa abre puertas. ¿Qué podrías aprender de alguien distinto a ti?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "No hago nada, aunque me parece mal lo que pasa.",
+                  "reflexion": "Callar deja solo a quien sufre la burla. ¿Qué podrías decir o hacer sin ponerte en riesgo?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo clave es que la diferencia no justifica la burla. ¿Quién cuenta esta historia y qué otras versiones existen?",
+              "meta": {
+                "tema": "Respeto a la diferencia",
+                "etiquetas": ["paz", "diversidad", "pensamiento_critico"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-div-1-6",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este fragmento y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "La Constitución Política de Colombia de 1991 reconoce y protege la diversidad étnica y cultural del país. Esto significa que las lenguas, las tradiciones y las formas de vida de los distintos pueblos son parte valiosa de la nación."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el fragmento, ¿qué reconoce la Constitución de 1991?",
+                  "opciones": [
+                    { "id": "a", "texto": "La diversidad étnica y cultural del país.", "esCorrecta": true, "retro": "¡Así es! La Constitución protege esa diversidad." },
+                    { "id": "b", "texto": "Que solo exista una cultura.", "esCorrecta": false, "retro": "Casi. El texto habla de reconocer la variedad de pueblos." },
+                    { "id": "c", "texto": "Que las tradiciones no importan.", "esCorrecta": false, "retro": "Casi. El texto dice que son parte valiosa de la nación." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Por qué es importante respetar esa diversidad?",
+                  "opciones": [
+                    { "id": "a", "texto": "Porque es una riqueza del país y respetarla ayuda a convivir en paz.", "esCorrecta": true, "retro": "Correcto. Respetar la diferencia es una base de la convivencia." },
+                    { "id": "b", "texto": "Porque así todos terminan siendo iguales.", "esCorrecta": false, "retro": "Casi. Respetar la diversidad no busca borrar las diferencias, sino valorarlas." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Reconocer de dónde viene una norma y qué protege nos ayuda a entender por qué la diversidad importa.",
+              "meta": {
+                "tema": "Análisis de fuente sobre diversidad",
+                "etiquetas": ["paz", "diversidad", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Constitución Política de Colombia",
+                  "autor": "Asamblea Nacional Constituyente",
+                  "anio": 1991
+                },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "u6-memoria",
@@ -242,7 +551,164 @@
         "tematicas": ["Memoria histórica", "Justicia y reconciliación"],
         "como": "Aborda la memoria histórica con enfoque de dignidad y no repetición, apropiado para la edad."
       },
-      "lecciones": []
+      "lecciones": [
+        {
+          "id": "l6-mem-1",
+          "titulo": "Recordar para no repetir",
+          "objetivoAprendizaje": "Comprender qué es la memoria histórica y por qué recordar ayuda a no repetir hechos dolorosos.",
+          "competencia": "Competencias ciudadanas - memoria, verdad y construcción de paz",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e6-mem-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Qué es la memoria histórica?",
+              "opciones": [
+                {
+                  "id": "a",
+                  "texto": "Recordar lo que pasó para aprender de ello y evitar que se repita.",
+                  "esCorrecta": true,
+                  "retro": "¡Muy bien! Así se razona. Recordar nos ayuda a cuidar la convivencia hoy."
+                },
+                {
+                  "id": "b",
+                  "texto": "Olvidar el pasado para no sentir nada.",
+                  "esCorrecta": false,
+                  "retro": "Casi. Olvidar impide aprender; la memoria busca justamente recordar con sentido."
+                },
+                {
+                  "id": "c",
+                  "texto": "Memorizar fechas para un examen y ya.",
+                  "esCorrecta": false,
+                  "retro": "Casi. La memoria histórica es más que fechas: es comprender para no repetir."
+                }
+              ],
+              "retroalimentacion": "La memoria histórica es recordar lo vivido para aprender y construir una convivencia mejor.",
+              "meta": {
+                "tema": "Qué es la memoria histórica",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-mem-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "Recordar el pasado solo sirve para quedarnos tristes.",
+              "respuestaCorrecta": false,
+              "justificacion": "Recordar también nos ayuda a aprender de los errores, a honrar a quienes sufrieron y a cuidar que lo doloroso no se repita.",
+              "retroalimentacion": "La memoria no es solo tristeza: es aprendizaje y cuidado de la paz.",
+              "meta": {
+                "tema": "Para qué recordar",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-mem-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Empareja cada palabra con su significado.",
+              "pares": [
+                { "izquierda": "Memoria", "derecha": "Recordar lo que se vivió" },
+                { "izquierda": "Víctima", "derecha": "Persona cuyos derechos fueron vulnerados" },
+                { "izquierda": "Reconciliación", "derecha": "Reconstruir la convivencia" }
+              ],
+              "retroalimentacion": "Estas palabras nos ayudan a hablar con respeto sobre el pasado y sobre la paz.",
+              "meta": {
+                "tema": "Conceptos de memoria",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-mem-1-4",
+              "tipo": "completar",
+              "enunciado": "Completa la frase sobre la memoria.",
+              "texto": "Cuando ___ lo que pasó, podemos aprender y evitar que lo doloroso se vuelva a ___ .",
+              "huecos": [
+                { "id": "h1", "opciones": ["recordamos", "ocultamos", "ignoramos"], "correcta": "recordamos" },
+                { "id": "h2", "opciones": ["repetir", "celebrar", "premiar"], "correcta": "repetir" }
+              ],
+              "retroalimentacion": "Recordar con sentido nos ayuda a no repetir lo que hizo daño.",
+              "meta": {
+                "tema": "Memoria y no repetición",
+                "etiquetas": ["paz", "memoria"],
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-mem-1-5",
+              "tipo": "dilema",
+              "enunciado": "Lee el caso y piensa qué propondrías.",
+              "escenario": "En tu salón proponen hacer un pequeño acto para recordar a personas de la comunidad que vivieron una injusticia. Algunos dicen que es importante; otros creen que es mejor \"no revolver el pasado\". ¿Qué propones?",
+              "opciones": [
+                {
+                  "id": "o1",
+                  "texto": "Que cada quien decida si participa, y hacer el acto con respeto.",
+                  "reflexion": "Recordar sin obligar respeta a todos. ¿Cómo puede un acto honrar a las víctimas con dignidad?"
+                },
+                {
+                  "id": "o2",
+                  "texto": "Que no se haga nada, porque hablar del pasado incomoda.",
+                  "reflexion": "El silencio a veces evita el conflicto, pero también puede dejar sin voz a las víctimas. ¿Qué se gana y qué se pierde al callar?"
+                },
+                {
+                  "id": "o3",
+                  "texto": "Hacerlo solo si todos piensan igual que yo.",
+                  "reflexion": "La convivencia incluye opiniones distintas. ¿Cómo escuchar a quienes no están de acuerdo?"
+                }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo clave es recordar con respeto y escuchar las distintas opiniones. ¿Quién cuenta esta historia y a quién honra?",
+              "meta": {
+                "tema": "Actos de memoria",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "sensible": true,
+                "notaContexto": "El tema de la memoria histórica se trata con dignidad y sin descripciones de violencia; apropiado para la edad.",
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e6-mem-1-6",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee este testimonio y responde las preguntas.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "\"En mi pueblo, cada año nos reunimos para recordar a quienes ya no están y hablar de cómo cuidar la paz. Al principio dolía, pero con el tiempo entendimos que recordar juntos nos ayuda a seguir adelante sin olvidar.\" — Testimonio pedagógico (ejemplo)."
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el testimonio, ¿para qué les sirve recordar juntos?",
+                  "opciones": [
+                    { "id": "a", "texto": "Para cuidar la paz y seguir adelante sin olvidar.", "esCorrecta": true, "retro": "¡Así es! Recordar en comunidad puede sanar y unir." },
+                    { "id": "b", "texto": "Para quedarse atrapados en la tristeza.", "esCorrecta": false, "retro": "Casi. El texto dice que recordar les ayuda a seguir adelante." },
+                    { "id": "c", "texto": "Para olvidar por completo lo que pasó.", "esCorrecta": false, "retro": "Casi. El testimonio habla de recordar, no de olvidar." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Quién cuenta esta historia?",
+                  "opciones": [
+                    { "id": "a", "texto": "Una persona de la comunidad que vive ese momento de memoria.", "esCorrecta": true, "retro": "Correcto. Preguntarse quién narra ayuda a entender su punto de vista." },
+                    { "id": "b", "texto": "Un libro de matemáticas.", "esCorrecta": false, "retro": "Casi. Fíjate en quién habla en el testimonio." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Escuchar los testimonios con respeto nos enseña por qué la memoria ayuda a construir paz. ¿Qué otras voces faltaría escuchar?",
+              "meta": {
+                "tema": "Análisis de testimonio sobre memoria",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "fuente": {
+                  "titulo": "Testimonio pedagógico (ejemplo)",
+                  "autor": "Material propio Bacatá"
+                },
+                "sensible": true,
+                "notaContexto": "Testimonio ficticio con fines pedagógicos, sin descripciones gráficas; se trata con enfoque de dignidad y no repetición.",
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
