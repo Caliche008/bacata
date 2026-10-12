@@ -1,0 +1,296 @@
+{
+  "id": "curso-cs-8",
+  "grado": 8,
+  "area": "ciencias_sociales",
+  "titulo": "Historia y Territorio: luchas sociales e identidad",
+  "descripcion": "Un curso crítico para comprender los procesos históricos, los movimientos sociales y la defensa del territorio en Colombia y América Latina, desde una perspectiva humana y transformadora.",
+  "version": "0.1.0",
+  "unidades": [
+    {
+      "id": "u8-poder-resistencias",
+      "titulo": "Poder, desigualdad y resistencias en el siglo XIX",
+      "descripcion": "Cómo las estructuras coloniales heredadas transformaron el territorio y generaron las primeras grandes movilizaciones y resistencias populares.",
+      "orden": 1,
+      "objetivos": [
+        "Analizar cómo las estructuras de poder colonial moldearon la desigualdad tras la independencia.",
+        "Reconocer los movimientos sociales como expresión de la dignidad y la organización popular."
+      ],
+      "ejePaz": true,
+      "catedraPaz": {
+        "tematicas": ["Memoria histórica", "Justicia y reconciliación", "Participación política y democracia"],
+        "como": "Conecta las luchas sociales del siglo XIX con la construcción de paz, la dignidad de los pueblos y el valor de la organización comunitaria frente a la exclusión."
+      },
+      "lecciones": [
+        {
+          "id": "l8-poder-1",
+          "titulo": "Las herencias coloniales y la desigualdad",
+          "objetivoAprendizaje": "Comprender que la independencia política no eliminó las estructuras de exclusión heredadas de la Colonia.",
+          "competencia": "Pensamiento social y análisis de perspectivas",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e8-poder-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "Al independizarse de España, ¿qué pasó con las estructuras de exclusión?",
+              "opciones": [
+                { "id": "a", "texto": "Desaparecieron por completo.", "esCorrecta": false, "retro": "Casi. La exclusión no desapareció; cambió de manos." },
+                { "id": "b", "texto": "Se mantuvieron, concentrando tierra y poder en nuevas élites.", "esCorrecta": true, "retro": "¡Así es! La independencia política no significó igualdad social." },
+                { "id": "c", "texto": "Se repartieron por igual entre todos.", "esCorrecta": false, "retro": "Casi. El reparto equitativo no ocurrió." }
+              ],
+              "retroalimentacion": "La historia no la escriben solo los gobernantes: entender el siglo XIX es ver quién quedó incluido y quién marginado.",
+              "meta": { "tema": "Herencias coloniales", "etiquetas": ["paz", "pensamiento_critico"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-poder-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "La independencia eliminó de inmediato la desigualdad entre campesinos, indígenas, afrodescendientes y élites.",
+              "respuestaCorrecta": false,
+              "justificacion": "La desigualdad persistió: la tierra, el trabajo y el poder quedaron concentrados, marginando a amplios sectores de la población.",
+              "retroalimentacion": "Un cambio de gobernantes no es, por sí solo, un cambio de estructuras.",
+              "meta": { "tema": "Desigualdad heredada", "etiquetas": ["paz"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-poder-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Relaciona cada sector con su situación en el siglo XIX.",
+              "pares": [
+                { "izquierda": "Campesinos e indígenas", "derecha": "Trabajo de la tierra con poca o ninguna propiedad" },
+                { "izquierda": "Nuevas élites criollas", "derecha": "Concentración de tierra y poder político" },
+                { "izquierda": "Afrodescendientes", "derecha": "Exclusión social pese a los cambios legales" }
+              ],
+              "retroalimentacion": "Las estructuras coloniales marcaron el lugar social de cada grupo durante décadas.",
+              "meta": { "tema": "Grupos sociales", "etiquetas": ["paz", "pensamiento_critico"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-poder-1-4",
+              "tipo": "completar",
+              "enunciado": "Completa la idea central de la lección.",
+              "texto": "Al independizarnos, las estructuras de exclusión no desaparecieron: ___ de manos, y la tierra y el poder quedaron ___ .",
+              "huecos": [
+                { "id": "h1", "opciones": ["cambiaron", "huyeron", "se borraron"], "correcta": "cambiaron" },
+                { "id": "h2", "opciones": ["concentrados", "repartidos", "olvidados"], "correcta": "concentrados" }
+              ],
+              "retroalimentacion": "Reconocer esta continuidad ayuda a entender las luchas sociales que vinieron después.",
+              "meta": { "tema": "Continuidad de la exclusión", "etiquetas": ["paz"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-poder-1-5",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee la afirmación y responde.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "\"A menudo se nos cuenta la historia desde los despachos de los gobernantes, pero la verdadera historia la escriben los pueblos.\""
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "¿Qué idea defiende principalmente esta afirmación?",
+                  "opciones": [
+                    { "id": "a", "texto": "Que la historia la hacen únicamente los gobernantes.", "esCorrecta": false, "retro": "Casi. La frase dice lo contrario." },
+                    { "id": "b", "texto": "Que los pueblos son protagonistas de la historia.", "esCorrecta": true, "retro": "¡Correcto! Reivindica el papel de los sectores populares." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Por qué es útil preguntarse quién cuenta una historia?",
+                  "opciones": [
+                    { "id": "a", "texto": "Porque toda fuente tiene un punto de vista que conviene identificar.", "esCorrecta": true, "retro": "¡Exacto! Analizar la mirada de la fuente es pensamiento crítico." },
+                    { "id": "b", "texto": "Porque solo importan las fechas.", "esCorrecta": false, "retro": "Casi. Lo clave es la perspectiva, no solo los datos." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Analizar fuentes nos enseña a preguntar quién habla y desde dónde.",
+              "meta": {
+                "tema": "Quién cuenta la historia",
+                "etiquetas": ["paz", "pensamiento_critico"],
+                "fuente": { "titulo": "Material pedagógico Bacatá (ejemplo para análisis)", "autor": "Material propio Bacatá" },
+                "estado": "aprobado"
+              }
+            }
+          ]
+        },
+        {
+          "id": "l8-poder-2",
+          "titulo": "Movimientos sociales y la defensa de la dignidad",
+          "objetivoAprendizaje": "Reconocer que el cambio social nace de la organización comunitaria y la conciencia colectiva.",
+          "competencia": "Convivencia, participación y responsabilidad democrática",
+          "orden": 2,
+          "ejercicios": [
+            {
+              "id": "e8-poder-2-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "Según la lección, ¿de dónde nace principalmente el cambio social?",
+              "opciones": [
+                { "id": "a", "texto": "De la organización comunitaria y la conciencia colectiva.", "esCorrecta": true, "retro": "¡Así es! Los sectores populares impulsan el cambio al organizarse." },
+                { "id": "b", "texto": "Solo de decisiones individuales aisladas.", "esCorrecta": false, "retro": "Casi. La fuerza está en lo colectivo." },
+                { "id": "c", "texto": "Únicamente de las leyes de los gobernantes.", "esCorrecta": false, "retro": "Casi. Las leyes importan, pero el impulso viene de la gente organizada." }
+              ],
+              "retroalimentacion": "La historia de América Latina está llena de gritos de dignidad construidos desde abajo.",
+              "meta": { "tema": "Movimientos sociales", "etiquetas": ["paz", "pensamiento_critico"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-poder-2-2",
+              "tipo": "ordenar",
+              "enunciado": "Ordena los pasos por los que una comunidad transforma una inconformidad en cambio social.",
+              "elementos": [
+                { "id": "p1", "texto": "Reconocer una injusticia compartida", "orden": 1 },
+                { "id": "p2", "texto": "Tomar conciencia colectiva del problema", "orden": 2 },
+                { "id": "p3", "texto": "Organizarse como comunidad", "orden": 3 },
+                { "id": "p4", "texto": "Actuar y exigir cambios de forma pacífica", "orden": 4 }
+              ],
+              "retroalimentacion": "De la conciencia a la organización, y de la organización a la acción colectiva.",
+              "meta": { "tema": "Organización social", "etiquetas": ["paz"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-poder-2-3",
+              "tipo": "dilema",
+              "enunciado": "Piensa y decide.",
+              "escenario": "En tu comunidad hay una injusticia que afecta a muchas familias. Algunos quieren actuar solos y por su cuenta; otros proponen reunirse, organizarse y exigir juntos una solución. ¿Qué camino apoyarías?",
+              "opciones": [
+                { "id": "o1", "texto": "Actuar cada quien por su lado.", "reflexion": "Las acciones aisladas pueden diluirse. ¿Qué tanta fuerza tiene una voz sola frente a una comunidad organizada?" },
+                { "id": "o2", "texto": "Organizarse y exigir juntos, de forma pacífica.", "reflexion": "La organización comunitaria da fuerza y legitimidad al reclamo, y es una vía pacífica de transformación." },
+                { "id": "o3", "texto": "No hacer nada para evitar problemas.", "reflexion": "El silencio puede dejar intacta la injusticia. ¿Qué se gana y qué se pierde al callar?" }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo valioso es razonar las consecuencias de cada camino para la dignidad de todos.",
+              "meta": { "tema": "Acción colectiva y dignidad", "etiquetas": ["paz", "pensamiento_critico"], "estado": "aprobado" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8-territorio-extractivismo",
+      "titulo": "Territorio, extractivismo y resistencias contemporáneas",
+      "descripcion": "La relación entre los recursos naturales, el modelo extractivista y la defensa de los territorios comunitarios en los siglos XX y XXI.",
+      "orden": 2,
+      "objetivos": [
+        "Comprender el territorio como espacio de vida, cultura y memoria, no solo como recurso.",
+        "Relacionar la defensa del territorio con la construcción de paz desde las regiones."
+      ],
+      "ejePaz": true,
+      "catedraPaz": {
+        "tematicas": ["Convivencia, cuidado del ambiente y proyecto de vida", "Memoria histórica", "Participación política y democracia"],
+        "como": "Aborda la defensa del territorio y el cuidado del ambiente como parte de la construcción de paz, con memoria, verdad y justicia social desde las comunidades."
+      },
+      "lecciones": [
+        {
+          "id": "l8-territorio-1",
+          "titulo": "El territorio como espacio de vida y disputa",
+          "objetivoAprendizaje": "Entender el territorio como hogar de la cultura y la memoria, y comprender las tensiones con los megaproyectos.",
+          "competencia": "Relaciones con el entorno y pensamiento espacial",
+          "orden": 1,
+          "ejercicios": [
+            {
+              "id": "e8-territorio-1-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "¿Qué significa entender el territorio \"como espacio de vida\"?",
+              "opciones": [
+                { "id": "a", "texto": "Verlo solo como un conjunto de recursos para explotar.", "esCorrecta": false, "retro": "Casi. Esa es justo la mirada que la lección busca ampliar." },
+                { "id": "b", "texto": "Reconocerlo como hogar de cultura, memoria y vida comunitaria.", "esCorrecta": true, "retro": "¡Correcto! El territorio es mucho más que un mapa o un recurso." },
+                { "id": "c", "texto": "Pensarlo únicamente como un límite en un mapa.", "esCorrecta": false, "retro": "Casi. El mapa es solo una representación; el territorio es vida." }
+              ],
+              "retroalimentacion": "El territorio es el hogar de la cultura, la memoria y la vida de las comunidades.",
+              "meta": { "tema": "Concepto de territorio", "etiquetas": ["paz", "pensamiento_critico"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-territorio-1-2",
+              "tipo": "verdadero_falso",
+              "enunciado": "El territorio es únicamente un conjunto de recursos naturales para explotar.",
+              "respuestaCorrecta": false,
+              "justificacion": "El territorio también es hogar de cultura, memoria y vida; reducirlo a recursos ignora a las comunidades que lo habitan.",
+              "retroalimentacion": "Por eso muchas comunidades defienden sus ríos, bosques y páramos.",
+              "meta": { "tema": "Territorio y vida", "etiquetas": ["paz", "cuidado_ambiente"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-territorio-1-3",
+              "tipo": "emparejar",
+              "enunciado": "Relaciona cada elemento con lo que representa para una comunidad.",
+              "pares": [
+                { "izquierda": "El río y el páramo", "derecha": "Fuente de vida y agua" },
+                { "izquierda": "La memoria del lugar", "derecha": "Identidad y cultura" },
+                { "izquierda": "El megaproyecto sin consulta", "derecha": "Amenaza al territorio" }
+              ],
+              "retroalimentacion": "Defender el territorio es defender la vida, la cultura y el futuro de la comunidad.",
+              "meta": { "tema": "Territorio y comunidad", "etiquetas": ["paz", "cuidado_ambiente"], "estado": "aprobado" }
+            }
+          ]
+        },
+        {
+          "id": "l8-territorio-2",
+          "titulo": "Memoria y construcción de paz desde las regiones",
+          "objetivoAprendizaje": "Comprender que la paz se construye desde las regiones con memoria, verdad y justicia social.",
+          "competencia": "Convivencia, paz y memoria histórica",
+          "orden": 2,
+          "ejercicios": [
+            {
+              "id": "e8-territorio-2-1",
+              "tipo": "opcion_multiple",
+              "enunciado": "Según la lección, ¿cómo se construye principalmente la paz?",
+              "opciones": [
+                { "id": "a", "texto": "Solo con la firma de documentos oficiales.", "esCorrecta": false, "retro": "Casi. Los acuerdos ayudan, pero no bastan por sí solos." },
+                { "id": "b", "texto": "Desde las regiones, con memoria, verdad y justicia social.", "esCorrecta": true, "retro": "¡Así es! La paz se construye día a día en los territorios." },
+                { "id": "c", "texto": "Olvidando por completo el pasado.", "esCorrecta": false, "retro": "Casi. La memoria es parte esencial de la paz, no su olvido." }
+              ],
+              "retroalimentacion": "La paz no se firma solo en los papeles; se construye desde las regiones.",
+              "meta": { "tema": "Construcción de paz", "etiquetas": ["paz", "memoria"], "estado": "aprobado" }
+            },
+            {
+              "id": "e8-territorio-2-2",
+              "tipo": "analisis_fuente",
+              "enunciado": "Lee la idea y responde.",
+              "recurso": {
+                "clase": "texto",
+                "contenido": "\"La paz no se firma solo en los papeles; se construye desde las regiones con memoria, verdad y justicia social. Las voces de las mujeres, los jóvenes y los líderes campesinos son el motor para transformar nuestro presente.\""
+              },
+              "preguntas": [
+                {
+                  "id": "q1",
+                  "pregunta": "Según el texto, ¿quiénes son protagonistas en la construcción de paz?",
+                  "opciones": [
+                    { "id": "a", "texto": "Solo quienes firman acuerdos.", "esCorrecta": false, "retro": "Casi. El texto amplía quiénes construyen la paz." },
+                    { "id": "b", "texto": "Las mujeres, los jóvenes y los líderes campesinos de las regiones.", "esCorrecta": true, "retro": "¡Correcto! La paz se construye con las voces de las comunidades." }
+                  ]
+                },
+                {
+                  "id": "q2",
+                  "pregunta": "¿Qué tres elementos menciona el texto como base de la paz?",
+                  "opciones": [
+                    { "id": "a", "texto": "Memoria, verdad y justicia social.", "esCorrecta": true, "retro": "¡Exacto! Son pilares de una paz duradera." },
+                    { "id": "b", "texto": "Olvido, silencio y resignación.", "esCorrecta": false, "retro": "Casi. El texto propone lo contrario." }
+                  ]
+                }
+              ],
+              "retroalimentacion": "Reconocer quién construye la paz y sobre qué bases nos ayuda a valorar el papel de las comunidades.",
+              "meta": {
+                "tema": "Memoria, verdad y justicia",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "fuente": { "titulo": "Material pedagógico Bacatá (ejemplo para análisis)", "autor": "Material propio Bacatá" },
+                "sensible": true,
+                "notaContexto": "Este tema toca el conflicto y la búsqueda de paz en Colombia. Se aborda con respeto a las víctimas y enfoque en la dignidad y la construcción de paz.",
+                "estado": "aprobado"
+              }
+            },
+            {
+              "id": "e8-territorio-2-3",
+              "tipo": "dilema",
+              "enunciado": "Piensa y decide.",
+              "escenario": "En una región afectada por la violencia, la comunidad discute cómo seguir adelante. Unos prefieren no hablar del pasado para 'no remover heridas'; otros proponen recordar lo ocurrido para que no se repita. ¿Qué camino apoyarías?",
+              "opciones": [
+                { "id": "o1", "texto": "Guardar silencio sobre lo ocurrido.", "reflexion": "El silencio puede dar calma momentánea, pero ¿ayuda a que la injusticia no se repita?" },
+                { "id": "o2", "texto": "Recordar con dignidad para aprender y no repetir.", "reflexion": "La memoria, hecha con respeto a las víctimas, es una base de la paz y la no repetición." }
+              ],
+              "retroalimentacion": "No hay una única respuesta: lo importante es reflexionar sobre el papel de la memoria en la construcción de paz.",
+              "meta": {
+                "tema": "Memoria y no repetición",
+                "etiquetas": ["paz", "memoria", "pensamiento_critico"],
+                "sensible": true,
+                "notaContexto": "Tema sensible sobre el conflicto en Colombia. Se trata con dignidad y sin descripciones gráficas, con foco en la convivencia y la no repetición.",
+                "estado": "aprobado"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
