@@ -2,7 +2,6 @@ import { Suspense, lazy, useState } from 'react';
 import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth';
 import { RutaAprendizaje } from '../features/lessons';
 import { ConnectionStatus } from '../components';
-import { StoragePersistenceNotice } from './StoragePersistenceNotice';
 
 /**
  * Panel docente cargado de forma perezosa (R10.1): su chunk solo se descarga
@@ -97,12 +96,12 @@ function App() {
   return (
     <SessionProvider>
       {/*
-       * Avisos de PWA (tarea 12), visibles con y sin sesión. Usan `aria-live`
-       * (no roban el foco) y solo se renderizan cuando aplican: sin conexión
-       * (R5.7) o poco espacio/persistencia denegada (R5.6).
+       * Aviso de conexión (tarea 12): usa `aria-live` (no roba el foco) y solo
+       * aparece sin conexión (R5.7). El aviso de cuota/almacenamiento se retiró
+       * del MVP: el contenido es liviano y la app persiste siempre en el
+       * dispositivo, así que el aviso resultaba en falsos positivos sin aportar.
        */}
       <ConnectionStatus />
-      <StoragePersistenceNotice />
       <Gate />
     </SessionProvider>
   );
