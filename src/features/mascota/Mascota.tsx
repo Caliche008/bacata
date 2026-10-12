@@ -2,7 +2,7 @@ import { poseRenderers } from './pose-renderers';
 import type { MascotaPose } from './pose-types';
 import './mascota.css';
 
-export type MascotaSize = 'sm' | 'md' | 'lg';
+export type MascotaSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export interface MascotaProps {
   pose: MascotaPose;
@@ -19,6 +19,12 @@ export interface MascotaProps {
   accessibleLabel?: string;
   /** Anima suavemente la figura (respeta prefers-reduced-motion vía CSS). */
   animated?: boolean;
+  /**
+   * Activa la animación de saludo viva de la ruta de aprendizaje (entrada +
+   * rebote expresivo con rotación suave). Es opt-in y se suma a `animated` sin
+   * reemplazarlo; respeta `prefers-reduced-motion` vía CSS (igual que `bob`).
+   */
+  greeting?: boolean;
   className?: string;
 }
 
@@ -38,6 +44,7 @@ export function Mascota({
   decorative = true,
   accessibleLabel,
   animated = false,
+  greeting = false,
   className,
 }: MascotaProps) {
   const PoseRenderer = poseRenderers[pose];
@@ -45,6 +52,7 @@ export function Mascota({
     'bc-mascota__art',
     `bc-mascota__art--${size}`,
     animated ? 'bc-mascota__art--animated' : '',
+    greeting ? 'bc-mascota__art--saludo' : '',
   ]
     .filter(Boolean)
     .join(' ');

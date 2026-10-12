@@ -64,6 +64,44 @@
   margin-bottom: 1.25rem;
 }
 
+/* ---- Hero de bienvenida de la ruta (mascota con protagonismo) ---- */
+
+/*
+ * Tarjeta cálida que integra la mascota grande (xl) con un saludo de marca.
+ * En móvil estrecho (~360px) `flex-wrap` apila mascota y texto sin desbordar;
+ * en pantallas amplias quedan lado a lado y equilibrados. Solo tokens, así
+ * respeta el tema de alto contraste automáticamente.
+ */
+.bc-ruta__hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.bc-ruta__hero-texto {
+  flex: 1 1 14rem;
+}
+
+.bc-ruta__hero-titulo {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-title);
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.bc-ruta__hero-mensaje {
+  margin: 0;
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
 /* ---- Entrada de repaso (R14.2) ---- */
 
 .bc-ruta__repaso {

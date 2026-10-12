@@ -305,6 +305,18 @@ export function RutaAprendizaje({ onVerPrivacidad }: RutaAprendizajeProps = {}) 
         </div>
       </header>
 
+      <section className="bc-ruta__hero" aria-labelledby="bc-ruta-hero-titulo">
+        <Mascota pose="saludando" size="xl" greeting />
+        <div className="bc-ruta__hero-texto">
+          <h2 id="bc-ruta-hero-titulo" className="bc-ruta__hero-titulo">
+            Vamos a aprender y a divertirnos
+          </h2>
+          <p className="bc-ruta__hero-mensaje">
+            Soy tu compañero de ruta. ¿Seguimos explorando la historia?
+          </p>
+        </div>
+      </section>
+
       <CabeceraGamificacion
         xp={gamificacion.xp}
         rachaActual={gamificacion.rachaActual}

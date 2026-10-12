@@ -26,6 +26,16 @@
   width: 168px;
   height: 168px;
 }
+/*
+ * Tamaño XL para el hero de la ruta de aprendizaje: la mascota con
+ * protagonismo. `clamp` crece de ~128px en móvil (360–412px) a ~200px en
+ * escritorio sin media queries extra. En `rem` para respetar la escala de
+ * texto del usuario (--font-scale) y el ajuste de fuente del sistema.
+ */
+.bc-mascota__art--xl {
+  width: clamp(8rem, 32vw, 12.5rem);
+  height: clamp(8rem, 32vw, 12.5rem);
+}
 
 /* Burbuja de mensaje accesible (el texto siempre lo lee el lector de pantalla). */
 .bc-mascota__bubble {
@@ -62,6 +72,18 @@
     animation: bc-mascota-bob 2.4s ease-in-out infinite;
     transform-origin: center bottom;
   }
+
+  /*
+   * Saludo vivo de la mascota del hero de la ruta (opt-in vía prop `greeting`).
+   * Más expresivo que `bob`: entra con un fundido + leve subida y luego hace un
+   * ciclo de rebote con rotación suave. Solo `transform`/`opacity` (barato en
+   * gama baja). No reemplaza `bob`; ambas conviven. Se activa solo aquí, dentro
+   * de `no-preference`, para respetar WCAG 2.3.3 como el resto.
+   */
+  .bc-mascota__art--saludo {
+    animation: bc-mascota-saludo 2.8s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
 }
 
 @keyframes bc-mascota-bob {
@@ -71,5 +93,33 @@
   }
   50% {
     transform: translateY(-4px) rotate(-2deg);
+  }
+}
+
+/*
+ * Entrada (0–15%) + idle expresivo (resto). El recorrido vertical y la rotación
+ * son mayores que en `bob` para dar vida, pero vuelven siempre a reposo.
+ */
+@keyframes bc-mascota-saludo {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96) rotate(0deg);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  40% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  60% {
+    transform: translateY(-6px) rotate(-5deg);
+  }
+  80% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
   }
 }
