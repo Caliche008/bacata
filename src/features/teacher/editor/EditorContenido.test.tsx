@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import { IDBFactory } from 'fake-indexeddb';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { closeDb, resetDb } from '../../../lib/storage';
 import { EditorContenido } from './EditorContenido';
@@ -64,8 +64,14 @@ describe('EditorContenido', () => {
     render(<EditorContenido />);
     await screen.findByText(/los borradores son locales/i);
 
+    // El botón de exportar está deshabilitado (`disabled={!curso}`) hasta que el
+    // borrador termina de cargar desde IndexedDB. Esperamos a que se habilite
+    // para no hacer un clic sin efecto (origen de intermitencia en la prueba).
+    const botonExportar = screen.getByRole('button', { name: 'Exportar curso (JSON)' });
+    await waitFor(() => expect(botonExportar).toBeEnabled());
+
     // El curso recién creado está vacío (sin título ni unidades): no valida.
-    await user.click(screen.getByRole('button', { name: 'Exportar curso (JSON)' }));
+    await user.click(botonExportar);
 
     const aviso = await screen.findByText(/no pudimos exportar/i);
     expect(aviso.closest('[role="alert"]')).not.toBeNull();
