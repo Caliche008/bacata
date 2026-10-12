@@ -3,6 +3,7 @@ import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth'
 import { RutaAprendizaje } from '../features/lessons';
 import { ConnectionStatus } from '../components';
 import { SplashCarga } from './SplashCarga';
+import { useSplashMinimo } from './useSplashMinimo';
 
 /**
  * Panel docente cargado de forma perezosa (R10.1): su chunk solo se descarga
@@ -32,15 +33,21 @@ const PoliticaPrivacidad = lazy(() =>
  */
 function Gate() {
   const { perfil, cargando } = useSession();
+  // Mínimo de visibilidad del splash de arranque (2.3 s): aunque la sesión
+  // resuelva al instante, el splash de marca se mantiene hasta cumplir ese
+  // tiempo para que no "pase demasiado rápido".
+  const splashCumplido = useSplashMinimo();
   const [vista, setVista] = useState<'estudiante' | 'docente'>('estudiante');
   // La política de privacidad es un overlay accesible desde el acceso del
   // estudiante, la ruta de aprendizaje y el panel docente (R8.4). Se gestiona
   // con estado (sin React Router), igual que la entrada del docente.
   const [verPrivacidad, setVerPrivacidad] = useState(false);
 
-  if (cargando) {
-    // Estado breve mientras se recupera la sesión desde almacenamiento: splash
-    // de marca (mascota + "Bacatá" + "Aprende jugando") en vez de texto suelto.
+  if (cargando || !splashCumplido) {
+    // Splash de marca (mascota + "Bacatá" + "Aprende jugando") en vez de texto
+    // suelto. Se muestra mientras se recupera la sesión desde almacenamiento Y
+    // hasta cumplir el mínimo de 2.3 s de arranque: se oculta SOLO cuando ambas
+    // condiciones se cumplen (sesión resuelta y tiempo mínimo cumplido).
     return <SplashCarga />;
   }
 
