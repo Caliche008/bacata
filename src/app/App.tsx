@@ -2,6 +2,7 @@ import { Suspense, lazy, useState } from 'react';
 import { AccesoEstudiante, SessionProvider, useSession } from '../features/auth';
 import { RutaAprendizaje } from '../features/lessons';
 import { ConnectionStatus } from '../components';
+import { SplashCarga } from './SplashCarga';
 
 /**
  * Panel docente cargado de forma perezosa (R10.1): su chunk solo se descarga
@@ -38,12 +39,9 @@ function Gate() {
   const [verPrivacidad, setVerPrivacidad] = useState(false);
 
   if (cargando) {
-    // Estado breve mientras se recupera la sesión desde almacenamiento.
-    return (
-      <main className="bc-cargando" aria-busy="true">
-        <p>Cargando…</p>
-      </main>
-    );
+    // Estado breve mientras se recupera la sesión desde almacenamiento: splash
+    // de marca (mascota + "Bacatá" + "Aprende jugando") en vez de texto suelto.
+    return <SplashCarga />;
   }
 
   // La política se superpone a cualquier vista. Incluye el borrado de datos del

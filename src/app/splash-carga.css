@@ -1,0 +1,38 @@
+/*
+ * Splash de marca de Bacatá (pantalla de carga del arranque).
+ *
+ * Centrado vertical y horizontal, pantalla completa, con el fondo crema y el
+ * texto carbón de los tokens (contraste AA, con variante de alto contraste
+ * automática vía data-theme). Todos los tamaños en rem para respetar la escala
+ * de tamaño de texto (--font-scale). La animación de la mascota la aporta
+ * mascota.css y ya respeta prefers-reduced-motion; aquí no hay keyframes.
+ */
+
+.bc-splash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 100vh;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.bc-splash__marca {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.bc-splash__tagline {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: var(--color-text);
+}
