@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { Button, Card, Feedback } from '../../components';
 import { Mascota, getMomento } from '../mascota';
+import { GRADOS_SOPORTADOS } from '../../content';
 import type { Grado } from '../../content/types';
 import { useAuthForm } from './useAuthForm';
 import './auth.css';
@@ -174,7 +175,7 @@ export function AccesoEstudiante({
               role="radiogroup"
               aria-labelledby={gradoLabelId}
             >
-              {([6, 7] as const).map((valor) => {
+              {GRADOS_SOPORTADOS.map((valor) => {
                 const checked = grado === valor;
                 return (
                   <label

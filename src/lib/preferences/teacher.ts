@@ -7,7 +7,7 @@
  * - `teacherPinHash`: hash del PIN del docente (R8.6). NUNCA el PIN en claro.
  * - `teacherSession`: bandera de sesión docente activa (separada de la del
  *   estudiante). No guarda PII.
- * - `classGrade.<claseId>`: el grado (6/7) que el docente eligió gestionar para
+ * - `classGrade.<claseId>`: el grado (6–11) que el docente eligió gestionar para
  *   una clase, para recordar su elección (ver plan: `ClaseLocal` no lleva grado,
  *   así se evita bump de `DB_VERSION`).
  *
@@ -16,6 +16,7 @@
  * Fase 2: traerá cuentas docente reales (correo solo para recuperación — R6.9).
  */
 
+import { GRADOS_SOPORTADOS } from '../../content';
 import type { Grado } from '../../content/types';
 
 /** Claves namespaced para no colisionar con otras apps del mismo origen. */
@@ -77,14 +78,18 @@ export function clearTeacherSession(): void {
   safeRemove(SESSION_KEY);
 }
 
-function isGrado(value: string | null): value is '6' | '7' {
-  return value === '6' || value === '7';
+function esGradoSoportado(value: string | null): boolean {
+  if (value === null) {
+    return false;
+  }
+  const numero = Number(value);
+  return GRADOS_SOPORTADOS.some((grado) => grado === numero);
 }
 
 /** Grado que el docente eligió gestionar para una clase, o null si no hay. */
 export function getClassGrade(claseId: string): Grado | null {
   const value = safeGet(`${CLASS_GRADE_PREFIX}${claseId}`);
-  return isGrado(value) ? (Number(value) as Grado) : null;
+  return esGradoSoportado(value) ? (Number(value) as Grado) : null;
 }
 
 /** Recuerda el grado que el docente eligió gestionar para una clase. */

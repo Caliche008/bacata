@@ -55,6 +55,12 @@ describe('classGrade', () => {
     expect(getClassGrade('clase-1')).toBe(7);
   });
 
+  it('redondea set/get de un grado ampliado (10) — soporte 6..11', () => {
+    expect(getClassGrade('clase-10')).toBeNull();
+    setClassGrade('clase-10', 10);
+    expect(getClassGrade('clase-10')).toBe(10);
+  });
+
   it('valores corruptos devuelven null (estado seguro)', () => {
     window.localStorage.setItem('bacata.teacher.classGrade.clase-x', '99');
     expect(getClassGrade('clase-x')).toBeNull();

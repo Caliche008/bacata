@@ -7,7 +7,7 @@
  */
 
 // Esquema (fuente única de la verdad) y tipos derivados.
-export { cursoSchema } from './schema';
+export { cursoSchema, GRADOS_SOPORTADOS } from './schema';
 export type {
   Grado,
   EstadoContenido,

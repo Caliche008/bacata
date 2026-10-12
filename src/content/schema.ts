@@ -13,8 +13,25 @@ import { z } from 'zod';
 
 const noVacio = (campo: string) => z.string().min(1, `${campo} no puede estar vacío`);
 
-/** Grado = 6 | 7 */
-export const gradoSchema = z.union([z.literal(6), z.literal(7)]);
+/**
+ * Grados soportados técnicamente por la plataforma: 6 a 11 (fuente única).
+ *
+ * El CONTENIDO pedagógico se incorpora por fases (hoy 6° y 7°); habilitar un
+ * grado aquí NO implica que exista un `grado-N.json`: la app muestra un estado
+ * vacío amable cuando el estudiante elige un grado sin contenido. La UI consume
+ * esta constante para no repetir el literal en cada selector de grado.
+ */
+export const GRADOS_SOPORTADOS = [6, 7, 8, 9, 10, 11] as const;
+
+/** Grado = 6 | 7 | 8 | 9 | 10 | 11 (derivado de `GRADOS_SOPORTADOS`). */
+export const gradoSchema = z.union([
+  z.literal(6),
+  z.literal(7),
+  z.literal(8),
+  z.literal(9),
+  z.literal(10),
+  z.literal(11),
+]);
 
 /** EstadoContenido = 'borrador' | 'aprobado' (R7.8) */
 export const estadoContenidoSchema = z.enum(['borrador', 'aprobado']);

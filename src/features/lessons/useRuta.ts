@@ -25,8 +25,14 @@ import { construirRuta, type RutaVista } from './path';
 
 export interface UseRutaResult {
   cargando: boolean;
-  /** Mensaje de error en español, o `null`. */
+  /** Mensaje de error en español, o `null`. Solo para fallos reales de carga. */
   error: string | null;
+  /**
+   * `true` cuando el grado del estudiante aún no tiene contenido empaquetado.
+   * NO es un error: la plataforma soporta 6–11 y el contenido llega por fases.
+   * Se separa del canal `error` para mostrar un estado vacío amable (no `alert`).
+   */
+  sinContenido: boolean;
   curso: Curso | null;
   ruta: RutaVista | null;
   /** Vuelve a derivar la ruta desde el progreso (p. ej. tras completar). */
@@ -37,6 +43,7 @@ export function useRuta(): UseRutaResult {
   const { perfil } = useSession();
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sinContenido, setSinContenido] = useState(false);
   const [curso, setCurso] = useState<Curso | null>(null);
   const [ruta, setRuta] = useState<RutaVista | null>(null);
   const [recarga, setRecarga] = useState(0);
@@ -53,16 +60,20 @@ export function useRuta(): UseRutaResult {
     let activo = true;
     setCargando(true);
     setError(null);
+    setSinContenido(false);
 
     void (async () => {
       try {
         const index = await initContent();
         const cursoGrado = getCursoPorGrado(index, perfil.grado);
         if (!cursoGrado) {
+          // No es un error: el grado está habilitado pero su contenido llega
+          // por fases. Se marca `sinContenido` para el estado vacío amable.
           if (activo) {
             setCurso(null);
             setRuta(null);
-            setError(`Todavía no hay contenido para el grado ${perfil.grado}°.`);
+            setError(null);
+            setSinContenido(true);
           }
           return;
         }
@@ -96,5 +107,5 @@ export function useRuta(): UseRutaResult {
     };
   }, [perfil, recarga]);
 
-  return { cargando, error, curso, ruta, recargar };
+  return { cargando, error, sinContenido, curso, ruta, recargar };
 }

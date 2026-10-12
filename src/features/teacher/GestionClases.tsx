@@ -1,5 +1,6 @@
 import { useId, useState, type FormEvent } from 'react';
 import { Button, Card, ConfirmDialog, Feedback } from '../../components';
+import { GRADOS_SOPORTADOS } from '../../content';
 import type { ClaseLocal } from '../../lib/storage';
 import type { Grado } from '../../content/types';
 import './teacher.css';
@@ -76,7 +77,7 @@ export function GestionClases({
               role="radiogroup"
               aria-labelledby={gradoLabelId}
             >
-              {([6, 7] as const).map((valor) => {
+              {GRADOS_SOPORTADOS.map((valor) => {
                 const checked = grado === valor;
                 return (
                   <label

@@ -37,11 +37,13 @@ vi.mock('../auth', () => ({
 
 let rutaMock: RutaVista | null = null;
 let cursoMock: Curso | null = null;
+let sinContenidoMock = false;
 
 vi.mock('./useRuta', () => ({
   useRuta: () => ({
     cargando: false,
     error: null,
+    sinContenido: sinContenidoMock,
     curso: cursoMock,
     ruta: rutaMock,
     recargar: vi.fn(),
@@ -110,6 +112,7 @@ beforeEach(() => {
   globalThis.indexedDB = new IDBFactory();
   resetDb();
   cerrarSesion.mockClear();
+  sinContenidoMock = false;
   cursoMock = cursoBase;
   rutaMock = {
     unidades: [
@@ -183,6 +186,38 @@ describe('RutaAprendizaje — presentación (g)', () => {
   it('muestra la Cátedra de la Paz como insignia dentro de la unidad', () => {
     render(<RutaAprendizaje />);
     expect(screen.getAllByText('Cátedra de la Paz').length).toBeGreaterThan(0);
+  });
+});
+
+describe('RutaAprendizaje — grado sin contenido (estado vacío)', () => {
+  it('muestra el estado vacío amable (no crashea) y NO usa role="alert"', () => {
+    // Grado habilitado pero sin contenido empaquetado todavía (hoy 8°–11°).
+    sinContenidoMock = true;
+    cursoMock = null;
+    rutaMock = null;
+
+    render(<RutaAprendizaje />);
+
+    // Copy de marca anunciado como estado (no error).
+    expect(
+      screen.getByText(/Pronto habrá lecciones para tu grado/i),
+    ).toBeInTheDocument();
+    const estado = screen.getByText(/Estamos preparando el contenido de grado/i);
+    expect(estado).toHaveAttribute('role', 'status');
+
+    // No es un error: no debe haber role="alert".
+    expect(screen.queryByRole('alert')).toBeNull();
+  });
+
+  it('ofrece volver con "Cambiar de perfil"', async () => {
+    sinContenidoMock = true;
+    cursoMock = null;
+    rutaMock = null;
+    const user = userEvent.setup();
+
+    render(<RutaAprendizaje />);
+    await user.click(screen.getByRole('button', { name: 'Cambiar de perfil' }));
+    expect(cerrarSesion).toHaveBeenCalledTimes(1);
   });
 });
 

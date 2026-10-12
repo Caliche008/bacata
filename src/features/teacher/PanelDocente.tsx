@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '../../components';
+import { GRADOS_SOPORTADOS } from '../../content';
 import { isTeacherSessionActive, setClassGrade } from '../../lib/preferences';
 import { AccesoDocente } from './AccesoDocente';
 import { GestionClases } from './GestionClases';
@@ -144,7 +145,7 @@ export function PanelDocente({ onSalir, onVerPrivacidad }: PanelDocenteProps) {
                 <fieldset className="bc-teacher__field">
                   <legend className="bc-teacher__label">Grado a gestionar</legend>
                   <div className="bc-teacher__grados" role="radiogroup" aria-label="Grado a gestionar">
-                    {([6, 7] as const).map((valor) => {
+                    {GRADOS_SOPORTADOS.map((valor) => {
                       const checked = gradoSeleccionado === valor;
                       return (
                         <label

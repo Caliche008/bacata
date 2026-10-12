@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { cursoSchema, ejercicioSchema } from './schema';
+import { cursoSchema, ejercicioSchema, gradoSchema, GRADOS_SOPORTADOS } from './schema';
 
 /**
  * Pruebas del esquema de contenido.
@@ -34,6 +34,21 @@ function ejercicioOpcionMultipleValido() {
     },
   };
 }
+
+describe('gradoSchema — grados soportados 6 a 11', () => {
+  it('acepta todos los grados de GRADOS_SOPORTADOS (6..11)', () => {
+    expect(GRADOS_SOPORTADOS).toEqual([6, 7, 8, 9, 10, 11]);
+    for (const grado of GRADOS_SOPORTADOS) {
+      expect(gradoSchema.safeParse(grado).success).toBe(true);
+    }
+  });
+
+  it('rechaza grados fuera de rango (5, 12) y valores no numéricos', () => {
+    expect(gradoSchema.safeParse(5).success).toBe(false);
+    expect(gradoSchema.safeParse(12).success).toBe(false);
+    expect(gradoSchema.safeParse('6').success).toBe(false);
+  });
+});
 
 describe('cursoSchema — caso válido', () => {
   it('valida el contenido semilla real grado-6.json', () => {

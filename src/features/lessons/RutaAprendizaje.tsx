@@ -16,6 +16,7 @@ import {
 import type { ResumenLeccion } from './answers';
 import { CelebracionUnidad } from './CelebracionUnidad';
 import { ContenidoNoDisponible } from './ContenidoNoDisponible';
+import { SinContenidoGrado } from './SinContenidoGrado';
 import { LeccionErrorBoundary } from './LeccionErrorBoundary';
 import { UnidadCard } from './UnidadCard';
 import { useRuta } from './useRuta';
@@ -89,7 +90,7 @@ export interface RutaAprendizajeProps {
 
 export function RutaAprendizaje({ onVerPrivacidad }: RutaAprendizajeProps = {}) {
   const { perfil, cerrarSesion } = useSession();
-  const { cargando, error, curso, ruta, recargar } = useRuta();
+  const { cargando, error, sinContenido, curso, ruta, recargar } = useRuta();
   const [vista, setVista] = useState<Vista>({ tipo: 'ruta' });
   const [celebracion, setCelebracion] = useState<CelebracionData | null>(null);
   const [panelAbierto, setPanelAbierto] = useState(false);
@@ -276,6 +277,13 @@ export function RutaAprendizaje({ onVerPrivacidad }: RutaAprendizajeProps = {}) 
         </Suspense>
       </LeccionErrorBoundary>
     );
+  }
+
+  // Grado habilitado pero sin contenido empaquetado todavía (hoy 8°–11°). No es
+  // un error: se muestra un estado vacío amable con la mascota y tono de marca,
+  // en vez de la ruta vacía o el canal de errores reales.
+  if (sinContenido && !cargando && vista.tipo === 'ruta') {
+    return <SinContenidoGrado grado={perfil.grado} onCambiarPerfil={cerrarSesion} />;
   }
 
   return (

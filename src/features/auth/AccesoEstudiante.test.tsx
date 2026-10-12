@@ -58,6 +58,19 @@ describe('AccesoEstudiante — accesibilidad y privacidad', () => {
     expect(screen.queryByLabelText(/nombre/i)).toBeNull();
   });
 
+  it('ofrece los grados 6 a 11 de forma accesible (6 radios con etiqueta)', () => {
+    renderAcceso();
+
+    const grupo = screen.getByRole('radiogroup', { name: 'Tu grado' });
+    const radios = screen.getAllByRole('radio');
+    expect(radios).toHaveLength(6);
+
+    // Cada grado 6°..11° está etiquetado por texto (no solo color).
+    for (const grado of [6, 7, 8, 9, 10, 11]) {
+      expect(grupo).toHaveTextContent(`${grado}°`);
+    }
+  });
+
   it('muestra el aviso de solo-local (R1.9) y de no usar nombre real (R1.7)', () => {
     renderAcceso();
     expect(

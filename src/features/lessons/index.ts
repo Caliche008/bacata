@@ -6,6 +6,8 @@
 
 export { RutaAprendizaje } from './RutaAprendizaje';
 export { ContenidoNoDisponible } from './ContenidoNoDisponible';
+export { SinContenidoGrado } from './SinContenidoGrado';
+export type { SinContenidoGradoProps } from './SinContenidoGrado';
 export { LeccionErrorBoundary } from './LeccionErrorBoundary';
 export type { LeccionErrorBoundaryProps } from './LeccionErrorBoundary';
 
