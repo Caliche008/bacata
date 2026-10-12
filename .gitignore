@@ -30,3 +30,9 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Worktrees de los workflows (ramas de trabajo aisladas)
+.worktrees/
+
+# Archivos de salida temporales
+git-out.txt
