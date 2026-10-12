@@ -1,5 +1,6 @@
 import { type DBSchema, type IDBPDatabase, openDB } from 'idb';
 import type {
+  BorradorContenido,
   ClaseLocal,
   ContenidoCache,
   Gamificacion,
@@ -21,7 +22,7 @@ import type {
  */
 
 export const DB_NAME = 'bacata';
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 /**
  * Contrato de stores, keyPaths e índices (ver `design.md` →
@@ -64,38 +65,48 @@ export interface BacataDB extends DBSchema {
     value: SyncEvent;
     indexes: { porEstudiante: string };
   };
+  borradoresContenido: {
+    key: string;
+    value: BorradorContenido;
+    indexes: { porGrado: number };
+  };
 }
 
 /**
- * Crea todos los stores e índices. Usa `switch (oldVersion)` con fall-through
- * intencional para poder añadir migraciones futuras sin reescribir el bloque
- * de la versión 1.
+ * Crea todos los stores e índices. Usa guardas acumulativas `if (oldVersion < N)`
+ * (el patrón de migración de `idb`): cada bloque corre para toda BD anterior a
+ * esa versión y los posteriores también, así una BD nueva (`oldVersion` 0) aplica
+ * todas las migraciones en orden. Equivale a un `switch` con fall-through, pero
+ * sin disparar `noFallthroughCasesInSwitch` de TS estricto.
  */
 function upgrade(db: IDBPDatabase<BacataDB>, oldVersion: number): void {
-  switch (oldVersion) {
-    case 0: {
-      const perfiles = db.createObjectStore('perfilEstudiante', { keyPath: 'id' });
-      perfiles.createIndex('porCodigoClase', 'codigoClase');
+  if (oldVersion < 1) {
+    const perfiles = db.createObjectStore('perfilEstudiante', { keyPath: 'id' });
+    perfiles.createIndex('porCodigoClase', 'codigoClase');
 
-      const progreso = db.createObjectStore('progreso', { keyPath: 'id' });
-      progreso.createIndex('porEstudiante', 'estudianteId');
-      progreso.createIndex('porLeccion', ['estudianteId', 'leccionId'], { unique: true });
+    const progreso = db.createObjectStore('progreso', { keyPath: 'id' });
+    progreso.createIndex('porEstudiante', 'estudianteId');
+    progreso.createIndex('porLeccion', ['estudianteId', 'leccionId'], { unique: true });
 
-      db.createObjectStore('gamificacion', { keyPath: 'estudianteId' });
+    db.createObjectStore('gamificacion', { keyPath: 'estudianteId' });
 
-      const repaso = db.createObjectStore('repaso', { keyPath: 'id' });
-      repaso.createIndex('porEstudiante', 'estudianteId');
+    const repaso = db.createObjectStore('repaso', { keyPath: 'id' });
+    repaso.createIndex('porEstudiante', 'estudianteId');
 
-      db.createObjectStore('contenidoCache', { keyPath: 'grado' });
+    db.createObjectStore('contenidoCache', { keyPath: 'grado' });
 
-      const clases = db.createObjectStore('clasesLocales', { keyPath: 'id' });
-      clases.createIndex('porCodigo', 'codigo', { unique: true });
+    const clases = db.createObjectStore('clasesLocales', { keyPath: 'id' });
+    clases.createIndex('porCodigo', 'codigo', { unique: true });
 
-      const colaSync = db.createObjectStore('colaSync', { keyPath: 'id' });
-      colaSync.createIndex('porEstudiante', 'estudianteId');
-    }
-    // fall-through: futuras versiones añaden sus migraciones aquí (case 1, 2, ...).
+    const colaSync = db.createObjectStore('colaSync', { keyPath: 'id' });
+    colaSync.createIndex('porEstudiante', 'estudianteId');
   }
+  if (oldVersion < 2) {
+    // DB_VERSION 2: store de borradores del editor de contenido (docente).
+    const borradores = db.createObjectStore('borradoresContenido', { keyPath: 'id' });
+    borradores.createIndex('porGrado', 'grado');
+  }
+  // Futuras versiones añaden su migración aquí con `if (oldVersion < N) { ... }`.
 }
 
 let dbPromise: Promise<IDBPDatabase<BacataDB>> | null = null;

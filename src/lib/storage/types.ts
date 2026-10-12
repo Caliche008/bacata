@@ -15,6 +15,22 @@ import type { Curso, Grado } from '../../content/types';
 /** Estado de una lección en el progreso del estudiante. */
 export type EstadoProgreso = 'en_progreso' | 'completada';
 
+/**
+ * Borrador de contenido en edición por el docente (editor local).
+ *
+ * `curso` se guarda con el tipo del modelo (`Curso`), pero mientras se edita
+ * puede estar INCOMPLETO: un borrador NO se filtra ni valida al guardar. La
+ * validación con `cursoSchema` ocurre al exportar/aprobar, no al persistir. El
+ * contenido pedagógico no es PII.
+ */
+export interface BorradorContenido {
+  id: string;
+  grado: Grado;
+  curso: Curso;
+  /** Fecha de última edición en ISO 8601. */
+  actualizadoEn: string;
+}
+
 /** Perfil del estudiante — sin PII (R1, R8.1). */
 export interface PerfilEstudiante {
   id: string;

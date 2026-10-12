@@ -18,6 +18,7 @@ export type {
   SyncEvent,
   SyncPayload,
   SyncValue,
+  BorradorContenido,
 } from './types';
 
 // Esquema / ciclo de vida de la BD (útil sobre todo para pruebas y arranque).
@@ -63,6 +64,13 @@ export {
   getAllClasses,
   deleteClass,
 } from './classes';
+export {
+  putDraft,
+  getDraft,
+  getAllDrafts,
+  getDraftsByGrade,
+  deleteDraft,
+} from './drafts';
 export {
   enqueueSyncEvent,
   getSyncQueue,

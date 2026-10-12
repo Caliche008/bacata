@@ -7,7 +7,24 @@
  */
 
 // Esquema (fuente única de la verdad) y tipos derivados.
-export { cursoSchema, GRADOS_SOPORTADOS } from './schema';
+export {
+  cursoSchema,
+  GRADOS_SOPORTADOS,
+  // Sub-esquemas reutilizados por el editor de contenido (NO redefinir).
+  unidadSchema,
+  leccionSchema,
+  ejercicioSchema,
+  metaSchema,
+  opcionMultipleSchema,
+  verdaderoFalsoSchema,
+  emparejarSchema,
+  ordenarSchema,
+  completarSchema,
+  dilemaSchema,
+  analisisFuenteSchema,
+  opcionEvaluableSchema,
+  recursoFuenteSchema,
+} from './schema';
 export type {
   Grado,
   EstadoContenido,
