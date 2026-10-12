@@ -27,28 +27,20 @@
 }
 
 /*
- * Encabezado de marca sobre la mascota. Todo en `rem` para respetar la escala
- * de texto configurable (--font-scale). Contraste AA: carbón (--color-text)
- * sobre crema = 13.14:1. El estado no depende del color; es texto estático.
- * `overflow-wrap: anywhere` evita que el nombre/tagline desborde en ~360px.
+ * Único encabezado (h1) de bienvenida, centrado sobre la mascota. Todo en `rem`
+ * para respetar la escala de texto configurable (--font-scale). Contraste AA:
+ * carbón (--color-text) sobre crema = 13.14:1 (y variante de alto contraste vía
+ * tokens). El estado no depende del color; es texto estático. `overflow-wrap:
+ * anywhere` evita desbordes en pantallas ~360px.
  */
-.bc-auth__marca {
+.bc-auth__titulo {
+  margin: 0 0 1rem;
   text-align: center;
-  overflow-wrap: anywhere;
-}
-
-.bc-auth__marca-nombre {
-  margin: 0;
   font-family: var(--font-title);
-  font-size: 2rem;
-  line-height: 1.1;
+  font-size: 1.5rem;
+  line-height: 1.2;
   color: var(--color-text);
-}
-
-.bc-auth__marca-tagline {
-  margin: 0.25rem 0 0;
-  font-size: 1rem;
-  color: var(--color-text);
+  overflow-wrap: anywhere;
 }
 
 .bc-auth__nota {

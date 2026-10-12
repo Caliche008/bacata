@@ -71,19 +71,21 @@ describe('AccesoEstudiante — accesibilidad y privacidad', () => {
     }
   });
 
-  it('presenta el encabezado de marca "Bacatá" (h1) + tagline, sin romper el h2 de la tarjeta', () => {
+  it('muestra un único encabezado h1 de bienvenida y ya no repite la marca del splash', () => {
     renderAcceso();
 
-    // El <h1> de marca aporta la jerarquía del arranque.
+    // Único encabezado de bienvenida (texto exacto, con ¡ de apertura y !).
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Bacatá' }),
+      screen.getByRole('heading', {
+        level: 1,
+        name: '¡Vamos a aprender y a divertirnos!',
+      }),
     ).toBeInTheDocument();
-    // El tagline de plataforma acompaña al nombre.
-    expect(screen.getByText('Aprende jugando')).toBeInTheDocument();
-    // El título de la tarjeta sigue siendo <h2> (jerarquía intacta).
-    expect(
-      screen.getByRole('heading', { level: 2, name: /Bienvenido a Bacatá/ }),
-    ).toBeInTheDocument();
+    // La marca "Bacatá / Aprende jugando" vive ahora en el splash, no aquí.
+    expect(screen.queryByText('Aprende jugando')).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Bacatá' })).toBeNull();
+    // Ya no se genera el h2 de la tarjeta "Bienvenido a Bacatá".
+    expect(screen.queryByRole('heading', { level: 2 })).toBeNull();
   });
 
   it('muestra el aviso de solo-local (R1.9) y de no usar nombre real (R1.7)', () => {
