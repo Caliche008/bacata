@@ -35,7 +35,8 @@ Cercana, curiosa, humilde, esperanzadora, respetuosa. Inteligente sin ser pedant
 - **Poses mínimas:** feliz, pensando, celebrando, animando tras un error, saludando, durmiendo
   (recordatorio de racha).
 - **Reglas:** nunca se burla del error; sin símbolos políticos, armas ni uniformes.
-- **Nombre de la mascota:** por definir.
+- **Nombre de la mascota:** **Bacatá** (igual que la app; el perrito ES Bacatá, el
+  compañero de ruta del estudiante).
 
 ## Logo
 
