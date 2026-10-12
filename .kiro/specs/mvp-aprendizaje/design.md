@@ -49,7 +49,7 @@ Fase 2 (no en el MVP): API REST + BD para sync, cuentas docente, descarga de con
 Tipos (TypeScript) validados con esquema (Zod). El contenido vive en `/content` como JSON.
 
 ```ts
-type Grado = 6 | 7;
+type Grado = 6 | 7 | 8 | 9 | 10 | 11;              // plataforma 6..11; contenido por fases
 type EstadoContenido = 'borrador' | 'aprobado';   // R7.8: solo 'aprobado' entra a la app
 
 interface Curso {

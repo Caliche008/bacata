@@ -49,7 +49,8 @@ Cada unidad declara, en su metadato `catedraPaz`, qué temáticas aborda y cómo
 
 ## Diferenciación por grado
 
-- El contenido se etiqueta por grado (`grado: 6` o `grado: 7`).
+- El contenido se etiqueta por grado (`grado: 6` … `grado: 11`). La plataforma soporta 6° a 11°;
+  hoy el contenido disponible es de 6° y 7°, y los demás grados se incorporan por fases.
 - Un mismo tema puede existir en varios grados con distinta profundidad y vocabulario.
 - No asumir conocimientos previos no cubiertos por la ruta.
 

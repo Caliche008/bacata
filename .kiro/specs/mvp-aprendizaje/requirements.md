@@ -3,7 +3,8 @@
 ## Introducción
 
 Aplicación educativa tipo Duolingo (PWA, offline-first, Android gama baja/media) para que
-estudiantes de secundaria (6° y 7°) de Colombia aprendan y repasen historia y ciencias
+estudiantes de secundaria de Colombia (plataforma habilitada para 6° a 11°; el contenido del
+MVP arranca en 6° y 7° y los demás grados se suman por fases) aprendan y repasen historia y ciencias
 sociales, con la Cátedra de la Paz como eje transversal. Incluye ruta de progreso por niveles,
 ejercicios interactivos, retroalimentación inmediata y gamificación (puntos, rachas, logros).
 Foco en estudiante, con panel docente mínimo. Privacidad (Ley 1581) y accesibilidad como
@@ -341,7 +342,8 @@ amable.
   docentes/institucionales).
 - Notificaciones push (limitadas en PWA/iOS); se evalúan en fase posterior.
 - Chat, mensajes o contacto entre estudiantes.
-- Grados distintos de 6° y 7°.
+- Contenido pedagógico de grados distintos de 6° y 7° (la plataforma ya soporta 6° a 11°;
+  esos grados muestran un estado vacío amable hasta que su contenido llegue por fases).
 
 ## Preguntas abiertas (seguimiento)
 

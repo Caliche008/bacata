@@ -25,7 +25,9 @@ y críticas en el contexto colombiano.
 
 ## Usuarios
 
-- **Estudiante** (foco principal): secundaria, inicialmente 6° y 7°. Usa la app de forma
+- **Estudiante** (foco principal): secundaria. La app está habilitada técnicamente para los
+  grados 6° a 11°; el contenido inicial cubre 6° y 7°, y el resto se incorpora gradualmente
+  (un grado sin lecciones aún muestra un estado vacío amable, no un error). Usa la app de forma
   individual, con un apodo, sin datos personales sensibles.
 - **Docente** (especialista en ciencias sociales): crea y actualiza contenido, crea clases,
   entrega códigos de clase y hace seguimiento del progreso.
@@ -53,7 +55,8 @@ y críticas en el contexto colombiano.
 
 ## Alcance del MVP
 
-- Grados: **6° y 7°**.
+- Grados: plataforma habilitada para **6° a 11°**; el contenido del MVP arranca en **6° y 7°**
+  y los demás grados se suman por fases (hasta entonces muestran un estado vacío amable).
 - **4 unidades livianas** (amplitud sobre profundidad), con Cátedra de la Paz transversal:
   1. Convivencia y resolución de conflictos
   2. Derechos humanos y deberes ciudadanos
