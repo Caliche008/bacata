@@ -45,6 +45,23 @@ describe('PanelDocente', () => {
     expect(screen.getByRole('heading', { name: 'Panel del docente' })).toBeInTheDocument();
   });
 
+  it('navega a "Editor de contenido" y muestra el editor (chunk lazy)', async () => {
+    const user = userEvent.setup();
+    setTeacherPinHash(await hashPin('1234'));
+    setTeacherSession(true);
+
+    render(<PanelDocente onSalir={() => {}} />);
+    await screen.findByRole('navigation', { name: 'Secciones del panel' });
+
+    await user.click(screen.getByRole('button', { name: 'Editor de contenido' }));
+
+    // El editor es un chunk perezoso: aparece su encabezado y la nota de borradores locales.
+    expect(
+      await screen.findByRole('heading', { name: 'Editor de contenido' }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/los borradores son locales/i)).toBeInTheDocument();
+  });
+
   it('"Salir del panel" cierra la sesión y vuelve al acceso del estudiante', async () => {
     const user = userEvent.setup();
     setTeacherPinHash(await hashPin('1234'));

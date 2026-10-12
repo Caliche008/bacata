@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { Button } from '../../components';
 import { GRADOS_SOPORTADOS } from '../../content';
 import { isTeacherSessionActive, setClassGrade } from '../../lib/preferences';
@@ -13,6 +13,13 @@ import { eliminarEstudiante, renombrarApodo } from './students-service';
 import { useTeacherPanel } from './useTeacherPanel';
 import './teacher.css';
 
+/**
+ * Editor de contenido cargado de forma perezosa (R10.1): su chunk solo se
+ * descarga cuando el docente abre la sección "Editor de contenido", sin pesar
+ * en el arranque del estudiante (que nunca ve el panel).
+ */
+const EditorContenido = lazy(() => import('./editor'));
+
 export interface PanelDocenteProps {
   /** Vuelve al acceso del estudiante (cierra el panel). */
   onSalir: () => void;
@@ -20,13 +27,14 @@ export interface PanelDocenteProps {
   onVerPrivacidad?: () => void;
 }
 
-type Seccion = 'clases' | 'progreso' | 'unidades' | 'estudiantes';
+type Seccion = 'clases' | 'progreso' | 'unidades' | 'estudiantes' | 'editor';
 
 const SECCIONES: { id: Seccion; etiqueta: string }[] = [
   { id: 'clases', etiqueta: 'Clases' },
   { id: 'progreso', etiqueta: 'Progreso' },
   { id: 'unidades', etiqueta: 'Unidades' },
   { id: 'estudiantes', etiqueta: 'Estudiantes' },
+  { id: 'editor', etiqueta: 'Editor de contenido' },
 ];
 
 /**
@@ -196,6 +204,12 @@ export function PanelDocente({ onSalir, onVerPrivacidad }: PanelDocenteProps) {
                 recargar();
               }}
             />
+          ) : null}
+
+          {seccion === 'editor' ? (
+            <Suspense fallback={<p aria-busy="true">Cargando el editor…</p>}>
+              <EditorContenido onSalir={() => setSeccion('clases')} />
+            </Suspense>
           ) : null}
         </>
       )}

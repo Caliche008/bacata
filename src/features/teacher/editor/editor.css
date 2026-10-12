@@ -186,6 +186,97 @@
   color: var(--color-secondary-text);
 }
 
+/* Shell del editor: contenedor vertical de todas las secciones. */
+.bc-editor__shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bc-editor__shell-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Nota recurrente: los borradores son locales (no afectan al estudiante). */
+.bc-editor__nota {
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+/* Fila de acciones (exportar/importar). */
+.bc-editor__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/*
+ * Input de archivo oculto visualmente pero accesible: lo dispara el botón
+ * "Importar". No usa display:none para no sacarlo del árbol de accesibilidad.
+ */
+.bc-editor__file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Aviso de resultado (exportar/importar/preview): icono + texto, no solo color. */
+.bc-editor__aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 0.95rem;
+}
+
+.bc-editor__aviso--ok {
+  border-color: var(--color-success-text, var(--color-primary-strong));
+}
+
+.bc-editor__aviso--error {
+  border-color: var(--color-error-text);
+  color: var(--color-error-text);
+  font-weight: 600;
+}
+
+.bc-editor__aviso-icono {
+  flex: none;
+}
+
+/* Zona del ejercicio: formulario + previsualización, apiladas en móvil. */
+.bc-editor__ejercicio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bc-editor__preview {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.875rem;
+  background-color: var(--color-surface);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bc-editor__grado {
     transition: none;

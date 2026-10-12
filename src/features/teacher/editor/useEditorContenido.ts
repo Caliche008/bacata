@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Curso, Grado, Leccion, Unidad } from '../../../content/types';
+import type { Curso, Ejercicio, Grado, Leccion, Unidad } from '../../../content/types';
 import {
   getDraftsByGrade,
   putDraft,
   type BorradorContenido,
 } from '../../../lib/storage';
-import { asegurarId, idLeccion, idUnidad, slugify } from './ids';
+import { asegurarId, idEjercicio, idLeccion, idUnidad, slugify } from './ids';
 import { erroresCurso, type ErroresCampo } from './validation';
 
 /**
@@ -45,6 +45,8 @@ export interface UseEditorContenidoResult {
   errores: ErroresCampo;
   /** Edita los campos de cabecera del curso. */
   editarCurso: (campos: Partial<CamposCurso>) => void;
+  /** Reemplaza el curso completo en edición (p. ej. al importar un JSON válido). */
+  reemplazarCurso: (curso: Curso) => void;
   /** Añade una unidad vacía al final y devuelve su id generado. */
   anadirUnidad: () => string;
   /** Edita los campos de una unidad por id (conserva su id). */
@@ -69,6 +71,24 @@ export interface UseEditorContenidoResult {
   ) => void;
   /** Elimina una lección de una unidad. */
   eliminarLeccion: (unidadId: string, leccionId: string) => void;
+  /** Añade un ejercicio (opción múltiple vacío) al final de una lección; devuelve su id. */
+  anadirEjercicio: (unidadId: string, leccionId: string) => string;
+  /** Reemplaza un ejercicio completo por su id (conserva su id si quedó vacío). */
+  editarEjercicio: (
+    unidadId: string,
+    leccionId: string,
+    ejercicioId: string,
+    ejercicio: Ejercicio,
+  ) => void;
+  /** Reordena un ejercicio dentro de su lección. */
+  moverEjercicio: (
+    unidadId: string,
+    leccionId: string,
+    ejercicioId: string,
+    direccion: 'subir' | 'bajar',
+  ) => void;
+  /** Elimina un ejercicio de una lección. */
+  eliminarEjercicio: (unidadId: string, leccionId: string, ejercicioId: string) => void;
 }
 
 const RETRASO_AUTOSAVE_MS = 400;
@@ -177,6 +197,10 @@ export function useEditorContenido(grado: Grado): UseEditorContenidoResult {
 
   const editarCurso = useCallback((campos: Partial<CamposCurso>) => {
     setCurso((actual) => (actual ? { ...actual, ...campos } : actual));
+  }, []);
+
+  const reemplazarCurso = useCallback((nuevo: Curso) => {
+    setCurso(nuevo);
   }, []);
 
   const anadirUnidad = useCallback((): string => {
@@ -348,6 +372,144 @@ export function useEditorContenido(grado: Grado): UseEditorContenidoResult {
     });
   }, []);
 
+  const anadirEjercicio = useCallback(
+    (unidadId: string, leccionId: string): string => {
+      const leccion = curso?.unidades
+        .find((u) => u.id === unidadId)
+        ?.lecciones.find((l) => l.id === leccionId);
+      const existentes = (leccion?.ejercicios ?? []).map((e) => e.id);
+      const nuevoId = idEjercicio(leccionId, existentes.length + 1, existentes);
+      setCurso((actual) => {
+        if (!actual) {
+          return actual;
+        }
+        const ejercicio: Ejercicio = {
+          id: nuevoId,
+          tipo: 'opcion_multiple',
+          enunciado: '',
+          meta: { tema: '', etiquetas: [], estado: 'borrador' },
+          opciones: [{ id: 'op-1', texto: '', esCorrecta: false }],
+        };
+        return {
+          ...actual,
+          unidades: actual.unidades.map((u) =>
+            u.id === unidadId
+              ? {
+                  ...u,
+                  lecciones: u.lecciones.map((l) =>
+                    l.id === leccionId
+                      ? { ...l, ejercicios: [...l.ejercicios, ejercicio] }
+                      : l,
+                  ),
+                }
+              : u,
+          ),
+        };
+      });
+      return nuevoId;
+    },
+    [curso],
+  );
+
+  const editarEjercicio = useCallback(
+    (unidadId: string, leccionId: string, ejercicioId: string, ejercicio: Ejercicio) => {
+      setCurso((actual) => {
+        if (!actual) {
+          return actual;
+        }
+        // Conserva el id ya referenciado aunque el ejercicio entrante cambie.
+        const estable: Ejercicio = {
+          ...ejercicio,
+          id: asegurarId(ejercicio.id, () => ejercicioId),
+        };
+        return {
+          ...actual,
+          unidades: actual.unidades.map((u) =>
+            u.id === unidadId
+              ? {
+                  ...u,
+                  lecciones: u.lecciones.map((l) =>
+                    l.id === leccionId
+                      ? {
+                          ...l,
+                          ejercicios: l.ejercicios.map((e) =>
+                            e.id === ejercicioId ? estable : e,
+                          ),
+                        }
+                      : l,
+                  ),
+                }
+              : u,
+          ),
+        };
+      });
+    },
+    [],
+  );
+
+  const moverEjercicio = useCallback(
+    (
+      unidadId: string,
+      leccionId: string,
+      ejercicioId: string,
+      direccion: 'subir' | 'bajar',
+    ) => {
+      setCurso((actual) => {
+        if (!actual) {
+          return actual;
+        }
+        return {
+          ...actual,
+          unidades: actual.unidades.map((u) => {
+            if (u.id !== unidadId) {
+              return u;
+            }
+            return {
+              ...u,
+              lecciones: u.lecciones.map((l) => {
+                if (l.id !== leccionId) {
+                  return l;
+                }
+                const i = l.ejercicios.findIndex((e) => e.id === ejercicioId);
+                if (i === -1) {
+                  return l;
+                }
+                return { ...l, ejercicios: mover(l.ejercicios, i, direccion) };
+              }),
+            };
+          }),
+        };
+      });
+    },
+    [],
+  );
+
+  const eliminarEjercicio = useCallback(
+    (unidadId: string, leccionId: string, ejercicioId: string) => {
+      setCurso((actual) => {
+        if (!actual) {
+          return actual;
+        }
+        return {
+          ...actual,
+          unidades: actual.unidades.map((u) =>
+            u.id === unidadId
+              ? {
+                  ...u,
+                  lecciones: u.lecciones.map((l) =>
+                    l.id === leccionId
+                      ? { ...l, ejercicios: l.ejercicios.filter((e) => e.id !== ejercicioId) }
+                      : l,
+                  ),
+                }
+              : u,
+          ),
+        };
+      });
+    },
+    [],
+  );
+
   const errores = curso ? erroresCurso(curso) : {};
 
   return {
@@ -356,6 +518,7 @@ export function useEditorContenido(grado: Grado): UseEditorContenidoResult {
     curso,
     errores,
     editarCurso,
+    reemplazarCurso,
     anadirUnidad,
     editarUnidad,
     moverUnidad,
@@ -364,5 +527,9 @@ export function useEditorContenido(grado: Grado): UseEditorContenidoResult {
     editarLeccion,
     moverLeccion,
     eliminarLeccion,
+    anadirEjercicio,
+    editarEjercicio,
+    moverEjercicio,
+    eliminarEjercicio,
   };
 }
