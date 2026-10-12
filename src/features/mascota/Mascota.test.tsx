@@ -8,7 +8,7 @@ describe('Mascota', () => {
     expect(container.querySelector('[data-pose="celebrando"]')).not.toBeNull();
   });
 
-  it('expone el mensaje como texto accesible y el SVG decorativo oculto', () => {
+  it('expone el mensaje como texto accesible y la imagen decorativa oculta', () => {
     const { container } = render(
       <Mascota pose="saludando" message="¡Hola! Soy tu compañero de ruta." />,
     );
@@ -16,9 +16,13 @@ describe('Mascota', () => {
     expect(
       screen.getByText('¡Hola! Soy tu compañero de ruta.'),
     ).toBeInTheDocument();
-    // El SVG decorativo está oculto para el lector de pantalla.
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('aria-hidden', 'true');
+    // La ilustración decorativa está oculta para el lector de pantalla
+    // (alt vacío + aria-hidden), por eso no expone rol de imagen.
+    const img = container.querySelector('img');
+    expect(img).not.toBeNull();
+    expect(img).toHaveAttribute('aria-hidden', 'true');
+    expect(img).toHaveAttribute('alt', '');
+    expect(screen.queryByRole('img')).toBeNull();
   });
 
   it('con decorative=false expone la pose como imagen con etiqueta', () => {

@@ -10,6 +10,8 @@
 
 .bc-mascota__art {
   display: block;
+  /* Las ilustraciones no son perfectamente cuadradas: contener sin deformar. */
+  object-fit: contain;
 }
 
 .bc-mascota__art--sm {

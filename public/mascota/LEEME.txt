@@ -1,0 +1,21 @@
+Carpeta para el arte final de la mascota de Bacatá
+==================================================
+
+Coloca aquí las 6 ilustraciones generadas (p. ej. con Meta AI), con EXACTAMENTE
+estos nombres de archivo (en minúsculas):
+
+  feliz.png        -> pose feliz / contenta (bienvenida, acierto)
+  pensando.png     -> pose pensando (curiosa, pista)
+  celebrando.png   -> pose celebrando (logro, unidad completada)
+  animando.png     -> pose animando tras un error (apoyo, reintento)
+  saludando.png    -> pose saludando (bienvenida inicial)
+  durmiendo.png    -> pose durmiendo (recordatorio de racha)
+
+Recomendaciones:
+- Formato PNG con fondo transparente (ideal) o blanco. También sirve .svg o .webp.
+- Imagen cuadrada, personaje centrado (p. ej. 512x512), cuerpo completo.
+- Mismo personaje en las 6 (misma apariencia; solo cambia la pose).
+
+Cuando estén aquí, avisa a Kiro para integrarlas en el componente Mascota
+(reemplazan los SVG provisionales de src/features/mascota/poses.tsx).
+Si usas otra extensión (.svg/.webp) o cambias los nombres, indícalo al integrarlas.
