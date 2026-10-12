@@ -54,7 +54,8 @@ export default defineConfig({
       manifest: {
         name: 'Bacatá',
         short_name: 'Bacatá',
-        description: 'Conoce tu historia, construye tu país.',
+        description:
+          'Bacatá — Aprende jugando. Conoce tu historia, construye tu país.',
         lang: 'es',
         dir: 'ltr',
         start_url: BASE_PATH,

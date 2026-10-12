@@ -34,6 +34,9 @@
   font-family: var(--font-title);
   font-size: 1.5rem;
   color: var(--color-text);
+  /* Títulos largos no deben desbordar la cabecera flexible en ~360px. */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .bc-teacher__nota {
@@ -136,6 +139,9 @@
   font-size: 1.25rem;
   letter-spacing: 0.08em;
   color: var(--color-text);
+  /* El código resaltado parte en vez de desbordar el ítem flexible en móvil. */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .bc-teacher__acciones {

@@ -27,16 +27,22 @@
   gap: 0.5rem;
 }
 
+/*
+ * Saludo y meta de la cabecera: pueden incluir apodos largos. `overflow-wrap`
+ * evita el desborde en ~360–412px sin fijar tamaños (respeta --font-scale).
+ */
 .bc-ruta__saludo {
   margin: 0;
   font-family: var(--font-title);
   color: var(--color-text);
+  overflow-wrap: anywhere;
 }
 
 .bc-ruta__meta {
   margin: 0.25rem 0 0;
   font-weight: 600;
   color: var(--color-text);
+  overflow-wrap: anywhere;
 }
 
 .bc-ruta__cargando,
@@ -105,6 +111,10 @@
   color: var(--color-text-on-dark);
   font-size: 0.875rem;
   font-weight: 600;
+  /* La temática de paz puede ser larga: que ajuste su ancho y parta sin
+     desbordar el ancho de la unidad en pantallas ~360px. */
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .bc-unidad__paz-icono {
@@ -145,6 +155,8 @@
   align-items: center;
   gap: 0.75rem;
   width: 100%;
+  /* min-width:0 permite que el título se encoja/parta sin desbordar el botón. */
+  min-width: 0;
   min-height: var(--touch-min);
   padding: 0.625rem 0.875rem;
   border: 2px solid var(--color-border);
@@ -177,6 +189,9 @@
 
 .bc-leccion__titulo {
   flex: 1 1 auto;
+  /* Títulos largos se parten en vez de desbordar el botón en móvil estrecho. */
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .bc-leccion__estado {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { describe, expect, it } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ejercicioSchema } from '../../../content';
 import type { Ejercicio } from '../../../content/types';
@@ -67,5 +67,25 @@ describe('EjercicioForm', () => {
     render(<Harness inicial={base} />);
     expect(screen.getByRole('radiogroup', { name: 'Tipo de ejercicio' })).toBeInTheDocument();
     expect(screen.getByLabelText('Enunciado')).toHaveValue('¿Qué es convivir?');
+  });
+
+  it('expone los 7 tipos de ejercicio como radios accesibles por nombre', () => {
+    render(<Harness inicial={base} />);
+    // Se consulta DENTRO del radiogroup del selector de tipo para no contar los
+    // radios del sub-formulario del tipo activo (p. ej. la opción correcta).
+    const grupo = screen.getByRole('radiogroup', { name: 'Tipo de ejercicio' });
+    expect(within(grupo).getAllByRole('radio')).toHaveLength(7);
+
+    for (const etiqueta of [
+      'Opción múltiple',
+      'Verdadero / Falso',
+      'Emparejar',
+      'Ordenar',
+      'Completar',
+      'Dilema',
+      'Análisis de fuente',
+    ]) {
+      expect(within(grupo).getByRole('radio', { name: etiqueta })).toBeInTheDocument();
+    }
   });
 });

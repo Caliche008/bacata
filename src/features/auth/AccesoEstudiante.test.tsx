@@ -71,6 +71,21 @@ describe('AccesoEstudiante — accesibilidad y privacidad', () => {
     }
   });
 
+  it('presenta el encabezado de marca "Bacatá" (h1) + tagline, sin romper el h2 de la tarjeta', () => {
+    renderAcceso();
+
+    // El <h1> de marca aporta la jerarquía del arranque.
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Bacatá' }),
+    ).toBeInTheDocument();
+    // El tagline de plataforma acompaña al nombre.
+    expect(screen.getByText('Aprende jugando')).toBeInTheDocument();
+    // El título de la tarjeta sigue siendo <h2> (jerarquía intacta).
+    expect(
+      screen.getByRole('heading', { level: 2, name: /Bienvenido a Bacatá/ }),
+    ).toBeInTheDocument();
+  });
+
   it('muestra el aviso de solo-local (R1.9) y de no usar nombre real (R1.7)', () => {
     renderAcceso();
     expect(

@@ -56,6 +56,7 @@ export function AccesoEstudiante({
   const apodoErrorId = useId();
   const avisoApodoId = useId();
   const gradoLabelId = useId();
+  const marcaTaglineId = useId();
 
   const codigoRef = useRef<HTMLInputElement>(null);
   const apodoRef = useRef<HTMLInputElement>(null);
@@ -85,6 +86,21 @@ export function AccesoEstudiante({
     <main className="bc-auth">
       <Card title="Bienvenido a Bacatá" className="bc-auth__card">
         <div className="bc-auth__hero">
+          {/*
+            Encabezado de marca de la plataforma. El <h1> aporta la jerarquía
+            que faltaba en el arranque (h1 marca → h2 de la tarjeta "Bienvenido
+            a Bacatá"); el tagline se asocia al <h1> por aria-describedby. El
+            eslogan de contenido "Conoce tu historia, construye tu país." no se
+            toca y se conserva donde ya aparece.
+          */}
+          <div className="bc-auth__marca">
+            <h1 className="bc-auth__marca-nombre" aria-describedby={marcaTaglineId}>
+              Bacatá
+            </h1>
+            <p id={marcaTaglineId} className="bc-auth__marca-tagline">
+              Aprende jugando
+            </p>
+          </div>
           <Mascota
             pose={bienvenida.pose}
             message={bienvenida.mensaje}

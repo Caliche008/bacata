@@ -123,6 +123,54 @@
   outline-offset: 2px;
 }
 
+/*
+ * Selector de "Tipo de ejercicio" (7 opciones con etiquetas largas como
+ * "Opción múltiple" o "Análisis de fuente"). A diferencia del grupo de grados
+ * (etiquetas cortas "6°"), aquí NO se usa `flex: 1`: un grid responsivo con
+ * `minmax(9.5rem, 1fr)` + `auto-fit` reparte las columnas según el ancho. En
+ * móviles ~360–412px (9.5rem≈152px por columna + gap) entran 2 por fila sin
+ * desbordar; en pantallas anchas, más. Todo en `rem` para respetar
+ * --font-scale. El estado seleccionado se marca por borde + fondo + texto (no
+ * solo color); `overflow-wrap: anywhere` evita que la etiqueta corte el botón.
+ */
+.bc-editor__tipos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.bc-editor__tipo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--touch-min);
+  padding: 0.625rem 0.875rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+/* Seleccionado: fondo + borde reforzado + texto (no solo color). */
+.bc-editor__tipo--activo {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary-strong);
+}
+
+.bc-editor__radio:focus-visible + span,
+.bc-editor__tipo:focus-within {
+  outline: var(--focus-width) solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
 /* Casilla (ejePaz) con objetivo táctil cómodo. */
 .bc-editor__check {
   display: inline-flex;
@@ -199,6 +247,15 @@
   justify-content: space-between;
   gap: 0.75rem;
   flex-wrap: wrap;
+  /* Permite que los hijos (título largo + acciones) se encojan y bajen de línea
+     sin desbordar en móviles ~360–412px. */
+  min-width: 0;
+}
+
+/* El texto del encabezado del editor parte en vez de desbordar en móvil. */
+.bc-editor__shell-encabezado > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 /* Nota recurrente: los borradores son locales (no afectan al estudiante). */
@@ -275,10 +332,13 @@
   border-radius: var(--radius);
   padding: 0.875rem;
   background-color: var(--color-surface);
+  /* El contenido previsualizado (texto del docente, sin espacios) no desborda. */
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bc-editor__grado {
+  .bc-editor__grado,
+  .bc-editor__tipo {
     transition: none;
   }
 }

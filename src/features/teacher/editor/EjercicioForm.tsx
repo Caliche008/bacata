@@ -194,13 +194,13 @@ export function EjercicioForm({ ejercicio, errores, onChange }: EjercicioFormPro
       <div className="bc-editor__form">
         <fieldset className="bc-editor__field">
           <legend className="bc-editor__label">Tipo de ejercicio</legend>
-          <div className="bc-editor__grados" role="radiogroup" aria-label="Tipo de ejercicio">
+          <div className="bc-editor__tipos" role="radiogroup" aria-label="Tipo de ejercicio">
             {TIPOS.map(({ valor, etiqueta }) => {
               const checked = ejercicio.tipo === valor;
               return (
                 <label
                   key={valor}
-                  className={`bc-editor__grado${checked ? ' bc-editor__grado--activo' : ''}`}
+                  className={`bc-editor__tipo${checked ? ' bc-editor__tipo--activo' : ''}`}
                 >
                   <input
                     type="radio"
