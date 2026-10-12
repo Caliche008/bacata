@@ -77,7 +77,8 @@ describe('erroresUnidad', () => {
   });
 
   it('exige que ejePaz sea booleano (requerido)', () => {
-    const { ejePaz: _omitido, ...sinEje } = unidadBase;
+    const sinEje: Partial<Unidad> = { ...unidadBase };
+    delete sinEje.ejePaz;
     const errores = erroresUnidad(sinEje);
     expect(errores.ejePaz).toBeDefined();
   });

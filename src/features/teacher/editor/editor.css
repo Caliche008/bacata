@@ -157,6 +157,17 @@
   flex: 1;
 }
 
+/* Tarjeta de un ítem de lista compuesto (opción, par, hueco, pregunta). */
+.bc-editor__opcion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-bg);
+}
+
 /* Recordatorio del eje de la Cátedra de la Paz: icono + texto. */
 .bc-editor__paz {
   display: flex;
