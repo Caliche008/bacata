@@ -37,6 +37,20 @@
   height: clamp(8rem, 32vw, 12.5rem);
 }
 
+/*
+ * Tamaño propio del bloque de feedback de lección (NO reutiliza `xl`, que es del
+ * hero de la ruta). Se targetea desde la clase del wrapper (`bc-mascota--feedback`,
+ * pasada vía `className`) porque el tamaño va sobre el arte (`<img>`). Crece de
+ * ~152px en móvil (~360–412px) a ~216px en escritorio con `clamp`, sin media
+ * queries; da protagonismo a la mascota sin desbordar la tarjeta
+ * (`.bc-leccion-flujo` tiene max-width 40rem). En `rem` para respetar la escala
+ * de texto del usuario (--font-scale).
+ */
+.bc-mascota--feedback .bc-mascota__art {
+  width: clamp(9.5rem, 42vw, 13.5rem);
+  height: clamp(9.5rem, 42vw, 13.5rem);
+}
+
 /* Burbuja de mensaje accesible (el texto siempre lo lee el lector de pantalla). */
 .bc-mascota__bubble {
   position: relative;
@@ -84,6 +98,17 @@
     animation: bc-mascota-saludo 2.8s ease-in-out infinite;
     transform-origin: center bottom;
   }
+
+  /*
+   * Ánimo tras un error (opt-in vía prop `animo`). Balanceo suave y alentador:
+   * amplitud MENOR que `saludo`, sin caída ni gesto triste, vuelve siempre a
+   * reposo. Nunca se burla del error (brand.md). Solo `transform` (barato en
+   * gama baja). Dentro de `no-preference` como el resto (WCAG 2.3.3).
+   */
+  .bc-mascota__art--animo {
+    animation: bc-mascota-animo 2.6s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
 }
 
 @keyframes bc-mascota-bob {
@@ -121,5 +146,26 @@
   100% {
     opacity: 1;
     transform: translateY(0) rotate(0deg);
+  }
+}
+
+/*
+ * Balanceo alentador tras un error: subida leve + ligera inclinación a lado y
+ * lado, amplitud menor que `saludo`, siempre regresa a reposo. Transmite ánimo
+ * ("vuelve a intentarlo"), nunca tristeza ni burla. Solo `transform`.
+ */
+@keyframes bc-mascota-animo {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-5px) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(3deg);
   }
 }

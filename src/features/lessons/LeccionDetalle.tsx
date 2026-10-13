@@ -256,13 +256,32 @@ export default function LeccionDetalle({
             {enFeedback && resultadoActual ? (
               <div className="bc-leccion-flujo__feedback">
                 {esDilema ? (
-                  <Feedback
-                    state="info"
-                    message="Para pensar"
-                    hint={resultadoActual.retroalimentacion}
-                  />
+                  <>
+                    <Feedback
+                      state="info"
+                      message="Para pensar"
+                      hint={resultadoActual.retroalimentacion}
+                    />
+                    <Button
+                      className="bc-leccion-flujo__accion-resultado"
+                      variant="primary"
+                      onClick={() => dispatch({ tipo: 'avanzar' })}
+                    >
+                      {numero < total ? 'Siguiente' : 'Terminar'}
+                    </Button>
+                  </>
                 ) : (
                   <>
+                    {/* Jerarquía vertical centrada: mascota grande → mensaje → botón. */}
+                    <Mascota
+                      className="bc-mascota--feedback"
+                      pose={momentoMascota.pose}
+                      size="lg"
+                      animated
+                      greeting={correcto}
+                      animo={incorrecto}
+                      message={correcto ? resultadoActual.retroalimentacion : undefined}
+                    />
                     <Feedback
                       state={correcto ? 'correcto' : 'incorrecto'}
                       message={momentoMascota.mensaje}
@@ -272,33 +291,36 @@ export default function LeccionDetalle({
                           : (resultadoActual.hint ?? resultadoActual.retroalimentacion)
                       }
                     />
-                    <Mascota
-                      pose={momentoMascota.pose}
-                      size="sm"
-                      message={correcto ? resultadoActual.retroalimentacion : undefined}
-                    />
+                    {incorrecto ? (
+                      <Button
+                        className="bc-leccion-flujo__accion-resultado"
+                        variant="secondary"
+                        onClick={reintentar}
+                      >
+                        Reintentar
+                      </Button>
+                    ) : null}
+                    {correcto ? (
+                      <Button
+                        className="bc-leccion-flujo__accion-resultado"
+                        variant="primary"
+                        onClick={() => dispatch({ tipo: 'avanzar' })}
+                      >
+                        {numero < total ? 'Siguiente' : 'Terminar'}
+                      </Button>
+                    ) : null}
                   </>
                 )}
               </div>
             ) : null}
 
-            <div className="bc-leccion-flujo__acciones">
-              {!enFeedback ? (
+            {!enFeedback ? (
+              <div className="bc-leccion-flujo__acciones">
                 <Button variant="primary" onClick={responder}>
                   Responder
                 </Button>
-              ) : null}
-              {enFeedback && incorrecto ? (
-                <Button variant="secondary" onClick={reintentar}>
-                  Reintentar
-                </Button>
-              ) : null}
-              {enFeedback && (correcto || esDilema) ? (
-                <Button variant="primary" onClick={() => dispatch({ tipo: 'avanzar' })}>
-                  {numero < total ? 'Siguiente' : 'Terminar'}
-                </Button>
-              ) : null}
-            </div>
+              </div>
+            ) : null}
           </>
         )}
       </Card>

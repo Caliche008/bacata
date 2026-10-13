@@ -271,11 +271,36 @@
   text-align: center;
 }
 
+/*
+ * Bloque de resultado (Opción A): jerarquía vertical CENTRADA
+ * mascota grande → mensaje (Feedback) → botón de acción destacado. `align-items:
+ * center` y `text-align: center` alinean los tres elementos; el `gap` los agrupa
+ * como una sola unidad. Funciona igual en móvil (~360–412px) y escritorio
+ * (la tarjeta ya está acotada a 40rem). Solo tokens → hereda alto contraste.
+ */
 .bc-leccion-flujo__feedback {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin: 1rem 0 0;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+}
+
+/* El Feedback (flex ícono+texto) ocupa el ancho y queda legible y centrado. */
+.bc-leccion-flujo__feedback .bc-feedback {
+  width: 100%;
+}
+
+/*
+ * Botón de acción del resultado (Reintentar / Siguiente / Terminar): centrado y
+ * destacado bajo el mensaje. Objetivo táctil >= 44px (`--touch-min`) y buen
+ * ancho en móvil sin estirarse de más en escritorio.
+ */
+.bc-leccion-flujo__accion-resultado {
+  min-height: var(--touch-min);
+  min-width: 12rem;
+  max-width: 100%;
 }
 
 .bc-leccion-flujo__acciones {

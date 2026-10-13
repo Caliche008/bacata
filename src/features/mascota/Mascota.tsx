@@ -25,6 +25,12 @@ export interface MascotaProps {
    * reemplazarlo; respeta `prefers-reduced-motion` vía CSS (igual que `bob`).
    */
   greeting?: boolean;
+  /**
+   * Activa la animación de ánimo tras un error (balanceo suave y alentador,
+   * nunca burla). Es opt-in y se suma a `animated` sin reemplazarlo; respeta
+   * `prefers-reduced-motion` vía CSS (igual que `greeting`/`bob`).
+   */
+  animo?: boolean;
   className?: string;
 }
 
@@ -45,6 +51,7 @@ export function Mascota({
   accessibleLabel,
   animated = false,
   greeting = false,
+  animo = false,
   className,
 }: MascotaProps) {
   const PoseRenderer = poseRenderers[pose];
@@ -53,6 +60,7 @@ export function Mascota({
     `bc-mascota__art--${size}`,
     animated ? 'bc-mascota__art--animated' : '',
     greeting ? 'bc-mascota__art--saludo' : '',
+    animo ? 'bc-mascota__art--animo' : '',
   ]
     .filter(Boolean)
     .join(' ');
