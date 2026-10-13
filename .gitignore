@@ -36,3 +36,6 @@ coverage
 
 # Archivos de salida temporales
 git-out.txt
+
+# Materiales internos (no se publican en el repositorio)
+documentos bacata/
