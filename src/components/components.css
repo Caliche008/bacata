@@ -55,6 +55,22 @@
   text-decoration: underline;
 }
 
+/*
+ * Variante de error/acción de reintento. Rojo coral oscuro con texto blanco
+ * (contraste AA verificado en tokens: --color-error-strong / blanco >= 4.5:1).
+ * El estado de error NUNCA se transmite solo por color: siempre acompaña a un
+ * ícono + texto ("Incorrecto") y la etiqueta "Reintentar" del propio botón.
+ */
+.bc-button--danger {
+  background-color: var(--color-error-strong);
+  color: var(--color-on-error);
+}
+
+.bc-button--danger:hover,
+.bc-button--danger:active {
+  filter: brightness(0.92);
+}
+
 .bc-button:disabled {
   opacity: 0.55;
   cursor: not-allowed;

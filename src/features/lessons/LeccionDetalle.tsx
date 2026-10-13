@@ -216,7 +216,6 @@ export default function LeccionDetalle({
   const esDilema = ejercicioActual.tipo === 'dilema';
   const enFeedback = estado.fase === 'feedback';
   const correcto = resultadoActual?.correcto === true;
-  const incorrecto = resultadoActual?.correcto === false;
 
   const momentoMascota = correcto ? getMomento('acierto') : getMomento('error');
 
@@ -270,45 +269,52 @@ export default function LeccionDetalle({
                       {numero < total ? 'Siguiente' : 'Terminar'}
                     </Button>
                   </>
-                ) : (
+                ) : correcto ? (
                   <>
-                    {/* Jerarquía vertical centrada: mascota grande → mensaje → botón. */}
+                    {/* Acierto: jerarquía vertical centrada → mascota grande que
+                        celebra, mensaje y botón para avanzar. */}
                     <Mascota
                       className="bc-mascota--feedback"
                       pose={momentoMascota.pose}
                       size="lg"
                       animated
-                      greeting={correcto}
-                      animo={incorrecto}
-                      message={correcto ? resultadoActual.retroalimentacion : undefined}
+                      greeting
+                      message={resultadoActual.retroalimentacion}
                     />
                     <Feedback
-                      state={correcto ? 'correcto' : 'incorrecto'}
+                      state="correcto"
                       message={momentoMascota.mensaje}
-                      hint={
-                        correcto
-                          ? resultadoActual.retroalimentacion
-                          : (resultadoActual.hint ?? resultadoActual.retroalimentacion)
-                      }
+                      hint={resultadoActual.retroalimentacion}
                     />
-                    {incorrecto ? (
+                    <Button
+                      className="bc-leccion-flujo__accion-resultado"
+                      variant="primary"
+                      onClick={() => dispatch({ tipo: 'avanzar' })}
+                    >
+                      {numero < total ? 'Siguiente' : 'Terminar'}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    {/* Error: bloque compacto. La mascota anima (sin burla) JUNTO
+                        al botón "Reintentar" en rojo, agrupados como una unidad.
+                        El estado nunca va solo por color: ícono + texto en el
+                        Feedback y la etiqueta del botón lo refuerzan. */}
+                    <Feedback
+                      state="incorrecto"
+                      message={momentoMascota.mensaje}
+                      hint={resultadoActual.hint ?? resultadoActual.retroalimentacion}
+                    />
+                    <div className="bc-leccion-flujo__error-accion">
+                      <Mascota pose={momentoMascota.pose} size="md" animated animo />
                       <Button
                         className="bc-leccion-flujo__accion-resultado"
-                        variant="secondary"
+                        variant="danger"
                         onClick={reintentar}
                       >
                         Reintentar
                       </Button>
-                    ) : null}
-                    {correcto ? (
-                      <Button
-                        className="bc-leccion-flujo__accion-resultado"
-                        variant="primary"
-                        onClick={() => dispatch({ tipo: 'avanzar' })}
-                      >
-                        {numero < total ? 'Siguiente' : 'Terminar'}
-                      </Button>
-                    ) : null}
+                    </div>
                   </>
                 )}
               </div>

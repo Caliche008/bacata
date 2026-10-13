@@ -303,6 +303,21 @@
   max-width: 100%;
 }
 
+/*
+ * Bloque de ERROR compacto: la mascota (pose de ánimo, sin burla) queda JUNTO al
+ * botón "Reintentar" rojo, agrupados como una sola unidad y centrados. En móvil
+ * estrecho (~360px) `flex-wrap` los apila sin desbordar; en pantallas amplias
+ * quedan lado a lado. El error nunca se comunica solo por color: el Feedback
+ * superior lleva ícono + texto ("Incorrecto") y el botón su propia etiqueta.
+ */
+.bc-leccion-flujo__error-accion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .bc-leccion-flujo__acciones {
   display: flex;
   flex-wrap: wrap;
